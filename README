@@ -1,0 +1,45 @@
+# msapso-mppt
+
+**Optimización adaptativa del punto de máxima potencia en paneles fotovoltaicos bajo sombreado parcial mediante aprendizaje por refuerzo aplicado a algoritmos metaheurísticos deterministas (MSAPSO)**
+
+Proyecto integrador de la Maestría en Inteligencia Artificial Aplicada · [Instituto Tecnológico y de Estudios Superiores de Monterrey] · 2026
+
+---
+
+## Descripción del proyecto
+
+Bajo sombreado parcial, la curva potencia-voltaje de un panel fotovoltaico presenta múltiples máximos locales, lo que dificulta que los algoritmos de seguimiento del punto de máxima potencia (MPPT) encuentren el máximo global. Este proyecto parte de MSAPSO, un algoritmo metaheurístico determinista basado en PSO que genera referencias de corriente para el control del convertidor, y propone incorporar aprendizaje por refuerzo para adaptar su comportamiento ante condiciones cambiantes de irradiancia.
+
+## Objetivo
+
+Desarrollar y evaluar una estrategia adaptativa de MPPT que, mediante aprendizaje por refuerzo aplicado a MSAPSO, permita localizar y seguir el punto de máxima potencia global de un panel fotovoltaico bajo sombreado parcial, comparando su desempeño (convergencia, eficiencia de seguimiento y estabilidad) frente a la versión base del algoritmo.
+
+## Integrantes
+
+| Rol | Nombre | Contacto |
+|---|---|---|
+| Integrante | Fernando Moreira Guerra | A00618568@tec.mx |
+| Integrante | Daniel Molina León| A01796535@tec.mx |
+| Integrante | Pedro Cuauhtémoc Márquez Correo | A01796847@tec.mx |
+| Asesor | Gerardo Jesús Camacho González | gjcamacho@tec.mx |
+
+## Estructura del repositorio
+
+```
+msapso-mppt/
+├── datos/
+├── notebooks/
+├── documentacion/
+├── LICENSE
+└── README.md
+```
+
+| Carpeta | Contenido |
+|---|---|
+| `datos/` | Datos utilizados en el proyecto. Si no pueden incluirse en el repositorio, se documenta su origen, estructura y forma de acceso. |
+| `notebooks/` | Notebooks utilizados para el análisis, la experimentación y el desarrollo del proyecto. |
+| `documentacion/` | Documentos y materiales relevantes para el desarrollo y seguimiento del proyecto, incluyendo los entregables. |
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia [MIT](LICENSE).
