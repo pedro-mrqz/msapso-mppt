@@ -1,0 +1,19 @@
+{
+ "tag": "ppo_05ms_full_s0",
+ "wait": 0.0005,
+ "seed": 0,
+ "obs": "full",
+ "features": [
+  "P_max",
+  "P_media",
+  "Pbest",
+  "caida_rel",
+  "dispersion",
+  "t_reinicio",
+  "beta_prev",
+  "dPbest"
+ ],
+ "timesteps": 1000000,
+ "n_envs": 4,
+ "seconds": 388.74797105789185
+}

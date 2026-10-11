@@ -1,0 +1,4 @@
+t_wait=5 ms | validacion: paper (0.1,0.95,25) 96.78%  |  mejor (0.185, 0.732, 25): 97.04%
+  static  paper: energia 97.26 final 100.00   | optimizado: energia 97.58 final 99.98
+  pairs   paper: energia 96.41 final 100.00   | optimizado: energia 96.64 final 99.98
+  synth   paper: energia 96.04 final 99.23   | optimizado: energia 96.31 final 99.20

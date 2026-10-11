@@ -1,0 +1,21 @@
+<h3>Limitaciones y supuestos declarados</h3>
+<ul>
+<li><strong>Simulador propio.</strong> No es el de la versión final del paper. El modelo del Boost es promediado (sin PWM), el sensor es ideal (sin ruido), y con L = 10 mH el convertidor simulado no sigue referencias de 0.5 ms (Pasos 3). El régimen principal (5 ms) es una decisión mía, declarada; el literal de 0.5 ms se reporta aparte.</li>
+<li><strong>Datos.</strong> Las 12 transiciones «reales» son combinaciones de los 4 casos del paper hechas por mí (cambio a la mitad del episodio); las 100 transiciones sintéticas vienen de un generador propio (modelo de un diodo por sub-string con bypass) no validado contra mediciones.</li>
+<li><strong>Fidelidad del MSAPSO.</strong> Leída de la Fig. 6 y de las indicaciones del profesor. Decisiones no cubiertas: sentido de la 1.ª pasada (menor→mayor; el orden literal de la figura se evaluó como sensibilidad: a 5 ms 10/12 transiciones ≥ 99 % en vez de 12/12), Eq. 13 sin ε, reinicio solo tras t_max con umbral absoluto de 5 W, Isc re-medido sin costo en cada reinicio, sensor en los terminales del panel.</li>
+<li><strong>RL.</strong> Hiperparámetros por defecto de stable-baselines3 (sin ajuste fino), 3 semillas para PPO principal, 2 para ablaciones y 3 M, <em>una</em> para A2C y SAC. La desviación entre semillas (≈ 1 punto) es comparable a varias diferencias reportadas.</li>
+<li><strong>Control sin RL.</strong> La búsqueda formal (dos etapas) es honesta; las dos «reglas simples» se eligieron <em>después</em> de ver al agente y evaluarlas en los mismos conjuntos de prueba, por lo que son ilustrativas, no un resultado de selección limpia.</li>
+<li><strong>Métrica.</strong> La energía entregada depende del horizonte (62 pasadas por segmento): un horizonte más largo diluye el costo de la búsqueda y acerca a todos los métodos.</li>
+<li><strong>APSO (Fase 0).</strong> α y β no vienen en el paper (se barrió α ∈ {0.05, 0.1, 0.2}, β = 0.4); y la Fase 0 es sobre curvas estáticas.</li>
+<li><strong>REINFORCE.</strong> σ fija (lo propuesto) y una extensión con σ pequeña; sin σ decreciente; sin el brazo «tasa por PPO».</li>
+</ul>
+<h3>Preguntas para el profesor (no bloquean nada; si cambian una decisión se re-corre cambiando un parámetro)</h3>
+<ol>
+<li>En su simulador, ¿el convertidor asienta en 0.5 ms? ¿Con qué L, ganancias y carga? En el nuestro, con L = 10 mH y las ganancias del paper, la corriente del inductor se mueve ≈ 0.6 A por 0.5 ms y no alcanza.</li>
+<li>¿La primera pasada del MSAPSO va de menor a mayor corriente (como dijo) o en el orden de la lista de la Fig. 6 (descendente)? Con la segunda lectura el Caso 4 mejora de 97.5 % a 99.8 % a 0.5 ms.</li>
+<li>La Fig. 6 cita las Eq. (12) y (13) en la actualización de posiciones: ¿el MSAPSO lleva el término ε o es la Eq. (13) determinista?</li>
+<li>El reinicio solo se evalúa tras t_max (con el convertidor fijo en Gbest): ¿es intencional que no haya detección durante la búsqueda?</li>
+<li>¿Isc se vuelve a medir en cada reinicio, y a qué costo de energía?</li>
+<li>Para REINFORCE: ¿la forma principal es la suya, (Gbest − μ)·R/σ², o el estimador de libro con las muestras? ¿Quiere que se pruebe un σ decreciente?</li>
+<li>Para APSO: ¿valores de α y β que usó el paper (no aparecen en el borrador)?</li>
+</ol>

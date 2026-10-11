@@ -1,0 +1,15 @@
+ppo_5ms_full_s0: listo en 950 s
+ppo_5ms_full_s1: listo en 788 s
+ppo_5ms_full_s2: listo en 809 s
+ppo_05ms_full_s0: listo en 389 s
+ppo_05ms_full_s1: listo en 380 s
+ppo_05ms_full_s2: listo en 276 s
+ppo_5ms_no_disp_s0: listo en 916 s
+ppo_5ms_no_disp_s1: listo en 933 s
+ppo_5ms_no_time_s0: listo en 954 s
+ppo_5ms_no_time_s1: listo en 866 s
+ppo_5ms_no_drop_s0: listo en 1095 s
+ppo_5ms_no_drop_s1: listo en 1011 s
+ppo_5ms_minimal_s0: listo en 891 s
+ppo_5ms_minimal_s1: listo en 1006 s
+TODO_LISTO

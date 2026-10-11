@@ -1,0 +1,11 @@
+numpy
+scipy
+numba
+matplotlib
+gymnasium
+stable-baselines3
+torch
+tensorboard
+tqdm
+rich
+markdown

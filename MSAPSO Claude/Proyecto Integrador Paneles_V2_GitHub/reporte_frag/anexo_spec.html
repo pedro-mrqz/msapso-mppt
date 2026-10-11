@@ -1,0 +1,25 @@
+<h3>Especificación del MSAPSO tal como está implementado (lectura de la Fig. 6)</h3>
+<p>Parámetros: β_min = 0.1, β_max = 0.95, t_max = 25, t_wait ∈ {0.5 ms, 5 ms}, 7 partículas con posiciones iniciales x_i = Isc·[0.95, 0.8, 0.65, 0.5, 0.3, 0.15, 0.1] (corrientes de referencia), umbral de reinicio = 5 W.</p>
+<pre class="code" style="font-size:8.5px;">
+INICIO / REINICIO:  Pbest = 0 ; Gbest = 0 ; x = Isc * [0.95 ... 0.10] (Isc medido) ; t = 1 ; sentido = ascendente
+REPETIR mientras t <= t_max:
+    PASADA (conjunto de 7 valores, en sentido ascendente o descendente de corriente, alternando):
+        PARA cada particula i en ese orden:
+            aplicar I_ref = x_i al convertidor durante t_wait ; medir Vpv e Ipv (corriente de salida del modulo)
+            Ppv = Vpv * Ipv
+            SI Ppv >= Pbest:  Pbest = Ppv ; Gbest = Ipv          (actualizacion inmediata, dentro de la pasada)
+    beta_t = beta_min + (t / t_max) * (beta_max - beta_min)          (Eq. 14)
+    x = x + beta_t * (Gbest - x)  (todas las particulas)           (Eq. 13, determinista)
+    invertir el sentido del siguiente barrido ; t = t + 1
+MANTENIMIENTO ("Set Gbest, Measure power"):  I_ref = Gbest ; medir Ppv
+    SI |Pbest - Ppv| >= 5 W:  REINICIO (volver a INICIO)
+</pre>
+<h3>Decisiones de implementación que NO están en el paper (declaradas)</h3>
+<ul>
+<li><strong>Sentido de la 1.ª pasada:</strong> de menor a mayor corriente (indicación del profesor). La lista de la Fig. 6 está en orden descendente; la variante «1.ª pasada descendente» se evaluó como sensibilidad (Paso 3).</li>
+<li><strong>Eq. 12 o Eq. 13:</strong> la figura cita ambas; se usó la Eq. 13 determinista (el paper presenta MSAPSO como determinista).</li>
+<li><strong>Reinicio solo tras t_max</strong> y con umbral absoluto de 5 W, como en la figura. Una variante de «detección temprana» se probó y se descartó (Paso 3).</li>
+<li><strong>Isc se vuelve a medir en cada reinicio</strong> (la figura siembra con Isc; se asume disponible sin costo de energía).</li>
+<li><strong>Una pasada de mantenimiento</strong> dura lo mismo que una de barrido (7 ventanas de t_wait), para comparar energía en la misma base temporal.</li>
+<li><strong>Sensor:</strong> Vpv e Ipv medidos en los terminales del panel (Ipv = I_panel(Vpv)); la energía se contabiliza como la que entrega el panel.</li>
+</ul>

@@ -1,0 +1,30 @@
+<p>Todo vive en <code>Proyecto Integrador/Proyecto Integrador Paneles_V2/</code> (la V1 en <code>Proyecto Integrador Paneles/</code> no se modificó). Todos los archivos nuevos terminan en <code>_V2</code>.</p>
+<div class="table-scroll"><table>
+<thead><tr><th style="width:36%">Archivo</th><th>Qué contiene / qué produce</th></tr></thead>
+<tbody>
+<tr><td><code>bitacora_V2.md</code></td><td>Registro paso a paso con el razonamiento (fuente de este PDF).</td></tr>
+<tr><td><code>pvsim_V2/pvcurve_V2.py</code>, <code>array_model_V2.py</code></td><td>Curvas de los 4 casos reales (con P_ceiling) y generador de curvas sintéticas.</td></tr>
+<tr><td><code>pvsim_V2/converter_V2.py</code></td><td>Modelo dinámico PV + Boost + Super-Twisting (RK4 compilado con numba).</td></tr>
+<tr><td><code>pvsim_V2/msapso_V2.py</code></td><td>MSAPSO fiel (Fig. 6), ejecutor de escenarios y métricas.</td></tr>
+<tr><td><code>pvsim_V2/passrunner_V2.py</code>, <code>gym_env_V2.py</code></td><td>Mecánica de una pasada y entorno Gymnasium del agente (sin información privilegiada).</td></tr>
+<tr><td><code>pvsim_V2/reinforce_V2.py</code></td><td>Rama REINFORCE gaussiano (formas A y B, baselines R−V, R−Q̂, Q̂−V).</td></tr>
+<tr><td><code>pvsim_V2/harness_V2.py</code></td><td>Arnés común de evaluación (casos estáticos, pares reales, sintéticos).</td></tr>
+<tr><td><code>validar_simulador_V2.py</code></td><td>Equivalencia del simulador V2 con la V1 y velocidad (Paso 1).</td></tr>
+<tr><td><code>evaluar_baselines_V2.py</code> → <code>resultados_V2/baselines_V2.txt|json</code></td><td>MSAPSO fiel y variantes en estáticos y 12 transiciones, a 5 y 0.5 ms (Pasos 2–3).</td></tr>
+<tr><td><code>resintonia_controlador_V2.py</code></td><td>Prueba de re-sintonía del Super-Twisting (Paso 3).</td></tr>
+<tr><td><code>optimizar_msapso_V2.py</code> → <code>msapso_optimizado_5ms.json</code></td><td>Control sin RL con selección en dos etapas (Paso 7).</td></tr>
+<tr><td><code>reinforce_grid_V2.py</code> → <code>reinforce_grid_V2.json</code>, <code>reinforce_grid_ext_V2.json</code></td><td>Malla de REINFORCE y extensión con σ pequeña (Pasos 5 y 9).</td></tr>
+<tr><td><code>train_V2.py</code>, <code>lanzar_entrenamientos_V2.sh</code>, <code>lanzar_extension_V2.sh</code> → <code>modelos_V2/</code></td><td>Entrenamiento de PPO/A2C/SAC (3 semillas × 2 regímenes, ablaciones, extensión a 3 M).</td></tr>
+<tr><td><code>evaluar_rl_V2.py</code>, <code>analisis_final_V2.py</code>, <code>curva_aprendizaje_V2.py</code> → <code>resultados_V2/*.json|txt</code></td><td>Evaluaciones y estadística consolidada.</td></tr>
+<tr><td><code>graficas_V2.py</code>, <code>graficas_resultados_V2.py</code> → <code>resultados_V2/*.png</code></td><td>Todas las figuras.</td></tr>
+<tr><td><code>construir_reporte_V2.py</code></td><td>Genera este PDF.</td></tr>
+</tbody></table></div>
+<h3>Cómo reproducir (desde la carpeta V2, con las dependencias de <code>requirements_V2.txt</code>)</h3>
+<pre class="code" style="font-size:8.5px;">
+python3 validar_simulador_V2.py                      # Paso 1: simulador V2 vs V1
+python3 evaluar_baselines_V2.py                      # Pasos 2-3: MSAPSO fiel y variantes
+python3 train_V2.py --wait 5e-3 --seed 0 --timesteps 1000000 --n-envs 4 --tag ppo_5ms_full_s0     # entrena un PPO (~8-15 min)
+python3 analisis_final_V2.py                         # estadistica consolidada (usa cache en resultados_V2/raw/)
+python3 graficas_resultados_V2.py                    # figuras
+python3 construir_reporte_V2.py                      # este PDF
+</pre>

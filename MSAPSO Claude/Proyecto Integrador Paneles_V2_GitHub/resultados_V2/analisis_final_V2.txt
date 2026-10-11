@@ -1,0 +1,66 @@
+
+##### Regimen t_wait = 5ms — energia % (media sobre escenarios) | potencia final % 
+metodo                                                      static               pairs               synth
+MSAPSO fiel (paper)                                97.26/100.00       96.41/100.00       96.04/ 99.23  
+MSAPSO sin reinicio                                97.26/100.00       56.58/ 56.54       60.76/ 60.66  
+MSAPSO optimizado (formal)                         97.58/ 99.98       96.64/ 99.98       96.31/ 99.20  
+regla simple β=0.95, t_max=5 (post-hoc)            99.29/ 99.86       98.37/ 99.91       95.71/ 97.03  
+regla simple β 0.5→0.95, t_max=8 (post-hoc)        98.98/ 99.96       98.03/ 99.97       97.35/ 98.98  
+PPO (media ± sd de 3 semillas)                  99.10±0.16/ 99.83  96.84±1.01/ 98.23  95.21±1.03/ 97.39
+   semilla 0                                       99.32/ 99.90       98.26/ 99.94       96.57/ 98.53  
+   semilla 1                                       98.98/ 99.67       96.14/ 96.81       94.99/ 96.77  
+   semilla 2                                       98.98/ 99.93       96.11/ 97.94       94.08/ 96.87  
+   diferencia pareada PPO − MSAPSO fiel (puntos de energia; IC95% bootstrap sobre escenarios):
+      static : +1.84  [+1.23, +2.42]   (PPO mejor en 4/4 escenarios)
+      pairs  : +0.42  [-1.35, +1.88]   (PPO mejor en 9/12 escenarios)
+      synth  : -0.82  [-2.04, +0.34]   (PPO mejor en 66/100 escenarios)
+   PPO − MSAPSO optimizado (formal):
+      static : +1.51  [+0.97, +2.00]
+      pairs  : +0.20  [-1.63, +1.63]
+      synth  : -1.10  [-2.32, +0.08]
+   PPO − regla simple β=0.95, t_max=5 (post-hoc):
+      static : -0.19  [-0.39, +0.01]
+      pairs  : -1.53  [-3.29, -0.27]
+      synth  : -0.50  [-1.80, +0.83]
+   PPO − regla simple β 0.5→0.95, t_max=8 (post-hoc):
+      static : +0.11  [-0.09, +0.31]
+      pairs  : -1.19  [-2.96, +0.10]
+      synth  : -2.14  [-3.39, -0.93]
+
+##### Regimen t_wait = 0.5ms — energia % (media sobre escenarios) | potencia final % 
+metodo                                                      static               pairs               synth
+MSAPSO fiel (paper)                                97.97/ 99.37       92.01/ 95.95       86.24/ 88.18  
+MSAPSO sin reinicio                                97.97/ 99.37       53.51/ 53.05       67.14/ 66.65  
+regla simple β=0.95, t_max=5 (post-hoc)            91.99/ 92.65       71.43/ 71.42       76.03/ 76.25  
+regla simple β 0.5→0.95, t_max=8 (post-hoc)        97.38/ 98.17       68.20/ 68.78       79.63/ 80.25  
+PPO (media ± sd de 3 semillas)                  96.93±0.78/ 96.32  89.48±2.53/ 92.23  85.03±0.33/ 87.13
+   semilla 0                                       95.96/ 93.71       86.16/ 88.24       85.38/ 86.81  
+   semilla 1                                       97.86/ 99.93       92.31/ 95.62       85.10/ 88.39  
+   semilla 2                                       96.97/ 95.32       89.95/ 92.84       84.60/ 86.18  
+   diferencia pareada PPO − MSAPSO fiel (puntos de energia; IC95% bootstrap sobre escenarios):
+      static : -1.04  [-3.89, +0.64]   (PPO mejor en 3/4 escenarios)
+      pairs  : -2.54  [-8.59, +3.31]   (PPO mejor en 4/12 escenarios)
+      synth  : -1.21  [-2.85, +0.55]   (PPO mejor en 44/100 escenarios)
+   PPO − regla simple β=0.95, t_max=5 (post-hoc):
+      static : +4.94  [-4.30, +18.44]
+      pairs  : +18.05  [+0.59, +38.12]
+      synth  : +9.00  [+5.32, +13.03]
+   PPO − regla simple β 0.5→0.95, t_max=8 (post-hoc):
+      static : -0.45  [-4.48, +2.93]
+      pairs  : +21.27  [+3.88, +39.31]
+      synth  : +5.39  [+2.34, +8.68]
+
+##### Ablacion de senales de observacion (5 ms) — energia % (media de 2 semillas)
+variante (senales visibles)                           static         pairs         synth
+completa (8)                                           99.15         97.20         95.78
+sin dispersion (7)                                     98.73         96.68         95.19
+sin t. desde reinicio (7)                              99.29         96.49         92.29
+sin caida_rel ni dPbest (6)                            98.78         95.74         95.10
+minima: P_max, Pbest, caida_rel (3)                    99.24         94.89         92.55
+
+##### Otros algoritmos / mas entrenamiento (5 ms) — energia % / potencia final %
+metodo                                                      static               pairs               synth
+PPO 3 M pasos, semilla 0                           98.82/ 98.29       95.56/ 98.03       94.11/ 98.51  
+PPO 3 M pasos, semilla 1                           98.91/ 99.97       96.79/ 99.97       93.68/ 96.77  
+A2C 1 M pasos, semilla 0                           99.00/ 98.32       93.43/ 97.57       95.98/ 98.25  
+SAC 300 k pasos, semilla 0                         98.80/ 99.91       96.75/ 99.91       95.03/ 97.47  

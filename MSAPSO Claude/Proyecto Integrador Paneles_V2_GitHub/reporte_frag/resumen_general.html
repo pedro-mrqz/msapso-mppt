@@ -1,0 +1,22 @@
+<div class="callout"><strong>Veredicto.</strong> El objetivo se cumple <strong>parcialmente y en un grado bajo</strong> (estimación del autor ≈ 25 %, no es una métrica). Hay una mejora pequeña y demostrable en convergencia estática, pero ninguna ante cambios de sombra, y una regla simple sin RL logra lo mismo.</div>
+<h3>Hallazgos</h3>
+<ol>
+<li><strong>La mejora de la V1 era un artefacto.</strong> Medía mal la potencia (Vpv·Ipv, con valores &gt; 100 %) y daba al agente información privilegiada; al corregirlo desapareció.</li>
+<li><strong>Comparación justa construida:</strong> MSAPSO fiel al paper (Fig. 6, Eq. 13 y 14), simulador numba ≈ 113× más rápido, observaciones sin información privilegiada, 3 semillas e IC bootstrap pareados.</li>
+<li><strong>PPO contra el MSAPSO fiel (5 ms):</strong> sombra estática <strong>+1.84 pp</strong> [+1.23, +2.42] (única mejora demostrable); 12 transiciones reales +0.42 [−1.35, +1.88]; 100 patrones sintéticos −0.82 [−2.04, +0.34] (estos dos, sin diferencia demostrable).</li>
+<li><strong>A 0.5 ms</strong> (valor literal del paper) no hay diferencia demostrable: la corriente del inductor no alcanza a seguir los escalones (L = 10 mH).</li>
+<li><strong>Una regla sin RL</strong> (β = 0.95 fijo, t_max = 5) iguala o supera a PPO en los casos reales (observación post-hoc, probada después de ver al agente).</li>
+<li><strong>Otros métodos no mejoraron:</strong> A2C y SAC iguales o peores; 3M pasos peor; el mejor REINFORCE (σ = 0.05, forma B, lr 0.001) obtuvo 95.6 / 93.9 / 89.9 % frente a 97.3 / 96.4 / 96.0 % del MSAPSO.</li>
+<li><strong>Señales de observación:</strong> las de caída de potencia sirven para detectar cambios de sombra, no para converger mejor en sombra estática.</li>
+</ol>
+<h3>Conclusión</h3>
+<p><strong>Sí:</strong> mejora pequeña y demostrable en convergencia estática (+1.8 pp) y un marco de evaluación sólido y reutilizable. <strong>No:</strong> sin mejora demostrable ante cambios de sombra (donde el RL debía aportar), ni a 0.5 ms, y una regla simple logra lo mismo. Queda establecido que la V1 sobreestimaba el RL y que el MSAPSO fiel ya está cerca del techo físico (≈ 96–97 %), lo que deja poco margen.</p>
+<h3>Recomendaciones para seguir</h3>
+<ol>
+<li><strong>Cambiar lo que controla el agente:</strong> que elija directamente la siguiente corriente a probar, con memoria (PPO recurrente), entrenado en miles de patrones. En la V2 solo controlaba β y el reinicio.</li>
+<li><strong>Actor-crítico asimétrico:</strong> el crítico usa información privilegiada solo en entrenamiento; reduce la variabilidad entre semillas.</li>
+<li><strong>Detección de cambio aprendida (RL jerárquico):</strong> sin regla de reinicio el desempeño cae a 56.6 % y el umbral fijo de 5 W es frágil con ruido.</li>
+<li><strong>Optimización bayesiana como control barato</strong> para saber si el RL realmente aporta algo.</li>
+<li><strong>Escenarios más exigentes:</strong> ruido de medición, parámetros del panel cambiantes y picos estrechos, donde el MSAPSO fijo debería sufrir.</li>
+</ol>
+<p>Sugerencia: hacer 1 y 2 juntos con el mismo arnés de la V2, usar 4 como control, y acordar con el profesor el régimen (0.5 o 5 ms) y la métrica de éxito válidos.</p>
