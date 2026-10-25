@@ -1,0 +1,33 @@
+
+=== NIVEL 1 (estatico), ruido de medicion sigma = 0 W | 200 mediciones de ventana de energia ===
+metodo                                   | REALES (4): n_meas  n99  efi_fin  energia    | SINTETICOS (100): n_meas  n99  efi_fin  energia
+MSAPSO fiel (Isc real)                   |    175   22.2   99.99    92.58      |    175   25.6   99.98    92.80
+MSAPSO fiel (Isc nominal)                |    175   33.0   99.99    89.89      |    175   30.4   99.97    91.04
+regla simple b=0.95,t_max=5 (nom.)       |     35   11.0   94.39    92.48      |     35    7.2   94.78    93.06
+mejor-de-7                               |      7    nan   87.11    85.64      |      7    4.8   93.32    91.88
+mejor-de-7 + 5 gauss. (s=0.05)           |     12    9.0   93.52    91.65      |     12    7.8   97.22    95.36
+mejor-de-10 + 5 gauss. (s=0.05)          |     15    9.3   96.50    93.90      |     15   10.4   98.42    95.87
+mejor-de-20                              |     20   13.3   97.16    92.54      |     20   13.6   98.52    94.30
+mejor-de-20 + 5 gauss. (s=0.05)          |     25   16.2   99.63    94.39      |     25   15.8   99.23    94.60
+
+=== NIVEL 1 (estatico), ruido de medicion sigma = 1 W | 200 mediciones de ventana de energia ===
+metodo                                   | REALES (4): n_meas  n99  efi_fin  energia    | SINTETICOS (100): n_meas  n99  efi_fin  energia
+MSAPSO fiel (Isc real)                   |    175   20.3   99.59    92.12      |    175   25.2   99.73    92.63
+MSAPSO fiel (Isc nominal)                |    175   33.0   99.74    89.65      |    175   30.7   99.78    90.91
+regla simple b=0.95,t_max=5 (nom.)       |     35   11.0   94.12    92.23      |     35    7.2   94.52    92.82
+mejor-de-7                               |      7    nan   86.97    85.50      |      7    4.8   93.32    91.87
+mejor-de-7 + 5 gauss. (s=0.05)           |     12    9.6   94.73    92.79      |     12    7.7   96.92    95.09
+mejor-de-10 + 5 gauss. (s=0.05)          |     15    8.6   96.37    93.66      |     15   10.3   98.06    95.59
+mejor-de-20                              |     20   13.3   96.96    92.36      |     20   13.6   98.47    94.26
+mejor-de-20 + 5 gauss. (s=0.05)          |     25   14.3   98.13    93.00      |     25   15.6   99.05    94.46
+
+=== NIVEL 1 (estatico), ruido de medicion sigma = 2 W | 200 mediciones de ventana de energia ===
+metodo                                   | REALES (4): n_meas  n99  efi_fin  energia    | SINTETICOS (100): n_meas  n99  efi_fin  energia
+MSAPSO fiel (Isc real)                   |    175   17.7   99.58    92.13      |    175   25.0   99.45    92.43
+MSAPSO fiel (Isc nominal)                |    175   31.3   99.56    89.64      |    175   31.0   99.60    90.82
+regla simple b=0.95,t_max=5 (nom.)       |     35   11.0   93.51    91.66      |     35    7.2   94.22    92.55
+mejor-de-7                               |      7    nan   86.90    85.44      |      7    4.8   93.30    91.86
+mejor-de-7 + 5 gauss. (s=0.05)           |     12    9.6   94.49    92.56      |     12    7.7   96.74    94.92
+mejor-de-10 + 5 gauss. (s=0.05)          |     15    8.6   96.04    93.37      |     15   10.3   98.07    95.60
+mejor-de-20                              |     20   13.3   96.41    91.87      |     20   13.6   98.40    94.19
+mejor-de-20 + 5 gauss. (s=0.05)          |     25   14.3   97.59    92.53      |     25   15.6   98.89    94.32

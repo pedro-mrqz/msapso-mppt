@@ -1,0 +1,17 @@
+reward | baseline | sigma | modo | REALES fin ener | SINT fin ener (3 semillas)
+abs  | mean  | 0.05 | stoch |  96.29  94.18 |  96.84  95.03
+abs  | mean  | 0.05 | mu    |  88.27  86.73 |  94.36  92.86
+abs  | mean  | 0.10 | stoch |  95.20  93.05 |  96.87  94.90
+abs  | mean  | 0.10 | mu    |  90.18  88.58 |  94.42  92.91
+abs  | none  | 0.05 | stoch |  97.21  95.08 |  96.71  94.89
+abs  | none  | 0.05 | mu    |  91.57  89.94 |  94.43  92.92
+abs  | none  | 0.10 | stoch |  95.28  93.13 |  96.92  94.93
+abs  | none  | 0.10 | mu    |  92.74  91.05 |  94.32  92.80
+gain | mean  | 0.05 | stoch |  96.06  93.96 |  96.80  94.98
+gain | mean  | 0.05 | mu    |  88.23  86.69 |  94.33  92.83
+gain | mean  | 0.10 | stoch |  95.12  92.98 |  96.97  95.00
+gain | mean  | 0.10 | mu    |  90.24  88.63 |  94.48  92.96
+gain | none  | 0.05 | stoch |  96.63  94.51 |  96.76  94.94
+gain | none  | 0.05 | mu    |  88.11  86.58 |  94.32  92.82
+gain | none  | 0.10 | stoch |  94.51  92.40 |  96.91  94.94
+gain | none  | 0.10 | mu    |  91.39  89.75 |  94.35  92.84

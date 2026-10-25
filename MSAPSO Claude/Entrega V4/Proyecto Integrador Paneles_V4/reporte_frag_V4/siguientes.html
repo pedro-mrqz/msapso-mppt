@@ -1,0 +1,14 @@
+<p>Propuesta de la corrida V5 (no ejecutada en esta entrega). Se corrige primero la raíz y solo después se comparan más algoritmos, para que cada resultado responda una sola pregunta.</p>
+<ol>
+<li><strong>Correcciones de raíz con REINFORCE y PPO (rápido).</strong> (a) Premiar el <em>mejor</em> de las K muestras, no el promedio, que es lo que se usa al elegir el punto. (b) σ fija o decreciente (o más entropía) para que no colapse. (c) Entrenar con más muestras que en operación (K = 20 al entrenar, K = 5 al evaluar). Si no acercan los resultados a la cota, el problema es más profundo y hay que replantear el esquema.</li>
+<li><strong>Si mejoran:</strong> SAC, DDPG y árbol de decisión sobre la formulación corregida, comparados en igualdad de condiciones.</li>
+<li><strong>Barrer N (7, 10, 20) y K.</strong></li>
+<li><strong>Después:</strong> reinicio ante 5 W, sombra gradual, ruido de medición en entrenamiento, nivel dinámico (corrigiendo la eficiencia contra P_ceiling), optimización bayesiana como referencia.</li>
+</ol>
+<h3>Preguntas para el profesor</h3>
+<ol>
+<li>¿Acepta ≈ 2 pp menos de exactitud final a cambio de unas 15 veces menos mediciones? Si no, esta vía no supera al MSAPSO en exactitud.</li>
+<li>La energía se mide en una ventana de 200 mediciones, que favorece búsquedas cortas: ¿le parece una medida razonable?</li>
+<li>¿Una etiqueta basada en un barrido denso <em>medido</em> durante el entrenamiento respeta la regla de no usar el GMPP real?</li>
+<li>Sembrar el MSAPSO con la Isc nominal lo empeora (casos 1 y 3): ¿lo comparamos así o con la Isc real?</li>
+</ol>

@@ -1,0 +1,13 @@
+<h3>Qué se puede afirmar</h3>
+<ul>
+<li>El esquema propuesto por el profesor está bien planteado y es implementable: el entorno es válido y un agente que propone el GMPP real obtiene 100 % en el nivel estático.</li>
+<li>Con 12 mediciones (7 de barrido + 5 muestras) un método <strong>sin aprendizaje</strong> ya iguala o supera al MSAPSO fiel en energía en sintéticos (95.4 contra 92.8 %), a costa de exactitud final (97.2 contra casi 100 %).</li>
+<li>Con la formulación actual, <strong>REINFORCE-MLP y PPO no mejoran a esa referencia</strong>; con más entrenamiento solo la igualan (60 mil actualizaciones de REINFORCE: 97.20 frente a 97.22 %).</li>
+</ul>
+<h3>Qué no se puede afirmar</h3>
+<ul>
+<li>Que el RL nunca ayudará: no se probaron SAC, DDPG, el árbol de decisión, otros N y K, ni la formulación corregida.</li>
+<li>Que REINFORCE sea mejor que la referencia en reales: son solo 4 casos.</li>
+<li>La causa del colapso de σ está sustentada por una prueba corta (PPO con entropía, 1 semilla); es una hipótesis razonable, no una demostración.</li>
+</ul>
+<div class="callout"><strong>Para el profesor.</strong> Si el criterio es «no perder exactitud», este esquema no supera al MSAPSO (el techo con 12 mediciones es ≈ 97–98 %, contra casi 100 %). Si el criterio es «menos mediciones», el esquema reduce el costo unas 15 veces con ≈ 2 pp menos de exactitud final. Hay que acordar cuál criterio vale.</div>

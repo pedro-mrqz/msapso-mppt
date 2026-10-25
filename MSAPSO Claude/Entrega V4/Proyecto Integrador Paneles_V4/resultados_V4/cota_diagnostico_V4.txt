@@ -1,0 +1,12 @@
+
+N=7, K=5 (mediciones = 12)
+  reales     | modelo supervisado (cota): efi_final 97.35  energia 95.15 | oraculo ideal: efi_final 96.42 energia 94.31
+  sinteticos | modelo supervisado (cota): efi_final 98.12  energia 96.15 | oraculo ideal: efi_final 98.71 energia 96.68
+
+N=10, K=5 (mediciones = 15)
+  reales     | modelo supervisado (cota): efi_final 96.64  energia 93.57 | oraculo ideal: efi_final 97.20 energia 94.46
+  sinteticos | modelo supervisado (cota): efi_final 98.11  energia 95.51 | oraculo ideal: efi_final 98.75 energia 96.14
+
+N=20, K=5 (mediciones = 25)
+  reales     | modelo supervisado (cota): efi_final 97.19  energia 92.08 | oraculo ideal: efi_final 97.87 energia 92.82
+  sinteticos | modelo supervisado (cota): efi_final 99.01  energia 94.34 | oraculo ideal: efi_final 99.26 energia 94.57

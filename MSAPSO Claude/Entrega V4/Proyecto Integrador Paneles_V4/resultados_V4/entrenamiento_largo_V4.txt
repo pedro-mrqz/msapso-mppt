@@ -1,0 +1,5 @@
+updates | batch | sigma | modo | REALES fin ener | SINT fin ener  (media de 3 semillas)
+  4000 |  128 | 0.05 | stoch |  96.29  94.18 |  96.84  95.03 | solo mu (sint) 94.36
+ 20000 |  128 | 0.05 | stoch |  94.44  92.43 |  97.10  95.29 | solo mu (sint) 94.52
+ 20000 |  512 | 0.05 | stoch |  95.26  93.24 |  96.97  95.15 | solo mu (sint) 94.48
+ 60000 |  256 | 0.05 | stoch |  95.51  93.46 |  97.20  95.38 | solo mu (sint) 94.76

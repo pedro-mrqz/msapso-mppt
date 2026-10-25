@@ -1,0 +1,6 @@
+ppo_N7_K5_s0 stoch | reales: n=12 fin 87.91 ener 86.26 | sint: n=12 fin 96.21 ener 94.54 | sigma=0.014 | 85 s
+ppo_N7_K5_s0 mu    | reales: n=8 fin 87.81 ener 86.28 | sint: n=8 fin 95.78 ener 94.23 | sigma=0.014 | 85 s
+ppo_N7_K5_s1 stoch | reales: n=12 fin 87.86 ener 86.17 | sint: n=12 fin 95.71 ener 94.06 | sigma=0.013 | 89 s
+ppo_N7_K5_s1 mu    | reales: n=8 fin 87.72 ener 86.19 | sint: n=8 fin 95.17 ener 93.64 | sigma=0.013 | 89 s
+ppo_N7_K5_s2 stoch | reales: n=12 fin 89.04 ener 87.41 | sint: n=12 fin 95.55 ener 93.89 | sigma=0.013 | 88 s
+ppo_N7_K5_s2 mu    | reales: n=8 fin 88.92 ener 87.38 | sint: n=8 fin 95.13 ener 93.60 | sigma=0.013 | 88 s

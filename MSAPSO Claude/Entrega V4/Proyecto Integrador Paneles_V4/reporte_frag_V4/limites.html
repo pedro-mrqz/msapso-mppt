@@ -1,0 +1,11 @@
+<ul>
+<li><strong>Nivel 1 solamente</strong> (potencia estática): no incluye la dinámica del convertidor, el reinicio por 5 W, la sombra gradual ni el ruido en entrenamiento (el ruido solo se evaluó en las referencias).</li>
+<li><strong>N = 7 y K = 5</strong> (σ = 0.05·Isc_nom): sin barrido de N, K ni σ más allá de la malla de REINFORCE.</li>
+<li><strong>Solo 4 casos reales:</strong> las cifras en reales son frágiles; las de sintéticos (100 patrones nuevos, semilla 2026) son más estables.</li>
+<li><strong>Pocas semillas:</strong> 3 en REINFORCE y PPO; 1 en PPO con entropía.</li>
+<li><strong>Hiperparámetros por defecto o poco explorados:</strong> sin búsqueda sistemática de lr, tamaño de red o tamaño de lote en PPO.</li>
+<li><strong>La métrica de energía</strong> (ventana de 200 mediciones) favorece búsquedas cortas; deben leerse junto a la exactitud final y el número de mediciones.</li>
+<li><strong>La cota supervisada</strong> usa el GMPP como etiqueta: es diagnóstico, no un método válido bajo la regla del profesor.</li>
+<li><strong>Supuestos propios por confirmar:</strong> normalizar por 250 W, γ = 0, la ventana de 200 mediciones y el rango [0.10, 0.95]·Isc_nom.</li>
+<li><strong>Pendientes de la V4:</strong> SAC, DDPG, árbol de decisión, nivel dinámico (con eficiencia contra P_ceiling) y optimización bayesiana.</li>
+</ul>

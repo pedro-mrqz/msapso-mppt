@@ -1,0 +1,14 @@
+<p>Esta corrida (V4) implementa el esquema que propuso el profesor el 21-oct-2026: medir N potencias en N corrientes uniformes y ascendentes, y que un agente de RL con un MLP sencillo las use como observación para proponer dónde está el máximo; el muestreo de puntos aledaños es parte de la política gaussiana. Respetamos sus indicaciones: sin GMPP real en entrenamiento, rango fijado con la Isc nominal y métrica que prioriza el número de mediciones. Esta etapa cubre el <strong>nivel 1</strong> (potencia estática, sin dinámica del convertidor) con N = 7 y K = 5.</p>
+<div class="good-box"><strong>Respuesta corta.</strong> Con esta formulación, REINFORCE-MLP y PPO <strong>no superan</strong> a una referencia sin aprendizaje («mejor de los 7 puntos + 5 muestras gaussianas»), que ya usa solo 12 mediciones en lugar de las 175 del MSAPSO. Un modelo supervisado, usado solo como cota de diagnóstico, indica que sí hay margen (≈ +0.9 pp de exactitud y ≈ +0.8 pp de energía sobre la referencia, en sintéticos), pero el RL no lo alcanza, y 15 veces más entrenamiento no cambia el resultado. La causa probable es el objetivo (potencia promedio de las muestras), no la falta de entrenamiento.</div>
+{{FIG:comparacion}}
+<h3>Hallazgos principales</h3>
+<ol>
+<li><strong>Referencia a vencer.</strong> «Mejor de 7 + 5 gaussianas» logra 97.2 % de exactitud final y 95.4 % de energía en 100 sintéticos con 12 mediciones; el MSAPSO fiel logra 99.98 % y 92.8 % con 175 (Paso 4).</li>
+<li><strong>Hay margen, pero moderado.</strong> La cota supervisada (no es un método válido: usa el GMPP como etiqueta) llega a 98.1 % y 96.2 % (Paso 5). Ningún modelo con 12 mediciones iguala la exactitud del MSAPSO.</li>
+<li><strong>REINFORCE-MLP:</strong> 96.7–96.9 % / 94.9–95.0 % en sintéticos, ligeramente por debajo de la referencia; en los 4 reales parece mejor (+3 pp) pero es una muestra chica. Su media μ solo llega a ≈ 94.4 %, igual que «mejor de 7» (Paso 6).</li>
+<li><strong>PPO:</strong> 95.6–96.2 % / 93.9–94.5 % en sintéticos y 88–89 % en reales. La σ colapsa a 0.013; con más entropía mejora en reales (95 %) (Paso 7).</li>
+<li><strong>Más entrenamiento no ayuda:</strong> 15 veces más actualizaciones suben el resultado ≈ 0.4 pp y solo igualan a la referencia (Paso 8).</li>
+<li><strong>Efecto de la Isc nominal:</strong> sembrar el MSAPSO con la Isc nominal lo empeora (energía 91.0 y 89.9 % frente a 92.8 y 92.6 %) porque en los casos 1 y 3 la Isc real es menor (Paso 4).</li>
+</ol>
+<h3>Qué sigue (propuesto)</h3>
+<p>Corregir la raíz antes de seguir con más algoritmos: premiar el <em>mejor</em> de las K muestras y no el promedio, mantener σ fija o decreciente, entrenar con más muestras que en operación, y evaluar una etiqueta por barrido denso <em>medido</em>. Después, SAC, DDPG y árbol de decisión sobre la formulación corregida, y el barrido de N y K. Detalle en la sección 4.</p>
