@@ -1,0 +1,23 @@
+Isc de los patrones: reales [7.12, 8.9, 3.25, 8.9] | banco original: % con Isc<4.5 A = 2.1 | banco con atenuacion:  23.0
+
+N=5: corrientes del barrido [0.89 2.78 4.67 6.56 8.46] A
+  caso 1: Isc 7.12 A, GMPP en 6.69 A (201 W); puntos del barrido con potencia > 0: 4 de 5
+  caso 2: Isc 8.90 A, GMPP en 5.59 A (176 W); puntos del barrido con potencia > 0: 5 de 5
+  caso 3: Isc 3.25 A, GMPP en 1.51 A (47 W); puntos del barrido con potencia > 0: 2 de 5
+  caso 4: Isc 8.90 A, GMPP en 3.16 A (75 W); puntos del barrido con potencia > 0: 5 de 5
+  --- N=5, K=5: eficiencia final por caso real (y medias) ---
+  metodo                           | caso1  caso2  caso3  caso4 | reales | sint.orig | sint.atenuados
+  control simple                   |   99.9   94.9   89.4   98.2 |  95.62 |     94.66 |     91.47
+  arbol (banco original)           |   99.9   92.5   87.4   97.6 |  94.36 |     97.74 |     95.08
+  arbol (con atenuacion global)    |   99.9   96.3   89.3   98.5 |  95.99 |     97.54 |     96.15
+
+N=7: corrientes del barrido [0.89 2.15 3.41 4.67 5.93 7.19 8.46] A
+  caso 1: Isc 7.12 A, GMPP en 6.69 A (201 W); puntos del barrido con potencia > 0: 5 de 7
+  caso 2: Isc 8.90 A, GMPP en 5.59 A (176 W); puntos del barrido con potencia > 0: 7 de 7
+  caso 3: Isc 3.25 A, GMPP en 1.51 A (47 W); puntos del barrido con potencia > 0: 2 de 7
+  caso 4: Isc 8.90 A, GMPP en 3.16 A (75 W); puntos del barrido con potencia > 0: 7 de 7
+  --- N=7, K=5: eficiencia final por caso real (y medias) ---
+  metodo                           | caso1  caso2  caso3  caso4 | reales | sint.orig | sint.atenuados
+  control simple                   |   98.1   94.9   88.5   98.2 |  94.95 |     97.22 |     95.23
+  arbol (banco original)           |   99.6   98.8   92.3   96.3 |  96.79 |     98.48 |     96.65
+  arbol (con atenuacion global)    |   99.6   99.5   91.6   97.1 |  96.96 |     98.55 |     97.18

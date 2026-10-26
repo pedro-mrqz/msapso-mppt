@@ -1,0 +1,12 @@
+<ul>
+<li><strong>Nivel 1 solamente</strong> (potencia estática): sin dinámica del convertidor, reinicio por 5 W ni sombra gradual. El ruido es estático, aditivo y gaussiano.</li>
+<li><strong>Controles diseñados por nosotros:</strong> el control simple y el parabólico; un competidor podría tener uno mejor.</li>
+<li><strong>Solo 4 casos reales:</strong> sus cifras son frágiles. El diseño de la atenuación global se propuso después de ver su fallo (Paso 6).</li>
+<li><strong>3 semillas</strong> que varían solo el entrenamiento; el banco de curvas sintéticas de entrenamiento es el mismo (10 000 curvas, semilla 0) y la evaluación usa 100 sintéticos fijos con 3 repeticiones.</li>
+<li><strong>σ de evaluación fija en 0.05·Isc_nominal;</strong> otros valores pueden cambiar el orden entre métodos. N de 3, 5 y 7 y K de 3 y 5; el ruido solo con N = 5 y 7 y K = 5.</li>
+<li><strong>Hiperparámetros</strong> por defecto o poco explorados en PPO, SAC y DDPG; el árbol usa profundidad 10 y 15 iteraciones sin búsqueda sistemática.</li>
+<li><strong>La métrica de energía</strong> (ventana de 200 mediciones) favorece búsquedas cortas; leerla junto a la exactitud final y el número de mediciones.</li>
+<li><strong>La «cota supervisada»</strong> de la V4 y del Paso 3 usa el GMPP como etiqueta: es un diagnóstico, no un método válido, y no es un techo.</li>
+<li><strong>Supuestos propios por confirmar:</strong> normalizar por 250 W, σ de evaluación, ventana de 200 mediciones y rango [0.10, 0.95]·Isc_nominal.</li>
+<li><strong>Dependencia:</strong> el árbol usa scikit-learn.</li>
+</ul>

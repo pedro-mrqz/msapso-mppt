@@ -1,0 +1,15 @@
+<p>Propuesta (no ejecutada en esta entrega):</p>
+<ol>
+<li><strong>Nivel dinámico</strong> (Boost + Super-Twisting a 0.5 ms y 5 ms): corregir primero la eficiencia para medirla contra P_ceiling, y comprobar que la ventaja sobreviva a la inercia del inductor.</li>
+<li><strong>Reinicio por 5 W</strong> remuestreando los N puntos, y luego aprender el umbral óptimo (el profesor lo dejó para más tarde); incluir la interacción con el ruido.</li>
+<li><strong>Sombra que se desplaza gradualmente</strong> (3, 10, 30 y 120 s), aún no implementada.</li>
+<li><strong>Rango adaptable a la Isc</strong> tras la primera medición, para los patrones de Isc baja.</li>
+<li><strong>Robustez:</strong> más semillas, más patrones reales si los hay, otros σ de evaluación, N de 4, 6, 8 y 10, y optimización bayesiana como referencia sin aprendizaje.</li>
+</ol>
+<h3>Preguntas para el profesor</h3>
+<ol>
+<li>¿Acepta la métrica «mediciones» como criterio principal, con ≈ 2 pp menos de exactitud final que el MSAPSO?</li>
+<li>¿Reescalamos el rango según la primera medición para no perder los patrones de Isc baja, o mantenemos la Isc nominal fija?</li>
+<li>La atenuación global en el generador sintético se propuso después de ver los casos reales: ¿lo considera aceptable si se valida con sintéticos nuevos?</li>
+<li>¿Qué escenario prefiere priorizar: nivel dinámico, reinicio por 5 W o sombra gradual?</li>
+</ol>

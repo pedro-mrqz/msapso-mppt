@@ -1,0 +1,13 @@
+<p>La V4 mostró que, con la formulación inicial, REINFORCE-MLP y PPO no superaban a una referencia sin aprendizaje con N = 7 puntos de barrido y K = 5 muestras. La causa probable era el objetivo: se premiaba la potencia <em>promedio</em> de las muestras, lo que lleva a σ → 0 y no premia al <em>mejor</em> punto, que es el que se elige. Esta corrida (V5) corrige tres cosas de raíz (recompensa de grupo, σ fija o decreciente, más muestras al entrenar que al evaluar) y compara <strong>REINFORCE, PPO, SAC, DDPG y un árbol de decisión recalculado en cada iteración</strong> sobre la misma formulación, siempre sin GMPP en entrenamiento, con el rango fijado por la Isc nominal y en el nivel 1 (potencia estática).</p>
+<div class="good-box"><strong>Respuesta corta.</strong> Con las correcciones, el enfoque propuesto por el profesor <strong>sí supera a los controles sin aprendizaje con pocas mediciones</strong>: con N = 5 (10 mediciones) DDPG y el árbol ganan ≈ 3 pp de exactitud final y de energía; con N = 7 (12 mediciones) el árbol alcanza 98.5 % / 96.5 % frente a 97.2 % / 95.4 % del control, y supera incluso al control con 15 mediciones. La ventaja se mantiene con ruido de medición de 1 y 2 W. En los 4 casos reales los resultados son mixtos y el caso 3 (Isc baja) es débil para todos los métodos. No supera la exactitud del MSAPSO del paper (≈ 100 % con 175 mediciones): la ganancia está en el costo en mediciones.</div>
+{{FIG:comparacion}}
+<h3>Hallazgos principales</h3>
+<ol>
+<li><strong>Las correcciones sirven, pero donde hay margen:</strong> con N = 7 mueven poco el resultado de REINFORCE (+0.3 pp, dentro del ruido); con N de 3 a 5 ganan ≈ 2–3 pp sobre los controles (Pasos 2 y 3). Un control sin aprendizaje más fuerte (interpolación parabólica) no mejora al simple.</li>
+<li><strong>Mejores algoritmos:</strong> el árbol, DDPG y SAC lideran; PPO y REINFORCE quedan algo por debajo, aunque por encima de los controles con N de 3 a 5 (Paso 4). El árbol entrena en 2 segundos, contra 160–260 s de SAC y DDPG.</li>
+<li><strong>Frontera de mediciones:</strong> con 8 mediciones el RL logra la energía que el control simple logra con ≈ 10–12 (Figura B).</li>
+<li><strong>Ruido de 1 y 2 W:</strong> la ventaja persiste; el árbol es el mejor con N = 7 y DDPG con N = 5 (Paso 5).</li>
+<li><strong>Casos reales:</strong> solo son 4. El caso 3 (Isc = 3.25 A) es débil para todos porque el rango se fija con la Isc nominal y casi no hay puntos útiles en el barrido; entrenar con atenuación global mejora en parte (Paso 6; esa idea se propuso después de ver el fallo).</li>
+<li><strong>Corrección a la V4:</strong> la «cota supervisada» no era un techo; el árbol, con solo potencias medidas, la supera.</li>
+</ol>
+{{FIG:frontera}}

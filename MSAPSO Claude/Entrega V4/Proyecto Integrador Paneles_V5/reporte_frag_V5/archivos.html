@@ -1,0 +1,27 @@
+<h3>Mapa de archivos</h3>
+<div class="table-scroll"><table>
+<thead><tr><th style="width:38%">Archivo</th><th>Qué contiene / qué produce</th></tr></thead>
+<tbody>
+<tr><td><code>diseno_V5.md</code>, <code>bitacora_V5.md</code></td><td>Diseño con las indicaciones del profesor y las correcciones, y registro paso a paso (fuente de este PDF).</td></tr>
+<tr><td><code>pvsim_V5/</code></td><td>Simulador (curvas, convertidor, MSAPSO), plantas, métricas y el entorno de un paso <code>bandit_env_V5.py</code>.</td></tr>
+<tr><td><code>datasets_V5/</code></td><td>Los 4 casos reales del paper.</td></tr>
+<tr><td><code>baselines_nivel1_V5.py</code></td><td>Escenarios de evaluación y controles sin aprendizaje (heredado de la V4).</td></tr>
+<tr><td><code>reinforce_nn_V5.py</code>, <code>grid_reinforce_V5.py</code> → <code>resultados_V5/reinforce_grid_V5.*</code></td><td>REINFORCE corregido y su malla (Pasos 1 y 2).</td></tr>
+<tr><td><code>margen_NK_V5.py</code>, <code>control_parabolico_V5.py</code> → <code>resultados_V5/margen_NK_V5.txt</code>, <code>control_parabolico_V5.txt</code></td><td>Margen según N y K y control parabólico (Paso 3).</td></tr>
+<tr><td><code>algoritmos_V5.py</code>, <code>comparar_algoritmos_V5.py</code>, <code>resumen_comparar_V5.py</code> → <code>resultados_V5/comparar_N*.json</code>, <code>resumen_comparar_V5.txt</code></td><td>PPO, SAC, DDPG, árbol y REINFORCE sobre la misma formulación, con y sin ruido (Pasos 4 y 5).</td></tr>
+<tr><td><code>revision_reales_V5.py</code> → <code>resultados_V5/revision_reales_V5.txt</code></td><td>Diagnóstico de los casos reales y atenuación global (Paso 6).</td></tr>
+<tr><td><code>graficas_V5.py</code>, <code>construir_reporte_V5.py</code></td><td>Figuras y compilación de este PDF.</td></tr>
+</tbody></table></div>
+<h3>Cómo reproducir (con <code>requirements_V5.txt</code>, Python 3.10 o superior)</h3>
+<pre class="code" style="font-size:8.5px;">
+python3 baselines_nivel1_V5.py            # controles sin aprendizaje
+python3 grid_reinforce_V5.py              # Paso 2: malla de REINFORCE (unos minutos)
+python3 margen_NK_V5.py                   # Paso 3: margen segun N y K
+python3 control_parabolico_V5.py          # Paso 3: control parabolico
+for N in 3 5 7; do python3 comparar_algoritmos_V5.py --N $N --seeds 0 1 2 &amp; done; wait        # Paso 4 (~15 min en paralelo)
+for N in 5 7; do for ns in 1.0 2.0; do python3 comparar_algoritmos_V5.py --N $N --noise $ns --seeds 0 1 2 &amp; done; done; wait   # Paso 5
+python3 revision_reales_V5.py             # Paso 6
+python3 resumen_comparar_V5.py            # tabla resumen
+python3 graficas_V5.py &amp;&amp; python3 construir_reporte_V5.py     # figuras y PDF (Chrome en macOS y pdftotext)
+</pre>
+<p>Todo corre en CPU. Los entrenamientos del nivel 1 toman segundos o pocos minutos (SAC y DDPG, 2–4 minutos por semilla).</p>
