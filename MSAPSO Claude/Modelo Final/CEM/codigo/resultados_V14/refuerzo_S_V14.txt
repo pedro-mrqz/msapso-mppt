@@ -1,0 +1,6 @@
+1000 curvas estaticas frescas; sin ruido. perdida = exactitud final MSAPSO completo - metodo (pp)
+metodo               | med. | final | perdida media [IC95 %] | p95 | p99 | maximo | % > 0.5 pp | % > 3 pp
+MSAPSO completo      |  175 |  99.93 | +0.000 [-0.000, -0.000] | 0.00 | 0.00 | 0.00 |   0.0 |  0.0
+V7 (parada)          |   70 |  99.88 | +0.053 [+0.047, +0.060] | 0.23 | 0.64 | 0.97 |   1.4 |  0.0
+candidata b=0        |   39 |  99.57 | +0.365 [+0.234, +0.505] | 0.95 | 12.69 | 22.84 |   6.2 |  3.1
+candidata b=0.02     |   39 |  99.06 | +0.878 [+0.748, +1.016] | 1.91 | 13.01 | 22.99 |  48.4 |  3.7
