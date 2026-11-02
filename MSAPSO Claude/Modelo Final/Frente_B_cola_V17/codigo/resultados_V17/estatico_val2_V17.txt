@@ -1,0 +1,426 @@
+ESTATICO V17 (val2); ruido 0 W; perdida = exactitud final MSAPSO completo - metodo
+
+base 1000 (8080/8081): perdida vs MSAPSO completo (pp) | med. | media | p95 | p99 | max | % > 3 pp
+  V7 (parada)                      |  70.0 | +0.055 |  0.25 |  0.57 |  1.06 |  0.0
+  V14 (sin verif.) b=0             |  38.9 | +0.316 |  0.76 |  8.94 | 25.56 |  3.1
+  V14 (sin verif.) b=0.02          |  38.9 | +0.820 |  1.72 |  9.15 | 25.78 |  3.4
+  intercalado tau=0 k=1 pasadas=1 b=0 |  39.5 | +0.179 |  0.58 |  6.38 | 17.41 |  2.4
+  intercalado tau=0 k=1 pasadas=1 b=0.02 |  39.5 | +0.690 |  1.49 |  6.63 | 17.75 |  2.8
+  intercalado tau=0 k=1 pasadas=2 b=0 |  40.1 | +0.093 |  0.27 |  3.66 |  8.97 |  1.2
+  intercalado tau=0 k=1 pasadas=2 b=0.02 |  40.1 | +0.605 |  1.25 |  5.17 |  9.22 |  1.4
+  intercalado tau=0 k=2 pasadas=1 b=0 |  39.6 | +0.169 |  0.47 |  5.74 | 17.41 |  2.3
+  intercalado tau=0 k=2 pasadas=1 b=0.02 |  39.6 | +0.681 |  1.45 |  6.20 | 17.75 |  2.7
+  intercalado tau=0 k=2 pasadas=2 b=0 |  40.6 | +0.050 |  0.23 |  1.37 |  8.97 |  0.6
+  intercalado tau=0 k=2 pasadas=2 b=0.02 |  40.6 | +0.565 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0 k=3 pasadas=1 b=0 |  39.6 | +0.169 |  0.47 |  5.74 | 17.41 |  2.3
+  intercalado tau=0 k=3 pasadas=1 b=0.02 |  39.6 | +0.681 |  1.45 |  6.20 | 17.75 |  2.7
+  intercalado tau=0 k=3 pasadas=2 b=0 |  40.7 | +0.050 |  0.23 |  1.37 |  8.97 |  0.6
+  intercalado tau=0 k=3 pasadas=2 b=0.02 |  40.7 | +0.565 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.05 k=1 pasadas=1 b=0 |  39.4 | +0.179 |  0.58 |  6.38 | 17.41 |  2.4
+  intercalado tau=0.05 k=1 pasadas=1 b=0.02 |  39.4 | +0.690 |  1.49 |  6.63 | 17.75 |  2.8
+  intercalado tau=0.05 k=1 pasadas=2 b=0 |  39.9 | +0.093 |  0.27 |  3.66 |  8.97 |  1.2
+  intercalado tau=0.05 k=1 pasadas=2 b=0.02 |  39.9 | +0.605 |  1.25 |  5.17 |  9.22 |  1.4
+  intercalado tau=0.05 k=2 pasadas=1 b=0 |  39.4 | +0.169 |  0.47 |  5.74 | 17.41 |  2.3
+  intercalado tau=0.05 k=2 pasadas=1 b=0.02 |  39.4 | +0.681 |  1.45 |  6.20 | 17.75 |  2.7
+  intercalado tau=0.05 k=2 pasadas=2 b=0 |  40.1 | +0.050 |  0.23 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.05 k=2 pasadas=2 b=0.02 |  40.1 | +0.565 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.05 k=3 pasadas=1 b=0 |  39.4 | +0.169 |  0.47 |  5.74 | 17.41 |  2.3
+  intercalado tau=0.05 k=3 pasadas=1 b=0.02 |  39.4 | +0.681 |  1.45 |  6.20 | 17.75 |  2.7
+  intercalado tau=0.05 k=3 pasadas=2 b=0 |  40.2 | +0.050 |  0.23 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.05 k=3 pasadas=2 b=0.02 |  40.2 | +0.565 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.1 k=1 pasadas=1 b=0 |  39.3 | +0.179 |  0.58 |  6.38 | 17.41 |  2.4
+  intercalado tau=0.1 k=1 pasadas=1 b=0.02 |  39.3 | +0.690 |  1.49 |  6.63 | 17.75 |  2.8
+  intercalado tau=0.1 k=1 pasadas=2 b=0 |  39.7 | +0.094 |  0.28 |  3.66 |  8.97 |  1.2
+  intercalado tau=0.1 k=1 pasadas=2 b=0.02 |  39.7 | +0.607 |  1.27 |  5.17 |  9.22 |  1.4
+  intercalado tau=0.1 k=2 pasadas=1 b=0 |  39.3 | +0.169 |  0.47 |  5.74 | 17.41 |  2.3
+  intercalado tau=0.1 k=2 pasadas=1 b=0.02 |  39.3 | +0.681 |  1.45 |  6.20 | 17.75 |  2.7
+  intercalado tau=0.1 k=2 pasadas=2 b=0 |  39.8 | +0.052 |  0.24 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.1 k=2 pasadas=2 b=0.02 |  39.8 | +0.567 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.1 k=3 pasadas=1 b=0 |  39.3 | +0.169 |  0.47 |  5.74 | 17.41 |  2.3
+  intercalado tau=0.1 k=3 pasadas=1 b=0.02 |  39.3 | +0.681 |  1.45 |  6.20 | 17.75 |  2.7
+  intercalado tau=0.1 k=3 pasadas=2 b=0 |  39.8 | +0.052 |  0.24 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.1 k=3 pasadas=2 b=0.02 |  39.8 | +0.567 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.2 k=1 pasadas=1 b=0 |  39.1 | +0.174 |  0.59 |  6.32 | 17.41 |  2.3
+  intercalado tau=0.2 k=1 pasadas=1 b=0.02 |  39.1 | +0.684 |  1.54 |  6.57 | 17.75 |  2.7
+  intercalado tau=0.2 k=1 pasadas=2 b=0 |  39.3 | +0.126 |  0.44 |  4.67 |  8.97 |  1.7
+  intercalado tau=0.2 k=1 pasadas=2 b=0.02 |  39.3 | +0.641 |  1.42 |  5.28 |  9.22 |  2.1
+  intercalado tau=0.2 k=2 pasadas=1 b=0 |  39.2 | +0.168 |  0.58 |  5.56 | 17.41 |  2.3
+  intercalado tau=0.2 k=2 pasadas=1 b=0.02 |  39.2 | +0.679 |  1.49 |  6.16 | 17.75 |  2.7
+  intercalado tau=0.2 k=2 pasadas=2 b=0 |  39.3 | +0.093 |  0.38 |  3.66 |  8.97 |  1.2
+  intercalado tau=0.2 k=2 pasadas=2 b=0.02 |  39.3 | +0.610 |  1.38 |  4.46 |  9.22 |  1.6
+  intercalado tau=0.2 k=3 pasadas=1 b=0 |  39.2 | +0.168 |  0.58 |  5.56 | 17.41 |  2.3
+  intercalado tau=0.2 k=3 pasadas=1 b=0.02 |  39.2 | +0.679 |  1.49 |  6.16 | 17.75 |  2.7
+  intercalado tau=0.2 k=3 pasadas=2 b=0 |  39.3 | +0.093 |  0.38 |  3.66 |  8.97 |  1.2
+  intercalado tau=0.2 k=3 pasadas=2 b=0.02 |  39.3 | +0.610 |  1.38 |  4.46 |  9.22 |  1.6
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0 |  41.0 | -0.007 |  0.18 |  0.59 |  4.67 |  0.2
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0.02 |  41.0 | +0.511 |  1.08 |  1.72 |  6.16 |  0.3
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0 |  40.6 | -0.004 |  0.19 |  0.73 |  4.67 |  0.2
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.6 | +0.515 |  1.12 |  1.73 |  6.16 |  0.3
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0 |  40.3 | +0.010 |  0.21 |  0.87 |  4.67 |  0.2
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0.02 |  40.3 | +0.527 |  1.17 |  1.90 |  6.16 |  0.3
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0 |  40.1 | +0.050 |  0.23 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0.02 |  40.1 | +0.565 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0 |  41.1 | -0.007 |  0.18 |  0.59 |  4.67 |  0.2
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0.02 |  41.1 | +0.511 |  1.08 |  1.72 |  6.16 |  0.3
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0 |  40.6 | -0.004 |  0.19 |  0.73 |  4.67 |  0.2
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.6 | +0.515 |  1.12 |  1.73 |  6.16 |  0.3
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0 |  40.3 | +0.010 |  0.21 |  0.87 |  4.67 |  0.2
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.3 | +0.527 |  1.17 |  1.90 |  6.16 |  0.3
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0 |  40.2 | +0.050 |  0.23 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0.02 |  40.2 | +0.565 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0 |  40.9 | -0.007 |  0.18 |  0.59 |  4.67 |  0.2
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0.02 |  40.9 | +0.511 |  1.08 |  1.72 |  6.16 |  0.3
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0 |  40.4 | -0.004 |  0.19 |  0.73 |  4.67 |  0.2
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.4 | +0.515 |  1.12 |  1.73 |  6.16 |  0.3
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0 |  40.0 | +0.012 |  0.21 |  0.90 |  4.67 |  0.2
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0.02 |  40.0 | +0.529 |  1.17 |  1.97 |  6.16 |  0.3
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0 |  39.8 | +0.052 |  0.24 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.8 | +0.567 |  1.21 |  2.10 |  9.15 |  0.8
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0 |  40.9 | -0.007 |  0.18 |  0.59 |  4.67 |  0.2
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0.02 |  40.9 | +0.511 |  1.08 |  1.72 |  6.16 |  0.3
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0 |  40.4 | -0.004 |  0.19 |  0.73 |  4.67 |  0.2
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.4 | +0.515 |  1.12 |  1.73 |  6.16 |  0.3
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0 |  40.0 | +0.012 |  0.21 |  0.90 |  4.67 |  0.2
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.0 | +0.529 |  1.17 |  1.97 |  6.16 |  0.3
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0 |  39.8 | +0.052 |  0.24 |  1.37 |  8.97 |  0.6
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0.02 |  39.8 | +0.567 |  1.21 |  2.10 |  9.15 |  0.8
+
+72c-6s 100 (6161): perdida vs MSAPSO completo (pp) | med. | media | p95 | p99 | max | % > 3 pp
+  V7 (parada)                      |  70.0 | +0.067 |  0.28 |  0.63 |  0.84 |  0.0
+  V14 (sin verif.) b=0             |  38.6 | +0.346 |  2.54 |  5.06 | 10.04 |  4.0
+  V14 (sin verif.) b=0.02          |  38.6 | +0.926 |  3.05 |  5.48 | 10.51 |  6.0
+  intercalado tau=0 k=1 pasadas=1 b=0 |  39.1 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0 k=1 pasadas=1 b=0.02 |  39.1 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0 k=1 pasadas=2 b=0 |  39.9 | +0.108 |  0.52 |  3.67 |  6.50 |  2.0
+  intercalado tau=0 k=1 pasadas=2 b=0.02 |  39.9 | +0.691 |  1.81 |  4.24 |  6.81 |  3.0
+  intercalado tau=0 k=2 pasadas=1 b=0 |  39.3 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0 k=2 pasadas=1 b=0.02 |  39.3 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0 k=2 pasadas=2 b=0 |  40.4 | +0.039 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0 k=2 pasadas=2 b=0.02 |  40.4 | +0.625 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0 k=3 pasadas=1 b=0 |  39.4 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0 k=3 pasadas=1 b=0.02 |  39.4 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0 k=3 pasadas=2 b=0 |  40.5 | +0.039 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0 k=3 pasadas=2 b=0.02 |  40.5 | +0.625 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0 |  39.0 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0.02 |  39.0 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0 |  39.7 | +0.108 |  0.52 |  3.67 |  6.50 |  2.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0.02 |  39.7 | +0.691 |  1.81 |  4.24 |  6.81 |  3.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0 |  39.1 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0.02 |  39.1 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0 |  39.9 | +0.039 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0.02 |  39.9 | +0.625 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0 |  39.1 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0.02 |  39.1 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0 |  40.0 | +0.039 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0.02 |  40.0 | +0.625 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0 |  38.9 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0.02 |  38.9 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0 |  39.6 | +0.108 |  0.52 |  3.67 |  6.50 |  2.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0.02 |  39.6 | +0.691 |  1.81 |  4.24 |  6.81 |  3.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0 |  39.0 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0.02 |  39.0 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0 |  39.7 | +0.043 |  0.42 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0.02 |  39.7 | +0.633 |  1.47 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0 |  39.0 | +0.258 |  0.79 |  5.03 |  6.50 |  4.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0.02 |  39.0 | +0.834 |  1.99 |  5.44 |  6.81 |  5.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0 |  39.7 | +0.043 |  0.42 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0.02 |  39.7 | +0.633 |  1.47 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0 |  38.7 | +0.219 |  0.79 |  3.76 |  5.01 |  3.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0.02 |  38.7 | +0.804 |  1.99 |  4.28 |  5.43 |  5.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0 |  39.0 | +0.157 |  0.79 |  3.76 |  5.01 |  3.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0.02 |  39.0 | +0.743 |  1.99 |  4.28 |  5.43 |  5.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0 |  38.8 | +0.219 |  0.79 |  3.76 |  5.01 |  3.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0.02 |  38.8 | +0.804 |  1.99 |  4.28 |  5.43 |  5.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0 |  39.0 | +0.157 |  0.79 |  3.76 |  5.01 |  3.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0.02 |  39.0 | +0.743 |  1.99 |  4.28 |  5.43 |  5.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0 |  38.8 | +0.219 |  0.79 |  3.76 |  5.01 |  3.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0.02 |  38.8 | +0.804 |  1.99 |  4.28 |  5.43 |  5.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0 |  39.0 | +0.157 |  0.79 |  3.76 |  5.01 |  3.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0.02 |  39.0 | +0.743 |  1.99 |  4.28 |  5.43 |  5.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0 |  41.2 | -0.051 |  0.21 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0.02 |  41.2 | +0.540 |  1.21 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0 |  40.5 | -0.046 |  0.22 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.5 | +0.550 |  1.30 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0 |  40.2 | +0.013 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0.02 |  40.2 | +0.605 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0 |  39.9 | +0.039 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.9 | +0.625 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0 |  41.2 | -0.051 |  0.21 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0.02 |  41.2 | +0.540 |  1.21 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0 |  40.5 | -0.046 |  0.22 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.5 | +0.550 |  1.30 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0 |  40.2 | +0.013 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.2 | +0.605 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0 |  40.0 | +0.039 |  0.32 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0.02 |  40.0 | +0.625 |  1.34 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0 |  41.2 | -0.051 |  0.21 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0.02 |  41.2 | +0.538 |  1.21 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0 |  40.4 | -0.042 |  0.24 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.4 | +0.558 |  1.33 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0 |  40.0 | +0.017 |  0.42 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0.02 |  40.0 | +0.613 |  1.47 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0 |  39.7 | +0.043 |  0.42 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.7 | +0.633 |  1.47 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0 |  41.2 | -0.051 |  0.21 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0.02 |  41.2 | +0.538 |  1.21 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0 |  40.4 | -0.042 |  0.24 |  0.57 |  0.70 |  0.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.4 | +0.558 |  1.33 |  1.84 |  1.93 |  0.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0 |  40.0 | +0.017 |  0.42 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.0 | +0.613 |  1.47 |  3.05 |  4.21 |  2.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0 |  39.7 | +0.043 |  0.42 |  2.40 |  3.64 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0.02 |  39.7 | +0.633 |  1.47 |  3.05 |  4.21 |  2.0
+
+36c-3s 100 (6161): perdida vs MSAPSO completo (pp) | med. | media | p95 | p99 | max | % > 3 pp
+  V7 (parada)                      |  70.0 | +0.043 |  0.21 |  0.28 |  0.51 |  0.0
+  V14 (sin verif.) b=0             |  38.4 | +0.172 |  0.81 |  6.80 |  9.12 |  2.0
+  V14 (sin verif.) b=0.02          |  38.4 | +0.609 |  1.29 |  7.05 |  9.42 |  3.0
+  intercalado tau=0 k=1 pasadas=1 b=0 |  38.9 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0 k=1 pasadas=1 b=0.02 |  38.9 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0 k=1 pasadas=2 b=0 |  39.8 | +0.152 |  0.24 |  6.80 |  9.12 |  2.0
+  intercalado tau=0 k=1 pasadas=2 b=0.02 |  39.8 | +0.584 |  1.13 |  7.05 |  9.42 |  3.0
+  intercalado tau=0 k=2 pasadas=1 b=0 |  39.1 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0 k=2 pasadas=1 b=0.02 |  39.1 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0 k=2 pasadas=2 b=0 |  40.6 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0 k=2 pasadas=2 b=0.02 |  40.6 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0 k=3 pasadas=1 b=0 |  39.1 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0 k=3 pasadas=1 b=0.02 |  39.1 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0 k=3 pasadas=2 b=0 |  40.7 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0 k=3 pasadas=2 b=0.02 |  40.7 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0 |  38.7 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0.02 |  38.7 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0 |  39.5 | +0.152 |  0.24 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0.02 |  39.5 | +0.584 |  1.13 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0 |  38.9 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0.02 |  38.9 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0 |  40.2 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0.02 |  40.2 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0 |  38.9 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0.02 |  38.9 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0 |  40.2 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0.02 |  40.2 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0 |  38.7 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0.02 |  38.7 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0 |  39.4 | +0.164 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0.02 |  39.4 | +0.593 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0 |  38.8 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0.02 |  38.8 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0 |  39.9 | -0.071 |  0.49 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0.02 |  39.9 | +0.391 |  1.21 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0 |  38.8 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0.02 |  38.8 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0 |  39.9 | -0.071 |  0.49 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0.02 |  39.9 | +0.391 |  1.21 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0 |  38.6 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0.02 |  38.6 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0 |  38.7 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0.02 |  38.7 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0 |  38.7 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0.02 |  38.7 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0 |  38.8 | +0.134 |  0.81 |  3.21 |  9.12 |  2.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0.02 |  38.8 | +0.581 |  1.21 |  4.69 |  9.42 |  3.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0 |  38.7 | +0.170 |  0.81 |  6.80 |  9.12 |  2.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0.02 |  38.7 | +0.605 |  1.21 |  7.05 |  9.42 |  3.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0 |  38.8 | +0.134 |  0.81 |  3.21 |  9.12 |  2.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0.02 |  38.8 | +0.581 |  1.21 |  4.69 |  9.42 |  3.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0 |  41.2 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0.02 |  41.2 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0 |  40.8 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.8 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0 |  40.2 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0.02 |  40.2 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0 |  40.2 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0.02 |  40.2 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0 |  41.2 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0.02 |  41.2 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0 |  40.8 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.8 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0 |  40.2 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.2 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0 |  40.2 | -0.082 |  0.23 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0.02 |  40.2 | +0.383 |  1.13 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0 |  41.1 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0.02 |  41.1 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0 |  40.7 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.7 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0 |  39.9 | -0.071 |  0.49 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0.02 |  39.9 | +0.391 |  1.21 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0 |  39.9 | -0.071 |  0.49 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.9 | +0.391 |  1.21 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0 |  41.1 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0.02 |  41.1 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0 |  40.7 | -0.140 |  0.12 |  0.50 |  3.15 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.7 | +0.322 |  0.77 |  1.64 |  4.64 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0 |  39.9 | -0.071 |  0.49 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0.02 |  39.9 | +0.391 |  1.21 |  3.38 |  4.64 |  2.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0 |  39.9 | -0.071 |  0.49 |  2.88 |  3.15 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0.02 |  39.9 | +0.391 |  1.21 |  3.38 |  4.64 |  2.0
+
+60c-11A 100 (6161): perdida vs MSAPSO completo (pp) | med. | media | p95 | p99 | max | % > 3 pp
+  V7 (parada)                      |  70.0 | +0.055 |  0.21 |  0.40 |  1.02 |  0.0
+  V14 (sin verif.) b=0             |  38.9 | +0.486 |  1.89 |  8.54 | 23.19 |  3.0
+  V14 (sin verif.) b=0.02          |  38.9 | +0.975 |  2.82 |  8.79 | 23.41 |  5.0
+  intercalado tau=0 k=1 pasadas=1 b=0 |  39.1 | +0.397 |  2.89 |  7.81 |  8.39 |  5.0
+  intercalado tau=0 k=1 pasadas=1 b=0.02 |  39.1 | +0.886 |  3.78 |  8.16 |  8.65 |  6.0
+  intercalado tau=0 k=1 pasadas=2 b=0 |  40.0 | +0.214 |  1.09 |  7.47 |  8.39 |  3.0
+  intercalado tau=0 k=1 pasadas=2 b=0.02 |  40.0 | +0.720 |  2.06 |  7.80 |  8.65 |  4.0
+  intercalado tau=0 k=2 pasadas=1 b=0 |  39.2 | +0.329 |  1.15 |  7.81 |  8.39 |  4.0
+  intercalado tau=0 k=2 pasadas=1 b=0.02 |  39.2 | +0.824 |  2.40 |  8.16 |  8.65 |  5.0
+  intercalado tau=0 k=2 pasadas=2 b=0 |  40.5 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0 k=2 pasadas=2 b=0.02 |  40.5 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0 k=3 pasadas=1 b=0 |  39.2 | +0.329 |  1.15 |  7.81 |  8.39 |  4.0
+  intercalado tau=0 k=3 pasadas=1 b=0.02 |  39.2 | +0.824 |  2.40 |  8.16 |  8.65 |  5.0
+  intercalado tau=0 k=3 pasadas=2 b=0 |  40.6 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0 k=3 pasadas=2 b=0.02 |  40.6 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0 |  39.0 | +0.397 |  2.89 |  7.81 |  8.39 |  5.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0.02 |  39.0 | +0.886 |  3.78 |  8.16 |  8.65 |  6.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0 |  39.8 | +0.214 |  1.09 |  7.47 |  8.39 |  3.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0.02 |  39.8 | +0.720 |  2.06 |  7.80 |  8.65 |  4.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0 |  39.0 | +0.329 |  1.15 |  7.81 |  8.39 |  4.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0.02 |  39.0 | +0.824 |  2.40 |  8.16 |  8.65 |  5.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0 |  40.1 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0.02 |  40.1 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0 |  39.0 | +0.329 |  1.15 |  7.81 |  8.39 |  4.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0.02 |  39.0 | +0.824 |  2.40 |  8.16 |  8.65 |  5.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0 |  40.1 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0.02 |  40.1 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0 |  38.9 | +0.397 |  2.89 |  7.81 |  8.39 |  5.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0.02 |  38.9 | +0.886 |  3.78 |  8.16 |  8.65 |  6.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0 |  39.6 | +0.214 |  1.09 |  7.47 |  8.39 |  3.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0.02 |  39.6 | +0.720 |  2.06 |  7.80 |  8.65 |  4.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0 |  39.0 | +0.329 |  1.15 |  7.81 |  8.39 |  4.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0.02 |  39.0 | +0.824 |  2.40 |  8.16 |  8.65 |  5.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0 |  39.8 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0.02 |  39.8 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0 |  39.0 | +0.329 |  1.15 |  7.81 |  8.39 |  4.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0.02 |  39.0 | +0.824 |  2.40 |  8.16 |  8.65 |  5.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0 |  39.8 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0.02 |  39.8 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0 |  38.9 | +0.263 |  1.70 |  5.14 |  8.39 |  3.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0.02 |  38.9 | +0.764 |  2.38 |  5.43 |  8.65 |  5.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0 |  39.0 | +0.202 |  1.70 |  5.14 |  8.39 |  3.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0.02 |  39.0 | +0.708 |  2.38 |  5.43 |  8.65 |  5.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0 |  39.0 | +0.195 |  0.42 |  3.26 |  8.39 |  2.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0.02 |  39.0 | +0.702 |  1.54 |  4.69 |  8.65 |  4.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0 |  39.1 | +0.052 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0.02 |  39.1 | +0.568 |  1.24 |  3.74 |  4.65 |  3.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0 |  39.0 | +0.195 |  0.42 |  3.26 |  8.39 |  2.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0.02 |  39.0 | +0.702 |  1.54 |  4.69 |  8.65 |  4.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0 |  39.1 | +0.052 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0.02 |  39.1 | +0.568 |  1.24 |  3.74 |  4.65 |  3.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0 |  40.8 | +0.004 |  0.22 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0.02 |  40.8 | +0.517 |  1.11 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0 |  40.3 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.3 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0 |  40.2 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0.02 |  40.2 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0 |  40.1 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0.02 |  40.1 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0 |  40.8 | +0.004 |  0.22 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0.02 |  40.8 | +0.517 |  1.11 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0 |  40.3 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.3 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0 |  40.2 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.2 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0 |  40.1 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0.02 |  40.1 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0 |  40.6 | +0.004 |  0.22 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0.02 |  40.6 | +0.517 |  1.11 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0 |  40.1 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.1 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0 |  39.9 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0.02 |  39.9 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0 |  39.8 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.8 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0 |  40.6 | +0.004 |  0.22 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0.02 |  40.6 | +0.517 |  1.11 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0 |  40.1 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.1 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0 |  39.9 | +0.013 |  0.23 |  1.08 |  3.21 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0.02 |  39.9 | +0.528 |  1.15 |  2.36 |  4.65 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0 |  39.8 | +0.041 |  0.27 |  2.87 |  3.21 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0.02 |  39.8 | +0.558 |  1.24 |  3.74 |  4.65 |  2.0
+
+96c-6.5A 100 (6161): perdida vs MSAPSO completo (pp) | med. | media | p95 | p99 | max | % > 3 pp
+  V7 (parada)                      |  70.0 | +0.045 |  0.17 |  0.34 |  1.03 |  0.0
+  V14 (sin verif.) b=0             |  38.9 | +0.436 |  1.92 |  9.60 | 14.70 |  4.0
+  V14 (sin verif.) b=0.02          |  38.9 | +0.929 |  2.78 |  9.95 | 14.96 |  4.0
+  intercalado tau=0 k=1 pasadas=1 b=0 |  39.4 | +0.322 |  1.92 |  5.54 |  9.55 |  4.0
+  intercalado tau=0 k=1 pasadas=1 b=0.02 |  39.4 | +0.826 |  2.78 |  5.75 |  9.90 |  4.0
+  intercalado tau=0 k=1 pasadas=2 b=0 |  39.9 | +0.143 |  0.28 |  3.25 |  5.06 |  2.0
+  intercalado tau=0 k=1 pasadas=2 b=0.02 |  39.9 | +0.660 |  1.27 |  4.68 |  5.39 |  2.0
+  intercalado tau=0 k=2 pasadas=1 b=0 |  39.5 | +0.190 |  0.28 |  3.29 |  9.55 |  2.0
+  intercalado tau=0 k=2 pasadas=1 b=0.02 |  39.5 | +0.709 |  1.27 |  4.72 |  9.90 |  2.0
+  intercalado tau=0 k=2 pasadas=2 b=0 |  40.2 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0 k=2 pasadas=2 b=0.02 |  40.2 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0 k=3 pasadas=1 b=0 |  39.5 | +0.190 |  0.28 |  3.29 |  9.55 |  2.0
+  intercalado tau=0 k=3 pasadas=1 b=0.02 |  39.5 | +0.709 |  1.27 |  4.72 |  9.90 |  2.0
+  intercalado tau=0 k=3 pasadas=2 b=0 |  40.3 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0 k=3 pasadas=2 b=0.02 |  40.3 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0 |  39.2 | +0.322 |  1.92 |  5.54 |  9.55 |  4.0
+  intercalado tau=0.05 k=1 pasadas=1 b=0.02 |  39.2 | +0.826 |  2.78 |  5.75 |  9.90 |  4.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0 |  39.7 | +0.143 |  0.28 |  3.25 |  5.06 |  2.0
+  intercalado tau=0.05 k=1 pasadas=2 b=0.02 |  39.7 | +0.660 |  1.27 |  4.68 |  5.39 |  2.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0 |  39.3 | +0.190 |  0.28 |  3.29 |  9.55 |  2.0
+  intercalado tau=0.05 k=2 pasadas=1 b=0.02 |  39.3 | +0.709 |  1.27 |  4.72 |  9.90 |  2.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0 |  39.9 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 b=0.02 |  39.9 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0 |  39.3 | +0.190 |  0.28 |  3.29 |  9.55 |  2.0
+  intercalado tau=0.05 k=3 pasadas=1 b=0.02 |  39.3 | +0.709 |  1.27 |  4.72 |  9.90 |  2.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0 |  39.9 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 b=0.02 |  39.9 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0 |  39.2 | +0.322 |  1.92 |  5.54 |  9.55 |  4.0
+  intercalado tau=0.1 k=1 pasadas=1 b=0.02 |  39.2 | +0.826 |  2.78 |  5.75 |  9.90 |  4.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0 |  39.5 | +0.143 |  0.28 |  3.25 |  5.06 |  2.0
+  intercalado tau=0.1 k=1 pasadas=2 b=0.02 |  39.5 | +0.660 |  1.27 |  4.68 |  5.39 |  2.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0 |  39.2 | +0.190 |  0.28 |  3.29 |  9.55 |  2.0
+  intercalado tau=0.1 k=2 pasadas=1 b=0.02 |  39.2 | +0.709 |  1.27 |  4.72 |  9.90 |  2.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0 |  39.6 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 b=0.02 |  39.6 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0 |  39.2 | +0.190 |  0.28 |  3.29 |  9.55 |  2.0
+  intercalado tau=0.1 k=3 pasadas=1 b=0.02 |  39.2 | +0.709 |  1.27 |  4.72 |  9.90 |  2.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0 |  39.6 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 b=0.02 |  39.6 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0 |  39.0 | +0.322 |  1.92 |  5.54 |  9.55 |  4.0
+  intercalado tau=0.2 k=1 pasadas=1 b=0.02 |  39.0 | +0.826 |  2.78 |  5.75 |  9.90 |  4.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0 |  39.1 | +0.171 |  0.43 |  3.25 |  5.06 |  2.0
+  intercalado tau=0.2 k=1 pasadas=2 b=0.02 |  39.1 | +0.682 |  1.57 |  4.68 |  5.39 |  2.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0 |  39.1 | +0.216 |  0.43 |  3.29 |  9.55 |  2.0
+  intercalado tau=0.2 k=2 pasadas=1 b=0.02 |  39.1 | +0.729 |  1.57 |  4.72 |  9.90 |  2.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0 |  39.1 | +0.121 |  0.28 |  2.68 |  3.23 |  1.0
+  intercalado tau=0.2 k=2 pasadas=2 b=0.02 |  39.1 | +0.636 |  1.27 |  2.91 |  4.67 |  1.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0 |  39.1 | +0.216 |  0.43 |  3.29 |  9.55 |  2.0
+  intercalado tau=0.2 k=3 pasadas=1 b=0.02 |  39.1 | +0.729 |  1.57 |  4.72 |  9.90 |  2.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0 |  39.1 | +0.121 |  0.28 |  2.68 |  3.23 |  1.0
+  intercalado tau=0.2 k=3 pasadas=2 b=0.02 |  39.1 | +0.636 |  1.27 |  2.91 |  4.67 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0 |  40.7 | +0.073 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.02 b=0.02 |  40.7 | +0.596 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0 |  40.1 | +0.074 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.05 b=0.02 |  40.1 | +0.597 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0 |  39.9 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.1 b=0.02 |  39.9 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0 |  39.9 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.05 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.9 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0 |  40.7 | +0.073 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.02 b=0.02 |  40.7 | +0.596 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0 |  40.2 | +0.074 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.05 b=0.02 |  40.2 | +0.597 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0 |  40.0 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.1 b=0.02 |  40.0 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0 |  39.9 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.05 k=3 pasadas=2 final tau=0.2 b=0.02 |  39.9 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0 |  40.3 | +0.074 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.02 b=0.02 |  40.3 | +0.597 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0 |  39.9 | +0.074 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.05 b=0.02 |  39.9 | +0.597 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0 |  39.6 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.1 b=0.02 |  39.6 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0 |  39.6 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.1 k=2 pasadas=2 final tau=0.2 b=0.02 |  39.6 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0 |  40.3 | +0.074 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.02 b=0.02 |  40.3 | +0.597 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0 |  39.9 | +0.074 |  0.20 |  1.12 |  3.23 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.05 b=0.02 |  39.9 | +0.597 |  1.13 |  2.41 |  4.67 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0 |  39.6 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.1 b=0.02 |  39.6 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0 |  39.6 | +0.093 |  0.27 |  1.89 |  3.23 |  1.0
+  intercalado tau=0.1 k=3 pasadas=2 final tau=0.2 b=0.02 |  39.6 | +0.617 |  1.23 |  2.79 |  4.67 |  1.0

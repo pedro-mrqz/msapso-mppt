@@ -1,0 +1,7 @@
+VALIDACION (escenarios 600-1199): energia media (%) por metodo y retroceso b
+metodo                     | b=0     | b=0.02  | b=0.04  | b=0.06  | b=0.08 
+MSAPSO completo            |   84.26 |   84.99 |   84.80 |   84.80 |   84.54  -> b elegido = 0.02
+V7 (parada)                |   87.84 |   88.12 |   87.91 |   87.54 |   87.11  -> b elegido = 0.02
+MLP + CEM                  |   89.00 |   88.87 |   88.44 |   88.09 |   87.76  -> b elegido = 0
+corto + CEM (<=40)         |   88.55 |   89.48 |   89.33 |   88.86 |   88.26  -> b elegido = 0.02
+corto + CEM (principal)    |   87.93 |   88.56 |   88.14 |   87.89 |   87.37  -> b elegido = 0.02

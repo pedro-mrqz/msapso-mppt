@@ -1,0 +1,51 @@
+{
+ "msapso": {
+  "med": 175.0,
+  "final": 99.89391927724058
+ },
+ "v7": {
+  "med": 70.0,
+  "final": 99.83694661882788
+ },
+ "mlp_cem": {
+  "modelo": [
+   30000,
+   [
+    64,
+    64
+   ]
+  ],
+  "cfg": {
+   "modo": "mlp",
+   "n": 7,
+   "k": 2,
+   "alpha": 0.7,
+   "sigma0": 0.1,
+   "sigma_min": 0.002,
+   "delta": 0.005,
+   "t_min": 2,
+   "t_max": 12
+  },
+  "mediciones": 36.575,
+  "final": 99.33036014990012,
+  "p98": 10.0,
+  "criterio": "mayor exactitud con <=70 med."
+ },
+ "sin_modelo": {
+  "cfg": {
+   "modo": "sin_modelo",
+   "n": 7,
+   "k": 2,
+   "alpha": 0.7,
+   "sigma0": 0.15,
+   "sigma_min": 0.002,
+   "delta": 0.005,
+   "t_min": 2,
+   "t_max": 12
+  },
+  "mediciones": 39.41,
+  "final": 98.77530197836312,
+  "p98": 13.0,
+  "criterio": "mayor exactitud con <=70 med."
+ }
+}
