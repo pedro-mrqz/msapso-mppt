@@ -1,0 +1,19 @@
+ENTRENAMIENTO V18 / V18.1: CEM sobre los pesos del MLP. Monitoreo: 2000 curvas (2222). 'solo red' = barrido de 7 + 1 medicion en la prediccion;
+  'cadena' = barrido + red + CEM sobre la corriente (sigma0 de la red; 0.1 si no tiene), simulado sin ruido: potencia media y % de curvas < 98 %
+  Redes sin 'ref': objetivo = potencia en el punto predicho (V18). Con 'ref=s0': objetivo = cadena completa con ese sigma0 (V18.1).
+  red                          | params | tiempo  | solo red: media | p1 | % < 90 % | error |x - x*| | cadena: media | % < 98 %
+  V11 (retropropagacion)       |   4801 |   --    | 0.8803 | 0.491 |  41.4 | 0.0573 | 0.9937 |   9.2
+  NE 16x16 cola=0              |    433 |   122 s | 0.9272 | 0.567 |  27.1 | 0.1164 | 0.9815 |  18.3
+  NE 16x16 cola=1              |    433 |   125 s | 0.8757 | 0.512 |  51.5 | 0.1108 | 0.9873 |  17.0
+  NE 32x32 cola=0              |   1377 |   202 s | 0.9227 | 0.541 |  27.6 | 0.1223 | 0.9817 |  18.1
+  NE 32x32 cola=1              |   1377 |   203 s | 0.8515 | 0.636 |  70.5 | 0.1482 | 0.9838 |  24.9
+  NE 64x64 cola=0              |   4801 |   301 s | 0.9240 | 0.567 |  27.4 | 0.1209 | 0.9817 |  18.4
+  NE 64x64 cola=1              |   4801 |   302 s | 0.8380 | 0.604 |  74.9 | 0.1447 | 0.9844 |  23.9
+  NE 16x16 cola=0 ref=0.03     |    433 |   690 s | 0.8141 | 0.475 |  65.2 | 0.1372 | 0.9797 |  30.1
+  NE 16x16 cola=0 ref=0.1      |    433 |   696 s | 0.8238 | 0.329 |  61.9 | 0.1034 | 0.9911 |  14.6
+  NE 16x16 cola=1 ref=0.03     |    433 |   678 s | 0.8424 | 0.420 |  61.2 | 0.1205 | 0.9768 |  36.6
+  NE 16x16 cola=1 ref=0.1      |    433 |   698 s | 0.8348 | 0.351 |  58.4 | 0.1137 | 0.9904 |  15.5
+  NE 64x64 cola=0 ref=0.03     |   4801 |   769 s | 0.8077 | 0.342 |  58.3 | 0.1131 | 0.9798 |  26.6
+  NE 64x64 cola=0 ref=0.1      |   4801 |   767 s | 0.8211 | 0.257 |  54.6 | 0.1048 | 0.9891 |  15.7
+  NE 64x64 cola=1 ref=0.03     |   4801 |   752 s | 0.8446 | 0.439 |  55.5 | 0.1230 | 0.9807 |  31.8
+  NE 64x64 cola=1 ref=0.1      |   4801 |   758 s | 0.8396 | 0.355 |  56.9 | 0.1096 | 0.9907 |  14.6
