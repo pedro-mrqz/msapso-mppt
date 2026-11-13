@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comparador de métodos MPPT</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--ink:#1c1e21;--mut:#6b7078;--line:#dcdcd4;--a:#1f5fa8;--b:#d9772b;--red:#d9382b;--green:#1e9e4a;--soft:#f1f1ec;--lime:#7CFC00}
+@media (prefers-color-scheme:dark){:root{--bg:#16181b;--card:#1f2226;--ink:#eceae4;--mut:#9aa0a8;--line:#363a40;--a:#6aa7ef;--b:#f0a15c;--red:#ff6b5c;--green:#4cd37f;--soft:#272b30}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 48px}h1{font-size:22px;margin:0 0 4px}p.sub{color:var(--mut);margin:0 0 14px;max-width:880px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;border-bottom:1px solid var(--line)}.tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:9px 14px;font-size:14.5px;color:var(--mut);cursor:pointer}.tabs button.on{color:var(--ink);border-bottom-color:var(--a);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px 16px;align-items:end}
+label{display:block;font-size:12.5px;color:var(--mut);margin-bottom:3px}select,input[type=range]{width:100%}select{padding:7px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px}
+button{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:14px}button.p{background:var(--a);color:#fff;border-color:var(--a)}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}.note{color:var(--mut);font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:820px){.two{grid-template-columns:1fr}}
+.head{display:flex;gap:8px;align-items:center;margin-bottom:6px}.head select{flex:1;font-weight:600}.dotA,.dotB{width:11px;height:11px;border-radius:50%;flex:none}.dotA{background:var(--a)}.dotB{background:var(--b)}
+.info{width:30px;height:30px;padding:0;border-radius:50%;font-weight:700;font-family:Georgia,serif;font-style:italic;flex:none;color:var(--a);border-color:var(--a)}
+.short{color:var(--mut);font-size:12.5px;margin:-2px 0 6px 19px}canvas{width:100%;display:block}#cA,#cB{height:260px}#cT{height:270px}
+.st{display:flex;flex-wrap:wrap;gap:3px 14px;font-size:13px;margin-top:6px}.st b{font-variant-numeric:tabular-nums}
+.badge{display:inline-block;padding:1px 9px;border-radius:10px;font-size:12px;border:1px solid var(--line);color:var(--mut)}.badge.s{background:var(--red);border-color:var(--red);color:#fff}.badge.f{background:var(--green);border-color:var(--green);color:#fff}.badge.r{background:var(--b);border-color:var(--b);color:#fff}
+.en{margin-top:8px;padding:9px 12px;border:1px solid var(--line);border-radius:10px}.en .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.en .u{font-size:12px;color:var(--mut)}.eb{height:9px;background:var(--line);border-radius:5px;margin-top:6px;overflow:hidden}.eb i{display:block;height:100%}
+.diff{text-align:center;font-size:15px;margin:2px 0 12px}.diff b{font-size:20px;font-variant-numeric:tabular-nums}
+.scn{background:var(--soft);border-radius:10px;padding:8px 12px;font-size:13.5px;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--card)}tr.sel{background:var(--soft)}.tw{overflow-x:auto}
+td small{color:var(--mut)}.pos{color:var(--green)}.neg{color:var(--red)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:16px;z-index:9}.modal.on{display:flex}
+.box{background:var(--card);border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:20px 22px;border:1px solid var(--line)}.box h3{margin:0 0 2px;font-size:18px}.box .sh{color:var(--mut);font-size:13px;margin-bottom:10px}.box p{margin:8px 0}.box p.res{background:var(--soft);border-radius:8px;padding:8px 10px;font-size:13.5px}
+.x{float:right}details{margin-bottom:10px}summary{cursor:pointer;font-weight:600}
+.loading{color:var(--mut);padding:30px;text-align:center}
+</style></head><body><main>
+<h1>Comparador de métodos MPPT bajo sombreado parcial</h1>
+<p class="sub">Elige dos métodos y un escenario: los dos ven la <b>misma sombra y el mismo ruido</b>. Lo que se reproduce son corridas reales del simulador dinámico del proyecto (convertidor Boost con control Super-Twisting), grabadas con el mismo código que generó los resultados de los reportes. Pulsa <b>ⓘ</b> junto al nombre para ver en qué consiste cada método.</p>
+<div class="tabs" role="tablist"><button class="on" data-t="sim">Simulación</button><button data-t="res">Resultados de las campañas</button><button data-t="how">Cómo leer esta demo</button></div>
+
+<section id="t-sim">
+<div class="card"><div class="ctl">
+<div><label for="sc">Escenario</label><select id="sc"></select></div>
+<div><label for="tw">Tiempo de espera por medición</label><select id="tw"></select></div>
+<div><label for="nz">Ruido de medición</label><select id="nz"></select></div>
+<div><label for="sp">🐢 Velocidad: <b id="spv"></b></label><input id="sp" type="range" min="0" max="100" value="36"><label style="margin:6px 0 0;display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" id="fast" checked style="width:auto"> Acelerar cuando ambos están fijos</label></div>
+</div>
+<div class="scn" id="sctext"></div>
+<div class="btns"><button class="p" id="play">▶ Iniciar</button><button id="rst">⟲ Reiniciar</button><button id="prv">◂ Paso</button><button id="stp">Paso ▸</button><button id="swap">⇄ Intercambiar lados</button><button id="camp">Condiciones de la campaña</button>
+<span class="note" id="clock"></span></div>
+<div style="margin-top:10px"><label for="scr">Línea de tiempo (arrastra para saltar a cualquier momento)</label><input id="scr" type="range" min="0" max="1" value="0"></div>
+</div>
+<div id="ld" class="loading" hidden>Cargando corridas…</div>
+<div class="two" id="pan">
+<div class="card"><div class="head"><span class="dotA"></span><select id="mA" aria-label="Método de la izquierda"></select><button class="info" id="iA" aria-label="Información del método de la izquierda">i</button></div><div class="short" id="shA"></div><canvas id="cA" height="250"></canvas><div class="st" id="sA"></div><div class="en" id="eA"></div></div>
+<div class="card"><div class="head"><span class="dotB"></span><select id="mB" aria-label="Método de la derecha"></select><button class="info" id="iB" aria-label="Información del método de la derecha">i</button></div><div class="short" id="shB"></div><canvas id="cB" height="250"></canvas><div class="st" id="sB"></div><div class="en" id="eB"></div></div>
+</div>
+<div class="diff" id="df"></div>
+<div class="card"><h2 style="font-size:15px;margin:0 0 4px">Potencia entregada / máximo posible, en el tiempo</h2><p class="note" style="margin:0 0 6px"><b>A</b> es la línea azul delgada y <b>B</b> la naranja gruesa (así se ven las dos aunque coincidan). Pasa el cursor sobre la gráfica para leer los valores exactos de A y B en ese instante. Las líneas punteadas son cambios de sombra. Las franjas de abajo muestran cuándo cada método está <span style="color:var(--red)">buscando</span> y cuándo está <span style="color:var(--green)">fijo</span> operando; los triángulos son reinicios.</p><div class="ctl" style="margin:8px 0 10px"><div><label for="zy">🔍 Zoom vertical (potencia)</label><select id="zy"></select></div><div><label for="zx">🔍 Zoom horizontal (tiempo)</label><select id="zx"></select></div><div id="folw" hidden><label style="display:flex;gap:6px;align-items:center;cursor:pointer;margin-top:22px"><input type="checkbox" id="fol" checked style="width:auto"> Seguir la reproducción</label></div><div id="panw" hidden><label for="pan">Desplazar en el tiempo</label><input id="pan" type="range" min="0" max="1000" value="0"></div></div>
+<canvas id="cT" height="260"></canvas></div>
+</section>
+
+<section id="t-res" hidden>
+<div class="card"><h2 style="font-size:16px;margin:0 0 4px">Cifras de las campañas (mismos escenarios y mismo código para todos los métodos)</h2>
+<p class="note" style="margin-top:0">Energía: 1200 escenarios de confirmación (nunca usados para elegir parámetros), diferencia en puntos porcentuales de la energía captada sobre la máxima posible, con intervalo de confianza 95 % (bootstrap pareado). Cola estática: 1000 curvas con una sola búsqueda; «pérdida» es la exactitud final contra el MSAPSO del paper. Los dos métodos elegidos en la simulación aparecen sombreados.</p>
+<div class="tw"><table id="tb"></table></div></div>
+<div class="card"><b>Cómo leer la tabla.</b><p>Un método <b>reemplazaría</b> a la V7 solo si ganara energía de forma demostrable (intervalo por encima de 0) <i>y</i> mantuviera una cola estática aceptable (p99 ≤ 3 pp, pierde más de 3 pp en no más del 10 % de escenarios y sin debilidades en ninguna condición). Ninguno lo logra: la candidata V14 es la que más energía gana, pero con una cola de hasta 23 pp; los demás no superan a la V7 o tienen colas peores. Por eso la <b>V7</b> sigue siendo el método principal.</p>
+<p class="note">Reservas: todo es simulación; los parámetros de DGBCO y CEDGO incluyen interpretaciones nuestras de lo que los papers no precisan; hay muchas comparaciones y no se corrigió por comparaciones múltiples.</p></div>
+</section>
+
+<section id="t-how" hidden>
+<div class="card">
+<details open><summary>¿Qué se está comparando?</summary><p>Un panel fotovoltaico con sombra parcial tiene una curva potencia–corriente con varios picos. El controlador debe encontrar el pico más alto (el GMPP) midiendo la potencia a distintas corrientes. Cada <b>medición</b> es una ventana de tiempo en la que el convertidor opera en una corriente pedida. Mientras busca, el panel entrega menos que su máximo; por eso importan <b>dos cosas</b>: qué tan bien elige el pico y cuánto tiempo gasta buscando.</p></details>
+<details><summary>¿Qué muestra cada lado?</summary><p>La curva P–I de la sombra actual (azul/naranja según el lado), el máximo <b>alcanzable</b> (rombo verde lleno; si el máximo teórico de la curva no se puede alcanzar, se marca aparte con un rombo vacío) y el punto en el que opera el método ahora (rojo = midiendo, verde = fijo en su mejor corriente, naranja = acaba de detectar un cambio y reinicia la búsqueda). Debajo, el conteo de mediciones de búsqueda, los reinicios y la energía acumulada como porcentaje de la máxima posible.</p></details>
+<details><summary>¿Qué es la «energía»?</summary><p>La energía realmente entregada por el panel (la dinámica del convertidor incluida) dividida entre la que habría entregado si siempre hubiera operado exactamente en el máximo <b>alcanzable</b>: con la carga de 12 Ω un convertidor Boost solo puede presentar al panel puntos con V/I ≤ 12 Ω, así que a veces el máximo teórico de la curva queda fuera de alcance (se dibuja con un rombo vacío) y la referencia es el mejor punto alcanzable. Es la métrica con la que se evaluaron todas las campañas.</p></details>
+<details><summary>¿Cómo se eligieron los escenarios?</summary><p>No a ojo. Salen de los 1200 escenarios de confirmación con reglas fijas: el <b>típico</b> de cada régimen de cambio de sombra (el de diferencia mediana), el <b>mejor</b> y el <b>peor</b> caso de la candidata V14 contra la V7, el peor caso del DecentCEM, uno típico con tiempo de espera corto (0.5 ms) y el escenario de transiciones pedido por el profesor. Incluir los peores casos es deliberado: una sola corrida es una anécdota y la «cola» es parte del resultado.</p></details>
+<details><summary>¿Qué es lo reproducido y qué no?</summary><p>Todas las trazas se grabaron con el código real y los parámetros congelados de cada campaña; sus energías coinciden exactamente con los reportes. El navegador solo reproduce lo grabado, por eso no se puede dibujar una sombra propia. Las condiciones de ruido y de tiempo de espera sí se pueden cambiar porque se grabaron todas las combinaciones.</p></details>
+</div></section>
+
+<div class="modal" id="md" role="dialog" aria-modal="true"><div class="box"><button class="x" id="mx" aria-label="Cerrar">✕</button><h3 id="mt"></h3><div class="sh" id="ms"></div><div id="mb"></div><div class="btns"><button id="mgo">Ver cifras en «Resultados»</button></div></div></div>
+</main>
+<script>
+const D=/*DATA*/null;
+const $=id=>document.getElementById(id),css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const MI={};D.metodos.forEach(m=>MI[m.id]=m);
+let si=0,wi=0,ni=0,A='v7',B='msapso',t=0,tacc=0,playing=false,last=null,spd=20,runA=null,runB=null,segOf=null,cumRef=null,S=null;
+const cache={};
+const speeds=[1,2,5,10,20,40,80,150,300,600,1200,2000];
+function fillSel(el,arr,fn){el.innerHTML='';arr.forEach((x,i)=>el.add(new Option(fn(x,i),i)))}
+fillSel($('sc'),D.scen,s=>s.name);
+fillSel($('tw'),D.waits,w=>(w*1000)+' ms');fillSel($('nz'),D.noises,n=>n+' W');
+for(const sel of [$('mA'),$('mB')])D.metodos.forEach(m=>sel.add(new Option(m.name,m.id)));
+$('mA').value=A;$('mB').value=B;
+async function inflate(b64){const bin=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));const ds=new DecompressionStream('deflate');return await new Response(new Blob([bin]).stream().pipeThrough(ds)).arrayBuffer()}
+async function load(m){
+ const key=[S.id,D.wk[wi],D.nk[ni],m].join('|');if(cache[key])return cache[key];
+ const buf=await inflate(D.runs[key].d),T=S.total;
+ const Ipv=new Uint16Array(buf,0,T),P=new Uint16Array(buf,2*T,T),E=new Uint16Array(buf,4*T,T),ph=new Uint8Array(buf,6*T,T);
+ const cE=new Float64Array(T+1),cS=new Int32Array(T+1),cR=new Int32Array(T+1);
+ for(let i=0;i<T;i++){cE[i+1]=cE[i]+E[i]/100*D.waits[wi];cS[i+1]=cS[i]+(ph[i]==0?1:0);cR[i+1]=cR[i]+(ph[i]==2?1:0)}
+ return cache[key]={Ipv,P,E,ph,cE,cS,cR,e:D.runs[key].e}
+}
+function prep(){
+ S=D.scen[si];const T=S.total,w=D.waits[wi];segOf=new Uint16Array(T);let k=0;
+ for(let i=0;i<T;i++){while(k+1<S.bounds.length&&i>=S.bounds[k+1])k++;segOf[i]=k}
+ cumRef=new Float64Array(T+1);for(let i=0;i<T;i++)cumRef[i+1]=cumRef[i]+S.curves[S.seq[segOf[i]]].Pmax*w;
+}
+async function reload(){
+ playing=false;$('play').textContent='▶ Iniciar';$('ld').hidden=false;
+ prep();[runA,runB]=await Promise.all([load(A),load(B)]);$('ld').hidden=true;
+ $('scr').max=S.total-1;draw()
+}
+function setScen(i,camp){si=i;S=D.scen[si];if(camp){wi=Math.max(0,D.waits.indexOf(S.meta.wait));ni=Math.max(0,D.noises.indexOf(S.meta.ruido));$('tw').value=wi;$('nz').value=ni}
+ t=0;tacc=0;$('sctext').innerHTML='<b>'+S.name+'.</b> '+S.text+(S.meta.idx>=0?' <span class="note">(escenario '+S.meta.idx+' de la campaña; panel «'+S.meta.panel+'»; en la campaña: espera '+(S.meta.wait*1000)+' ms, ruido '+S.meta.ruido+' W; '+S.total+' mediciones/ventanas en total)</span>':'');reload()}
+const tsec=w=>{const x=w*D.waits[wi];return x<10?x.toFixed(2)+' s':x.toFixed(1)+' s'};
+function curveDraw(cv,run,col){
+ const dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;const g=cv.getContext('2d');g.scale(dpr,dpr);
+ const i=Math.min(t,S.total-1),seg=segOf[i],c=S.curves[S.seq[seg]],L=42,R=10,Tp=10,Bm=28,pw=W-L-R,ph=H-Tp-Bm,ym=c.Pmax*1.15,X=a=>L+a/c.Isc*pw,Y=p=>Tp+ph-p/ym*ph;
+ g.font='11px system-ui';g.fillStyle=css('--mut');g.strokeStyle=css('--line');g.lineWidth=1;
+ for(let k=0;k<=4;k++){const v=ym*k/4;g.beginPath();g.moveTo(L,Y(v));g.lineTo(L+pw,Y(v));g.stroke();g.textAlign='right';g.fillText(v.toFixed(0),L-6,Y(v)+4)}
+ for(let k=0;k<=4;k++){const v=c.Isc*k/4;g.textAlign='center';g.fillText(v.toFixed(1),X(v),H-14)}g.textAlign='center';g.fillText('Corriente (A)',L+pw/2,H-2);
+ g.save();g.translate(11,Tp+ph/2);g.rotate(-Math.PI/2);g.fillText('Potencia (W)',0,0);g.restore();
+ g.strokeStyle=col;g.lineWidth=2;g.beginPath();c.P.forEach((p,k)=>{const x=X(k/(c.P.length-1)*c.Isc),y=Y(p);k?g.lineTo(x,y):g.moveTo(x,y)});g.stroke();
+ const dia=(x,y,fill)=>{g.beginPath();g.moveTo(x,y-8);g.lineTo(x+7,y);g.lineTo(x,y+8);g.lineTo(x-7,y);g.closePath();if(fill){g.fillStyle=css('--green');g.fill()}g.strokeStyle=fill?css('--ink'):css('--mut');g.lineWidth=1;g.stroke()};
+ const unreach=c.Pg>c.Pmax*1.005;if(unreach)dia(X(c.Ig),Y(c.Pg),false);dia(X(c.Ic),Y(c.Pmax),true);
+ for(let w=Math.max(0,i-70);w<=i;w++){if(segOf[w]!=seg)continue;const a=run.Ipv[w]/4000,p=run.P[w]/50,f=(w-(i-70))/70;g.globalAlpha=w==i?1:Math.max(.12,f*.55);g.fillStyle=run.ph[w]==0?css('--red'):run.ph[w]==2?css('--b'):css('--green');g.beginPath();g.arc(X(a),Y(p),w==i?6:3,0,7);g.fill()}
+ g.globalAlpha=1;g.font='12px system-ui';g.textAlign='left';g.fillStyle=css('--green');g.fillText('◆ máximo alcanzable '+c.Pmax.toFixed(0)+' W',L+8,Tp+14);if(unreach){g.fillStyle=css('--mut');g.fillText('◇ máximo teórico '+c.Pg.toFixed(0)+' W (inalcanzable con la carga)',L+8,Tp+29)}
+}
+function stats(run,id,eid,other,colv){
+ const i=Math.min(t,S.total-1),ph=run.ph[i],n=i+1,en=run.cE[n],ref=cumRef[n],pc=ref?100*en/ref:0,po=other.cE[n]/ref*100;
+ const bad=ph==0?'<span class="badge s">buscando</span>':ph==2?'<span class="badge r">reinicia</span>':'<span class="badge f">fijo</span>';
+ $(id).innerHTML=bad+`<span>Mediciones de búsqueda: <b>${run.cS[n]}</b></span><span>Reinicios: <b>${run.cR[n]}</b></span><span>Operando: <b>${(run.P[i]/50).toFixed(1)} W</b> a <b>${(run.Ipv[i]/4000).toFixed(2)} A</b></span>`;
+ $(eid).innerHTML=`<div class="u">⚡ Energía acumulada / máximo posible</div><div><span class="big">${pc.toFixed(1)} %</span> <span class="u">(${(en).toFixed(2)} J)</span></div><div class="eb"><i style="width:${Math.min(100,pc)}%;background:${colv}"></i></div>`;
+ return pc
+}
+const ZY=[['Completo (0–105 %)',0,1.05],['Medio (50–105 %)',.5,1.05],['Alto (80–102 %)',.8,1.02],['Fino (90–101 %)',.9,1.01],['Auto (se ajusta a lo visible)',null,null]];
+const ZX=[['Todo el escenario',1],['2×',2],['4×',4],['8×',8],['16×',16],['32×',32]];
+let hoverW=null;
+const TL=44,TR=10;
+function viewWin(){const T=S.total,z=ZX[+$('zx').value][1],vw=Math.max(20,T/z),i=Math.min(t,T-1);let v0=0;
+ if(z>1)v0=$('fol').checked?Math.min(T-vw,Math.max(0,i-vw*.8)):(T-vw)*(+$('pan').value/1000);return [v0,vw]}
+function timeDraw(){
+ const cv=$('cT'),dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;const g=cv.getContext('2d');g.scale(dpr,dpr);
+ const L=TL,R=TR,Tp=30,Bm=44,pw=W-L-R,ph=H-Tp-Bm,T=S.total,i=Math.min(t,T-1),[v0,vw]=viewWin(),X=w=>L+(w-v0)/vw*pw;
+ const a0=Math.max(0,Math.floor(v0)-1),a1=Math.min(i,Math.ceil(v0+vw)+1),val=(run,w)=>run.P[w]/50/S.curves[S.seq[segOf[w]]].Pmax;
+ let lo,hi;const zy=ZY[+$('zy').value];
+ if(zy[1]===null){let mn=1e9,mx=-1e9;for(let w=a0;w<=a1;w++)for(const r of [runA,runB]){const v=val(r,w);if(v<mn)mn=v;if(v>mx)mx=v}if(mn>mx){mn=0;mx=1}const pad=Math.max(.004,(mx-mn)*.06);lo=Math.max(0,mn-pad);hi=mx+pad}else{lo=zy[1];hi=zy[2]}
+ const Y=v=>Tp+ph-(v-lo)/(hi-lo)*ph,r=hi-lo,step=r>.6?.25:r>.3?.1:r>.12?.05:r>.05?.02:r>.02?.01:r>.01?.005:.002;
+ g.font='11px system-ui';g.fillStyle=css('--mut');g.strokeStyle=css('--line');g.lineWidth=1;
+ for(let v=Math.ceil(lo/step-1e-9)*step;v<=hi+1e-9;v+=step){g.beginPath();g.moveTo(L,Y(v));g.lineTo(L+pw,Y(v));g.stroke();g.textAlign='right';g.fillText((v*100).toFixed(step<.01?1:0)+'%',L-6,Y(v)+4)}
+ g.textAlign='center';for(const f of [0,.25,.5,.75,1])g.fillText(tsec(v0+f*vw),L+f*pw,H-4);
+ g.save();g.beginPath();g.rect(L,Tp,pw,ph);g.clip();
+ g.setLineDash([3,4]);S.bounds.forEach((bd,k)=>{if(!k||bd<v0-1||bd>v0+vw+1)return;g.beginPath();g.moveTo(X(bd),Tp);g.lineTo(X(bd),Tp+ph);g.stroke()});g.setLineDash([]);
+ for(const [run,col,lw,al] of [[runB,css('--b'),4.5,.6],[runA,css('--a'),1.8,1]]){g.globalAlpha=al;g.strokeStyle=col;g.lineWidth=lw;g.lineJoin='round';g.beginPath();for(let w=a0;w<=a1;w++){const v=val(run,w);w==a0?g.moveTo(X(w),Y(v)):g.lineTo(X(w),Y(v))}g.stroke()}
+ g.globalAlpha=1;g.strokeStyle=css('--ink');g.lineWidth=1;if(i>=v0&&i<=v0+vw){g.beginPath();g.moveTo(X(i),Tp);g.lineTo(X(i),Tp+ph);g.stroke()}
+ if(hoverW!==null&&hoverW<=i){g.strokeStyle=css('--mut');g.setLineDash([2,3]);g.beginPath();g.moveTo(X(hoverW),Tp);g.lineTo(X(hoverW),Tp+ph);g.stroke();g.setLineDash([])}
+ g.restore();
+ g.font='12px system-ui';g.textAlign='left';let lx=L+8;for(const [lab,col,lw] of [['A · '+MI[A].name,css('--a'),2.5],['B · '+MI[B].name,css('--b'),4.5]]){g.strokeStyle=col;g.lineWidth=lw;g.beginPath();g.moveTo(lx,12);g.lineTo(lx+22,12);g.stroke();g.fillStyle=css('--ink');g.fillText(lab,lx+28,16);lx+=28+g.measureText(lab).width+22}
+ if(hoverW!==null&&hoverW<=i){const va=val(runA,hoverW)*100,vb=val(runB,hoverW)*100,txt=`${tsec(hoverW)} · A ${va.toFixed(2)} % · B ${vb.toFixed(2)} % · A−B ${(va-vb>=0?'+':'')}${(va-vb).toFixed(2)} pp`;g.font='12px system-ui';const tw=g.measureText(txt).width+14,tx=Math.min(L+pw-tw,Math.max(L,X(hoverW)-tw/2)),ty=Tp+4;g.fillStyle=css('--card');g.strokeStyle=css('--line');g.beginPath();g.rect(tx,ty,tw,20);g.fill();g.stroke();g.fillStyle=css('--ink');g.textAlign='left';g.fillText(txt,tx+7,ty+14)}
+ const bh=7;[[runA,css('--a'),0],[runB,css('--b'),1]].forEach(([run,col,k])=>{const y0=Tp+ph+8+k*(bh+8);
+  g.fillStyle=css('--line');g.fillRect(L,y0,pw,bh);g.save();g.beginPath();g.rect(L,y0-8,pw,bh+9);g.clip();let s=a0;
+  for(let w=a0;w<=a1;w++){const p=run.ph[w]==0;if(p!=(run.ph[s]==0)||w==a1){g.fillStyle=run.ph[s]==0?css('--red'):css('--green');g.fillRect(X(s),y0,Math.max(1,X(w+(w==a1?1:0))-X(s)),bh);s=w}}
+  g.fillStyle=col;for(let w=a0;w<=a1;w++)if(run.ph[w]==2){g.beginPath();g.moveTo(X(w),y0-1);g.lineTo(X(w)-3,y0-6);g.lineTo(X(w)+3,y0-6);g.closePath();g.fill()}
+  g.restore();g.fillStyle=col;g.textAlign='right';g.fillText(k?'B':'A',L-6,y0+7)});
+ const z=ZX[+$('zx').value][1];$('panw').hidden=!(z>1&&!$('fol').checked);$('folw').hidden=!(z>1);
+}
+function draw(){
+ if(!runA||!runB)return;const n=Math.min(t,S.total-1)+1;
+ curveDraw($('cA'),runA,css('--a'));curveDraw($('cB'),runB,css('--b'));
+ const pa=stats(runA,'sA','eA',runB,css('--a')),pb=stats(runB,'sB','eB',runA,css('--b'));
+ $('df').innerHTML=`Energía hasta ahora: <b style="color:var(--a)">A ${pa.toFixed(1)} %</b> · <b style="color:var(--b)">B ${pb.toFixed(1)} %</b> · diferencia A − B: <b class="${pa-pb>=0?'pos':'neg'}">${(pa-pb>=0?'+':'')}${(pa-pb).toFixed(1)} pp</b>`+(t>=S.total-1?` <span class="note">· escenario completo</span>`:'');
+ $('shA').textContent=MI[A].short;$('shB').textContent=MI[B].short;$('clock').textContent='Tiempo: '+tsec(t)+' de '+tsec(S.total)+' ('+t+' / '+S.total+' ventanas)';$('scr').value=Math.min(t,S.total-1);timeDraw();hl()
+}
+function frame(ts){if(!playing)return;if(last===null)last=ts;const dt=Math.max(0,Math.min(.1,(ts-last)/1000));last=ts;const i0=Math.max(0,Math.min(S.total-1,Math.floor(tacc))),busy=runA.ph[i0]!=1||runB.ph[i0]!=1,eff=(!$('fast').checked||busy)?spd:Math.min(2000,Math.max(spd*10,400));tacc=Math.min(S.total-1,tacc+eff*dt);t=Math.floor(tacc);try{draw()}catch(e){console.error(e)}if(t>=S.total-1){playing=false;$('play').textContent='▶ Reiniciar'}else requestAnimationFrame(frame)}
+$('play').onclick=()=>{if(playing){playing=false;$('play').textContent='▶ Continuar';return}if(t>=S.total-1){t=0;tacc=0}playing=true;$('play').textContent='⏸ Pausa';last=null;requestAnimationFrame(frame)};
+$('rst').onclick=()=>{playing=false;$('play').textContent='▶ Iniciar';t=0;tacc=0;draw()};
+$('prv').onclick=()=>{playing=false;$('play').textContent='▶ Continuar';t=Math.max(0,Math.floor(t)-1);tacc=t;draw()};$('stp').onclick=()=>{playing=false;$('play').textContent='▶ Continuar';t=Math.min(S.total-1,Math.floor(t)+1);tacc=t;draw()};
+$('scr').oninput=e=>{t=Math.floor(+e.target.value);tacc=t;draw()};
+function spdUpd(){spd=speeds[Math.round(+$('sp').value/100*(speeds.length-1))];const x=spd*D.waits[wi];$('spv').textContent=spd+' med./s ('+(x>=1?x.toFixed(1)+'×':x.toFixed(2)+'×')+' tiempo real)'}
+$('sp').oninput=spdUpd;
+$('sc').onchange=e=>setScen(+e.target.value,true);
+$('tw').onchange=e=>{wi=+e.target.value;spdUpd();t=0;tacc=0;reload()};$('nz').onchange=e=>{ni=+e.target.value;t=0;tacc=0;reload()};
+$('camp').onclick=()=>{setScen(si,true);spdUpd()};
+$('mA').onchange=async e=>{A=e.target.value;$('ld').hidden=false;runA=await load(A);$('ld').hidden=true;draw()};
+$('mB').onchange=async e=>{B=e.target.value;$('ld').hidden=false;runB=await load(B);$('ld').hidden=true;draw()};
+$('swap').onclick=()=>{[A,B]=[B,A];[runA,runB]=[runB,runA];$('mA').value=A;$('mB').value=B;draw()};
+let infoFor=null;function showInfo(id){infoFor=id;const m=MI[id];$('mt').textContent=m.name;$('ms').textContent=m.short+(m.b?' · retroceso '+(m.b*100)+' %':'');$('mb').innerHTML=m.ficha;$('md').classList.add('on');$('mx').focus()}
+$('iA').onclick=()=>showInfo(A);$('iB').onclick=()=>showInfo(B);
+const closeM=()=>$('md').classList.remove('on');$('mx').onclick=closeM;$('md').onclick=e=>{if(e.target===$('md'))closeM()};document.addEventListener('keydown',e=>{if(e.key=='Escape')closeM()});
+$('mgo').onclick=()=>{closeM();tab('res')};
+function tab(n){for(const b of document.querySelectorAll('.tabs button'))b.classList.toggle('on',b.dataset.t==n);for(const k of ['sim','res','how'])$('t-'+k).hidden=k!=n;if(n=='sim'&&runA)draw();hl()}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
+fillSel($('zy'),ZY,z=>z[0]);fillSel($('zx'),ZX,z=>z[0]);
+for(const id of ['zy','zx','fol','pan'])$(id).oninput=()=>{if(runA)timeDraw()};
+$('cT').onmousemove=e=>{if(!runA)return;const r=$('cT').getBoundingClientRect(),[v0,vw]=viewWin(),pw=r.width-TL-TR,x=e.clientX-r.left;const w=Math.round(v0+(x-TL)/pw*vw);hoverW=(x>=TL&&x<=TL+pw&&w>=0&&w<S.total)?w:null;timeDraw()};
+$('cT').onmouseleave=()=>{hoverW=null;if(runA)timeDraw()};
+// tabla de resultados
+const f2=t=>`${t[0]>=0?'+':''}${t[0].toFixed(2)} <small>[${t[1].toFixed(2)}, ${t[2].toFixed(2)}]</small>`,cl=t=>t[1]>0?'pos':t[2]<0?'neg':'';
+let h='<tr><th>Método</th><th>Mediciones por búsqueda</th><th>Energía vs MSAPSO (pp)</th><th>Energía vs V7 (pp)</th><th>Pierde &gt;3 pp vs MSAPSO</th><th>Cola estática: pérdida media</th><th>p99</th><th>peor caso</th></tr>';
+D.metodos.forEach(m=>{const t=D.tabla[m.id];h+=`<tr data-id="${m.id}"><td><b>${m.name}</b><br><small>${m.short}</small></td><td>${t.med.toFixed(0)}</td><td class="${cl(t.vs_full)}">${f2(t.vs_full)}</td><td class="${cl(t.vs_v7)}">${m.id=='v7'?'—':f2(t.vs_v7)}</td><td>${t.pierde3.toFixed(0)} %</td><td>${t.media.toFixed(2)} pp</td><td>${t.p99.toFixed(1)} pp</td><td>${t.max.toFixed(1)} pp</td></tr>`});
+$('tb').innerHTML=h;
+function hl(){document.querySelectorAll('#tb tr[data-id]').forEach(r=>r.classList.toggle('sel',r.dataset.id==A||r.dataset.id==B))}
+if(typeof DecompressionStream=='undefined'){$('ld').hidden=false;$('ld').textContent='Este navegador no soporta DecompressionStream; abre el archivo con Chrome, Edge, Safari 16.4+ o Firefox 113+.'}
+else{spdUpd();setScen(0,true)}
+</script></body></html>

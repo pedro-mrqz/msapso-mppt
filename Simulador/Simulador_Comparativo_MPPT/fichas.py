@@ -1,0 +1,30 @@
+"""
+fichas.py — Texto que muestra el boton (i) de cada metodo en el simulador y su subtitulo corto.
+Para anadir un metodo nuevo agrega una entrada con el MISMO id que en metodos.py:
+  FICHA["mi_metodo"] = "<p><b>Qué es.</b> ...</p><p><b>Qué se aprendió.</b> ...</p>"     (HTML sencillo: <p>, <b>, <i>)
+  SHORT["mi_metodo"] = "Una línea · ~N mediciones"
+Si no la agregas, el simulador muestra una ficha genérica. Las cifras de campaña se agregan solas al final de la ficha.
+"""
+FICHA = {
+ "msapso": ("<p><b>Qué es.</b> El algoritmo del paper (Fig. 6): un enjambre de 7 partículas que se reparten entre 0.95 y 0.10 de la corriente de cortocircuito. Cada pasada mide las 7 corrientes (una medición cada una) y acerca las partículas a la mejor posición encontrada con un factor β que crece de 0.1 a 0.95.</p>"
+            "<p><b>Cómo termina.</b> Siempre hace 25 pasadas (175 mediciones). Después fija la corriente de la mejor medición y la vigila: si la potencia cambia 5 W o más respecto de la referencia, reinicia la búsqueda. No usa ningún margen de corriente.</p>"
+            "<p><b>Para qué está aquí.</b> Es la referencia: todo lo demás se compara contra este método, con el mismo simulador, los mismos escenarios y el mismo ruido.</p>"),
+ "v7": ("<p><b>Qué es.</b> El mismo MSAPSO, pero se detiene cuando las 7 partículas ya se agruparon (dispersión menor al 2 % de la corriente de cortocircuito, mínimo 3 pasadas). En promedio usa 70 mediciones en lugar de 175.</p>"
+        "<p><b>Por qué importa.</b> Casi no pierde exactitud (0.05 pp en promedio) y deja más tiempo operando en el punto bueno, de ahí su ventaja de energía. Es el <b>método principal</b> del proyecto.</p>"),
+ "v7b": ("<p><b>Qué es.</b> La V7, pero al terminar la búsqueda el convertidor se fija en el <b>98 %</b> de la corriente encontrada (retroceso del 2 %).</p>"
+         "<p><b>Por qué.</b> A la derecha del pico la potencia cae casi vertical y a la izquierda suave, así que quedarse un poco corto cuesta menos que pasarse. El 2 % se eligió probando 0, 2, 4, 6 y 8 % en escenarios de validación. Es un agregado nuestro: el paper no lo usa. Cuesta algo de exactitud estática y rinde en dinámica.</p>"),
+ "cem": ("<p><b>Qué es.</b> Cross-Entropy Method puro (idea propuesta por el profesor): una sola gaussiana sobre la corriente, centrada en 0.5 con σ = 0.3. Cada iteración mide 10 candidatos, se queda con los 3 mejores y reajusta media y σ con ellos; para cuando σ &lt; 0.01 (~59 mediciones).</p>"
+         "<p><b>Qué se aprendió.</b> Como buscador global es débil: con varios picos parecidos la gaussiana se contrae sobre uno y puede ser el equivocado. Funciona mucho mejor como <i>refinador local</i> (lo usan la candidata V14 y el MLP + CEM).</p>"),
+ "mlp": ("<p><b>Qué es.</b> Un barrido de 7 mediciones, un MLP (2 capas de 64) que predice en qué corriente está el pico y un CEM que lo refina desde ahí (~37 mediciones). El MLP se entrenó por regresión (retropropagación) con 30 000 sombras sintéticas.</p>"
+         "<p><b>Qué representa.</b> Es una cota superior de lo que podría lograr el aprendizaje por refuerzo o la neuroevolución con la misma red, porque el entrenamiento supervisado tiene la mejor señal posible. Su ventaja en dinámica se explicó en buena parte por el margen de corriente que elige, que se reproduce sin entrenar nada con el retroceso del 2 %.</p>"),
+ "v14": ("<p><b>Qué es.</b> Tres pasadas del MSAPSO (con β comprimida) para ubicar el pico, un CEM (7 candidatos, 2 élites, σ inicial 0.03) para afinarlo y retroceso del 2 % al final. Unas 39 mediciones, sin ningún entrenamiento.</p>"
+         "<p><b>Por qué se muestra.</b> Es la que más energía gana en dinámica, pero tiene la peor <i>cola</i> de las competitivas: en algunas sombras elige el pico equivocado y pierde mucho. Por eso no sustituye a la V7. Fíjate en el escenario «Peor caso de la candidata V14».</p>"),
+ "dgbco": ("<p><b>Qué es.</b> Dynamic Group-Based Cooperative Optimization (Moosavi et al., Energy Reports 2022): agentes divididos en un grupo de exploración (70 %) y uno de explotación (30 %), con mutaciones y pasos guiados por la mejor posición. Aquí: 4 agentes × 10 iteraciones = 40 mediciones, retroceso del 2 %.</p>"
+           "<p><b>Reserva.</b> Varias partes no las precisa el paper y las interpretamos nosotros (inicialización, pertenencia a grupos, recortes). Se probó con las ecuaciones del artículo, sin ajustar más.</p>"),
+ "cedgo": ("<p><b>Qué es.</b> CEDGO (Tang, Fong et al., Entropy 2017): el Dynamic Group Optimization de Tang y Fong con un operador de entropía cruzada en los miembros de cada grupo, vuelo de Lévy en las cabezas y tiempo de vida. Aquí: 8 individuos × 5 generaciones = 40 mediciones, retroceso del 2 %. Es la versión que confirmó el profesor.</p>"
+           "<p><b>Reserva.</b> Muchas partes se interpretaron (2 grupos, parámetros de mutación, tiempo de vida) y se tomaron las ecuaciones de un artículo posterior al original. Con tan pocas mediciones los grupos no tienen espacio para separarse.</p>"),
+ "decent": ("<p><b>Qué es.</b> La versión del profesor de DecentCEM: se miden 10 puntos repartidos en todo el rango de corriente; los mejores se agrupan por separación (umbral 0.15 de la corriente de cortocircuito) y cada grupo se vuelve un <i>worker</i> con su propia gaussiana de σ fija (0.03) que refina su pico con 4 muestras × 4 iteraciones. Al final se queda con el mejor punto medido. Unas 40 mediciones, sin retroceso.</p>"
+            "<p><b>Qué se aprendió.</b> Refinar cada pico antes de decidir baja mucho la cola frente a la candidata V14, y dejar σ fija funcionó mejor que adaptarla. Pero con tiempos de espera cortos (0.5 ms) pierde claramente contra la V7, y su ventaja de energía sobre la V7 no es demostrable.</p>"),
+}
+SHORT = {"msapso": "Referencia del paper · 175 mediciones", "v7": "MSAPSO con parada anticipada · ~70", "v7b": "V7 + corriente al 98 % · ~70", "cem": "Una gaussiana · ~59", "mlp": "MLP supervisado + CEM · ~37",
+         "v14": "MSAPSO corto + CEM + 98 % · ~39", "dgbco": "Grupos exploración/explotación · 40", "cedgo": "DGO + entropía cruzada · 40", "decent": "Barrido + workers por pico · ~40"}

@@ -1,0 +1,57 @@
+[
+ {
+  "id": "trans",
+  "name": "Transiciones de sombra (pedido del profesor)",
+  "text": "Caso real 1 → Sintético 2 → Sintético 5 → Caso real 3 → Sintético 10 → Caso real 4, 300 ventanas cada uno."
+ },
+ {
+  "id": "1723",
+  "name": "Típico · régimen «unico»",
+  "text": "Escenario típico del régimen «unico» (la diferencia candidata V14 − V7 es la mediana de su grupo)."
+ },
+ {
+  "id": "1945",
+  "name": "Típico · régimen «moderado»",
+  "text": "Escenario típico del régimen «moderado» (la diferencia candidata V14 − V7 es la mediana de su grupo)."
+ },
+ {
+  "id": "1560",
+  "name": "Típico · régimen «alto»",
+  "text": "Escenario típico del régimen «alto» (la diferencia candidata V14 − V7 es la mediana de su grupo)."
+ },
+ {
+  "id": "2159",
+  "name": "Típico · régimen «muy alto»",
+  "text": "Escenario típico del régimen «muy alto» (la diferencia candidata V14 − V7 es la mediana de su grupo)."
+ },
+ {
+  "id": "1980",
+  "name": "Típico · régimen «flicker»",
+  "text": "Escenario típico del régimen «flicker» (la diferencia candidata V14 − V7 es la mediana de su grupo)."
+ },
+ {
+  "id": "1398",
+  "name": "Típico · régimen «estable»",
+  "text": "Escenario típico del régimen «estable» (la diferencia candidata V14 − V7 es la mediana de su grupo)."
+ },
+ {
+  "id": "1741",
+  "name": "Mejor caso de la candidata V14",
+  "text": "El escenario donde la candidata V14 más le gana a la V7 (+53.5 pp)."
+ },
+ {
+  "id": "1822",
+  "name": "Peor caso de la candidata V14",
+  "text": "El escenario donde la candidata V14 más pierde contra la V7 (-34.6 pp): la «cola»."
+ },
+ {
+  "id": "2282",
+  "name": "Peor caso del DecentCEM",
+  "text": "El escenario donde el DecentCEM más pierde contra la V7 (-18.0 pp)."
+ },
+ {
+  "id": "1844",
+  "name": "Tiempo de espera corto (0.5 ms) típico",
+  "text": "Tiempo de espera de 0.5 ms: aquí los métodos de ~40 mediciones sufren frente a la V7 (diferencia DecentCEM − V7 mediana de su grupo)."
+ }
+]
