@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demo interactiva V7</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--ink:#1c1e21;--mut:#6b7078;--line:#dcdcd4;--blue:#1f5fa8;--red:#d9382b;--green:#1e9e4a;--grey:#a3a8ae;--lime:#7CFC00}
+@media (prefers-color-scheme:dark){:root{--bg:#16181b;--card:#1f2226;--ink:#eceae4;--mut:#9aa0a8;--line:#363a40;--blue:#6aa7ef;--red:#ff6b5c;--green:#4cd37f;--grey:#8e959e}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 40px}h1{font-size:22px;margin:0 0 4px}p.sub{color:var(--mut);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 18px;align-items:end}
+label{display:block;font-size:12.5px;color:var(--mut);margin-bottom:3px}select,input[type=range]{width:100%}select{padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}button{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:14px}button.p{background:var(--blue);color:#fff;border-color:var(--blue)}button.w{border-color:var(--red);color:var(--red)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){.two{grid-template-columns:1fr}}
+h2{font-size:15px;margin:0 0 6px}canvas{width:100%;display:block}.st{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13px;margin-top:8px}.st b{font-variant-numeric:tabular-nums}
+.bar{height:8px;background:var(--line);border-radius:4px;position:relative;margin-top:6px}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--blue)}.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--green)}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;border:1px solid var(--line);color:var(--mut)}.badge.on{background:var(--green);border-color:var(--green);color:#fff}
+.note{color:var(--mut);font-size:13px}.en{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px}.en .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}.en .u{font-size:12px;color:var(--mut)}.en .eb{height:10px;background:var(--line);border-radius:5px;margin-top:6px;overflow:hidden}.en .eb i{display:block;height:100%;border-radius:5px}
+</style></head><body><main>
+<h1>V7 — MSAPSO con parada anticipada: demo interactiva</h1>
+<p class="sub">A la izquierda la V7 (se detiene cuando las partículas ya convergieron); a la derecha el MSAPSO completo (siempre 25 pasadas). Los dos ven la misma sombra y el mismo ruido.</p>
+<div class="card"><div class="ctl">
+<div><label>Sombra inicial</label><select id="c1"></select></div>
+<div><label>Sombra después del cambio (🎲 = distinta al azar en cada cambio)</label><select id="c2"></select></div>
+<div><label>Umbral de parada δ: <b id="vd">0.020</b> <span class="note">(paper: sin parada)</span></label><input id="d" type="range" min="5" max="50" value="20"></div>
+<div><label>Ruido de medición: <b id="vn">0.0</b> W</label><input id="n" type="range" min="0" max="30" value="0"></div>
+<div><label><input type="checkbox" id="ri"> Intervalo también aleatorio (±50 %)</label></div>
+<div><label><input type="checkbox" id="auto" checked> Alternar la sombra sola cada <b id="va"></b></label><input id="ai" type="range" min="30" max="400" step="10" value="120"></div>
+<div><label>Tiempo de espera por ventana (t_wait)</label><select id="tw"><option value="5" selected>5 ms (principal en nuestras pruebas)</option><option value="2">2 ms</option><option value="1">1 ms</option><option value="0.5">0.5 ms (el del paper)</option></select></div>
+<div><label>Velocidad: <b id="vs">8</b> mediciones/s</label><input id="s" type="range" min="1" max="60" value="8"></div>
+</div>
+<div class="btns"><button class="p" id="play">▶ Iniciar</button><button id="step">Paso (1 medición)</button><button id="reset">↺ Reiniciar</button><button class="w" id="shade">⚡ Cambiar la sombra ahora</button><button id="mc">📊 Promediar 60 escenarios aleatorios</button></div>
+<p class="note" style="margin:10px 0 0">Tras fijarse en el mejor punto, cada algoritmo sigue midiendo la potencia: si cambia 5 W o más respecto a la referencia, vuelve a buscar (regla de reinicio del paper). Prueba «Cambiar la sombra ahora» después de que ambos se fijen Si la nueva sombra deja la potencia en el punto fijo a menos de 5 W de la referencia (por ejemplo, Caso real 3 → Caso real 4), el algoritmo ni se entera y no reinicia: es el comportamiento del paper. El recuadro «Cambio vs referencia» de cada algoritmo lo muestra; para ver reinicios elige sombras más distintas. Por defecto la demo alterna Caso real 3 ↔ Sintético 2 cada 120 ventanas: el cambio llega antes de que el MSAPSO completo (175 mediciones) termine de buscar, pero después de que la V7 (≈70) ya se fijó. Con otras parejas o tiempos el resultado cambia, y a veces la V7 pierde (cambios más rápidos que su búsqueda o reinicios falsos).</p></div>
+<div class="card" id="mcout" style="display:none"></div>
+<div class="two">
+<div class="card"><h2>V7 — con parada anticipada <span class="badge" id="b1">buscando</span></h2><canvas id="k1" height="300"></canvas>
+<div class="bar"><i id="bi"></i><u id="bu"></u></div><div class="note">dispersión del enjambre vs umbral (verde): al cruzarlo, se detiene</div><div class="st" id="s1"></div><div class="en" id="e1"></div></div>
+<div class="card"><h2>MSAPSO completo (paper) <span class="badge" id="b2">buscando</span></h2><canvas id="k2" height="300"></canvas>
+<div class="bar"><i id="bi2"></i></div><div class="note">pasada actual de 25 (no se detiene antes)</div><div class="st" id="s2"></div><div class="en" id="e2"></div></div>
+</div>
+<div class="card"><h2>Potencia entregada en el tiempo (cada punto = una ventana de t_wait, relativa al máximo posible)</h2><canvas id="k3" height="170"></canvas>
+<p class="note" style="margin:6px 0 0">Las primeras pasadas «pierden» potencia al probar corrientes malas. Las pasadas extra del MSAPSO completo ya caen casi sobre el máximo, así que con sombra estable la diferencia de energía es pequeña; la ventaja de la V7 aparece sobre todo cuando la sombra cambia seguido y hay que volver a buscar muchas veces.</p></div>
+<script>
+const CURVES=/*CURVES*/;
+const FR=[0.95,0.80,0.65,0.50,0.30,0.15,0.10].sort((a,b)=>a-b),TMAX=25,TMIN=3,TH=5;
+const TW=()=>+document.getElementById('tw').value/1000,fs=w=>{const t=w*TW();return t<10?t.toFixed(2)+' s':t.toFixed(1)+' s'};
+const $=id=>document.getElementById(id), css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function interp(c,I){if(I<=0)return 0;if(I>=c.Isc)return 0;const n=c.P.length-1,f=I/c.Isc*n,i=Math.floor(f);return c.P[i]+(c.P[i+1]-c.P[i])*(f-i)}
+function pmax(c){return Math.max(...c.P)}
+function randn(){let u=0,v=0;while(!u)u=Math.random();v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+class Run{
+ constructor(early){this.early=early;this.reset(CURVES[2])}
+ reset(c){this.restarts=0;this.nMeas=0;this.ticks=0;this.E=0;this.D=0;this.series=[];this.seed(c)}
+ seed(c){const s=this;s.Isc=c.Isc;s.x=FR.map(f=>c.Isc*f);s.Pb=0;s.G=0;s.t=1;s.dir=1;s.pass=1;s.queue=[];s.qi=0;s.phase='search';s.ref=null;s.meas=[];s.cur=null;s.xs=s.x.slice();s.disp=1}
+ dispersion(){const m=this.x.reduce((a,b)=>a+b)/7;return Math.sqrt(this.x.reduce((a,b)=>a+(b-m)**2,0)/7)/this.Isc}
+ tick(c,noise,delta){
+  const s=this;let Pt,I;s.ticks++;s.D+=pmax(c);
+  if(s.phase=='search'){
+   if(s.qi>=s.queue.length){s.xs=s.x.slice();s.queue=[...s.xs.keys()].sort((a,b)=>s.dir*(s.xs[a]-s.xs[b]));s.qi=0}
+   I=s.xs[s.queue[s.qi++]];Pt=interp(c,I);const Pm=Pt+noise*randn();
+   if(Pm>=s.Pb){s.Pb=Pm;s.G=Math.min(I,c.Isc)}
+   s.meas.push([I,Pt]);s.cur=[I,Pt];s.nMeas++;
+   if(s.qi>=s.queue.length){
+    s.disp=s.dispersion();const stopNow=s.early&&s.pass>=TMIN&&s.disp<delta;
+    const beta=0.1+(s.t/TMAX)*0.85;s.x=s.x.map(v=>Math.min(Math.max(v+beta*(s.G-v),0),s.Isc));s.dir=-s.dir;s.t++;s.pass++;
+    if(stopNow||s.pass>TMAX){s.phase='park';s.parkAt=s.nMeas;s.ref=null}
+   }
+  }else{
+   I=s.G;Pt=interp(c,I);const Pm=Pt+noise*randn();s.cur=[I,Pt];
+   if(s.ref==null){s.ref=Pm;s.dP=0}else{s.dP=Math.abs(s.ref-Pm)}if(s.dP>=TH){s.restarts++;s.seed(c)}
+  }
+  s.E+=Pt;s.series.push(Pt/pmax(c));
+ }
+}
+const A=new Run(true),B=new Run(false);let cur=CURVES[2],timer=null,marks=[];
+for(const sel of [$('c1'),$('c2')])CURVES.forEach((c,i)=>sel.add(new Option(c.name,i)));$('c2').add(new Option('🎲 Aleatoria (cualquier caso)','r'),0);$('c1').value=2;$('c2').value='r';
+function fill(run,id){const s=run,e=s.D?100*s.E/s.D:0;$(id).innerHTML=`<span>Tiempo: <b>${fs(s.ticks)}</b></span><span>Mediciones de búsqueda: <b>${s.nMeas}</b> (${fs(s.nMeas)})</span><span>Reinicios: <b>${s.restarts}</b></span><span>Energía / máximo posible: <b>${e.toFixed(1)} %</b></span><span>Pbest: <b>${s.Pb.toFixed(1)} W</b> (máx. ${pmax(cur).toFixed(1)})</span>${s.phase=='park'&&s.dP!=null?`<span>Cambio vs referencia: <b>${s.dP.toFixed(1)} W</b> (reinicia a partir de 5; referencia = primera medición ya fija, como en la campaña)</span>`:''}`}
+function drawCurve(cv,run){
+ const dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;const g=cv.getContext('2d');g.scale(dpr,dpr);
+ const L=44,R=10,T=10,Bm=30,pw=W-L-R,ph=H-T-Bm,ym=pmax(cur)*1.15,X=i=>L+i/cur.Isc*pw,Y=p=>T+ph-p/ym*ph;
+ g.font='11px system-ui';g.fillStyle=css('--mut');g.strokeStyle=css('--line');g.lineWidth=1;
+ for(let k=0;k<=4;k++){const v=ym*k/4;g.beginPath();g.moveTo(L,Y(v));g.lineTo(L+pw,Y(v));g.stroke();g.textAlign='right';g.fillText(v.toFixed(0),L-6,Y(v)+4)}
+ for(let k=0;k<=4;k++){const v=cur.Isc*k/4;g.textAlign='center';g.fillText(v.toFixed(1),X(v),H-14)}g.textAlign='center';g.fillText('Corriente (A)',L+pw/2,H-2);
+ g.save();g.translate(11,T+ph/2);g.rotate(-Math.PI/2);g.fillText('Potencia (W)',0,0);g.restore();
+ g.strokeStyle=css('--blue');g.lineWidth=2;g.beginPath();cur.P.forEach((p,k)=>{const x=X(k/(cur.P.length-1)*cur.Isc),y=Y(p);k?g.lineTo(x,y):g.moveTo(x,y)});g.stroke();
+ const cm=run.early?css('--red'):css('--grey');
+ g.fillStyle=cm;g.globalAlpha=.4;run.meas.forEach(([i,p])=>{g.beginPath();g.arc(X(i),Y(p),2.5,0,7);g.fill()});g.globalAlpha=1;
+ if(run.phase=='search'){g.setLineDash([2,3]);g.strokeStyle=css('--grey');run.xs.forEach(i=>{const p=interp(cur,i);g.beginPath();g.moveTo(X(i),Y(0));g.lineTo(X(i),Y(p));g.stroke()});g.setLineDash([]);
+  g.fillStyle=css('--card');g.strokeStyle=css('--ink');run.xs.forEach(i=>{g.beginPath();g.arc(X(i),Y(interp(cur,i)),4,0,7);g.fill();g.stroke()})}
+ if(run.cur){g.fillStyle=cm;g.beginPath();g.arc(X(run.cur[0]),Y(interp(cur,run.cur[0])),5.5,0,7);g.fill()}
+ if(run.G>0){g.fillStyle=css('--lime');g.strokeStyle='#000';g.beginPath();const x=X(run.G),y=Y(interp(cur,run.G));g.moveTo(x,y-8);g.lineTo(x+8,y);g.lineTo(x,y+8);g.lineTo(x-8,y);g.closePath();g.fill();g.stroke()}
+ if(run.phase=='park'){g.fillStyle=css('--green');g.font='bold 12px system-ui';g.textAlign='left';g.fillText('FIJO en Gbest (midiendo cada ventana)',L+8,T+16)}
+}
+function drawSeries(){
+ const cv=$('k3'),dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;const g=cv.getContext('2d');g.scale(dpr,dpr);
+ const L=44,R=10,T=8,Bm=24,pw=W-L-R,ph=H-T-Bm,N=Math.max(120,Math.ceil(Math.max(A.series.length,B.series.length)/60)*60),Y=v=>T+ph-v*ph,X=i=>L+i/N*pw;
+ g.font='11px system-ui';g.fillStyle=css('--mut');g.strokeStyle=css('--line');
+ for(const v of [0,.5,1]){g.beginPath();g.moveTo(L,Y(v));g.lineTo(L+pw,Y(v));g.stroke();g.textAlign='right';g.fillText((v*100)+'%',L-6,Y(v)+4)}g.textAlign='center';g.fillText('tiempo (s)',L+pw/2,H-4);for(const f of [0,.25,.5,.75,1]){g.fillText((f*N*TW()).toFixed(1),X(f*N),H-14)}
+ marks.forEach(m=>{g.strokeStyle=css('--red');g.setLineDash([4,3]);g.beginPath();g.moveTo(X(m),T);g.lineTo(X(m),T+ph);g.stroke();g.setLineDash([])});
+ for(const [ser,col] of [[B.series,css('--grey')],[A.series,css('--blue')]]){g.strokeStyle=col;g.lineWidth=col==css('--grey')?3.5:1.8;g.beginPath();ser.forEach((v,k)=>k?g.lineTo(X(k),Y(v)):g.moveTo(X(k),Y(v)));g.stroke()}
+ g.textAlign='left';g.fillStyle=css('--blue');g.fillText('● V7',L+8,T+14);g.fillStyle=css('--grey');g.fillText('● MSAPSO completo',L+52,T+14)
+}
+function energy(run,other,id,col){const mx=Math.max(run.E,other.E,1),d=other.E>0?100*(run.E/other.E-1):0;
+ $(id).innerHTML=`<div class="u">⚡ Energía captada acumulada</div><div><span class="big">${(run.E*TW()).toLocaleString('es-MX',{minimumFractionDigits:1,maximumFractionDigits:1})}</span> <span class="u">J (W·s)</span> <span class="u" style="float:right">${d>=0?'+':''}${d.toFixed(1)} % vs el otro algoritmo</span></div><div class="eb"><i style="width:${100*run.E/mx}%;background:${col}"></i></div>`}
+function render(){
+ drawCurve($('k1'),A);drawCurve($('k2'),B);drawSeries();fill(A,'s1');fill(B,'s2');energy(A,B,'e1',css('--blue'));energy(B,A,'e2',css('--grey'));
+ const dl=+$('d').value/1000;$('bi').style.width=Math.min(100,A.disp/0.3*100)+'%';$('bu').style.left=Math.min(100,dl/0.3*100)+'%';$('bi2').style.width=Math.min(100,B.pass/TMAX*100)+'%';
+ for(const [r,b] of [[A,'b1'],[B,'b2']]){const e=$(b);e.textContent=r.phase=='park'?'fijo':'buscando';e.className='badge'+(r.phase=='park'?' on':'')}
+}
+const rint=(K,ri)=>Math.max(20,Math.round(ri?K*(0.5+Math.random()):K));
+function nextCurve(c,mode,c1){if(mode=='r'){let k;do{k=Math.floor(Math.random()*CURVES.length)}while(CURVES[k]===c);return CURVES[k]}return c===CURVES[c1]?CURVES[+mode]:CURVES[c1]}
+let nextAt=Infinity;
+function tick(){if($('auto').checked&&A.ticks+1>=nextAt){cur=nextCurve(cur,$('c2').value,+$('c1').value);marks.push(A.series.length);nextAt=A.ticks+1+rint(+$('ai').value,$('ri').checked)}const nz=+$('n').value/10,dl=+$('d').value/1000;A.tick(cur,nz,dl);B.tick(cur,nz,dl)}
+function start(){cur=CURVES[+$('c1').value];marks=[];nextAt=rint(+$('ai').value,$('ri').checked);A.reset(cur);B.reset(cur);render()}
+function loop(){clearInterval(timer);timer=null;$('play').textContent='▶ Iniciar';}
+$('play').onclick=()=>{if(timer){loop();return}$('play').textContent='⏸ Pausa';const per=()=>{const v=+$('s').value,k=Math.max(1,Math.round(v/20));for(let i=0;i<k;i++)tick();render()};timer=setInterval(per,Math.max(16,1000/Math.min(+$('s').value,20)))};
+$('s').oninput=e=>{$('vs').textContent=e.target.value;if(timer){loop();$('play').onclick()}};
+const updVa=()=>{$('va').textContent=$('ai').value+' ventanas ≈ '+fs(+$('ai').value)};$('ai').oninput=updVa;$('tw').onchange=()=>{updVa();render()};$('d').oninput=e=>{$('vd').textContent=(e.target.value/1000).toFixed(3);render()};$('n').oninput=e=>{$('vn').textContent=(e.target.value/10).toFixed(1)};
+$('step').onclick=()=>{tick();render()};$('reset').onclick=()=>{loop();start()};$('c1').onchange=()=>{loop();start()};
+$('shade').onclick=()=>{cur=nextCurve(cur,$('c2').value,+$('c1').value);marks.push(Math.max(A.series.length,B.series.length));render()};
+$('mc').onclick=()=>{const n=60,T=1200,K=+$('ai').value,nz=+$('n').value/10,dl=+$('d').value/1000,ri=$('ri').checked,mode=$('c2').value,c1=+$('c1').value;
+ let d=[],rs=[0,0];for(let k=0;k<n;k++){const a=new Run(true),b=new Run(false);let c=CURVES[c1],at=rint(K,ri);a.reset(c);b.reset(c);
+  for(let t=1;t<=T;t++){if(t>=at){c=nextCurve(c,mode,c1);at=t+rint(K,ri)}a.tick(c,nz,dl);b.tick(c,nz,dl)}
+  d.push(100*(a.E/a.D-b.E/b.D));rs[0]+=a.restarts;rs[1]+=b.restarts}
+ d.sort((x,y)=>x-y);const m=d.reduce((x,y)=>x+y)/n,w=d.filter(x=>x>1).length,l=d.filter(x=>x<-1).length,o=$('mcout');o.style.display='block';
+ o.innerHTML=`<h2>Promedio de ${n} corridas de ${T} ventanas = ${fs(T)} (sombra inicial: ${CURVES[c1].name}; cambios ${mode=='r'?'a un caso al azar':'alternados'} cada ~${K} ventanas (${fs(K)})${ri?' (intervalo aleatorio)':''}; ruido ${nz.toFixed(1)} W; δ=${dl.toFixed(3)})</h2><div class="st"><span>Energía V7 − MSAPSO: <b>${m>=0?'+':''}${m.toFixed(2)} pp</b> en promedio</span><span>mediana <b>${d[n>>1].toFixed(2)}</b></span><span>V7 gana (&gt;1 pp) en <b>${w}</b>, empata en <b>${n-w-l}</b>, pierde en <b>${l}</b></span><span>peor caso <b>${d[0].toFixed(1)}</b> · mejor <b>${d[n-1].toFixed(1)}</b></span><span>reinicios por corrida: V7 <b>${(rs[0]/n).toFixed(1)}</b> · MSAPSO <b>${(rs[1]/n).toFixed(1)}</b></span></div><p class="note" style="margin:6px 0 0">Escala simplificada de la demo (una ventana = una medición); no sustituye la campaña de 2400 escenarios del reporte (+3 pp en promedio).</p>`};
+addEventListener('resize',render);updVa();start();
+</script></main></body></html>

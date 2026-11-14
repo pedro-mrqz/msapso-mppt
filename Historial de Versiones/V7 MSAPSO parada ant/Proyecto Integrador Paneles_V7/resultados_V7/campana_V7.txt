@@ -1,0 +1,71 @@
+CAMPANA MONTE CARLO: 2400 escenarios dinamicos aleatorios (semillas 100000+).
+
+== V7 principal menos MSAPSO completo (diferencia de energia, pp) ==
+  media +3.031 [+2.732, +3.331] | mediana +0.523 | percentiles 1/5/25/75/95/99: -11.06 / -4.46 / -0.13 / +5.79 / +16.42 / +26.78 | peor -52.87
+  escenarios: gana (> +0.5 pp) 50.1 % | empata (±0.5) 29.8 % | pierde (< -0.5) 20.1 % | pierde mucho (< -3) 8.1 % | (< -5) 4.3 %
+  exactitud final al terminar (ultimas 20 ventanas): media +4.26 pp | reinicios por escenario: MSAPSO 7.3, V7 13.4
+  -- por regimen --
+    alto         n= 470 | +6.90 [+6.17, +7.64] | pierde (< -0.5)  13.8 % | peor -22.1
+    estable      n= 113 | -0.55 [-2.01, +0.68] | pierde (< -0.5)  23.9 % | peor -52.9
+    flicker      n= 506 | +2.15 [+1.74, +2.56] | pierde (< -0.5)  24.9 % | peor -9.7
+    moderado     n= 362 | +4.04 [+3.06, +5.09] | pierde (< -0.5)  23.5 % | peor -24.8
+    muy alto     n= 252 | +6.21 [+5.46, +6.97] | pierde (< -0.5)  11.1 % | peor -17.1
+    unico        n= 697 | -0.03 [-0.38, +0.32] | pierde (< -0.5)  21.8 % | peor -35.0
+  -- por t_wait (s) --
+    0.0005       n= 481 | +3.66 [+2.98, +4.40] | pierde (< -0.5)  22.5 % | peor -31.4
+    0.001        n= 483 | +2.94 [+2.35, +3.59] | pierde (< -0.5)  20.5 % | peor -52.9
+    0.002        n= 495 | +3.00 [+2.39, +3.64] | pierde (< -0.5)  20.2 % | peor -24.1
+    0.005        n= 941 | +2.77 [+2.32, +3.25] | pierde (< -0.5)  18.7 % | peor -35.0
+  -- por ruido (W) --
+    0.0          n=1218 | +3.46 [+3.03, +3.90] | pierde (< -0.5)  13.1 % | peor -52.9
+    1.0          n= 602 | +2.96 [+2.34, +3.62] | pierde (< -0.5)  21.3 % | peor -33.0
+    2.0          n= 580 | +2.20 [+1.73, +2.70] | pierde (< -0.5)  33.6 % | peor -14.8
+  -- por panel --
+    36c-3s       n= 522 | +2.92 [+2.28, +3.57] | pierde (< -0.5)  21.8 % | peor -22.1
+    60c-11A      n= 450 | +2.36 [+1.71, +3.06] | pierde (< -0.5)  22.9 % | peor -31.4
+    72c-6s       n= 460 | +2.34 [+1.71, +2.98] | pierde (< -0.5)  22.2 % | peor -52.9
+    96c-6.5A     n= 509 | +4.49 [+3.81, +5.19] | pierde (< -0.5)  12.8 % | peor -24.8
+    base         n= 459 | +2.89 [+2.34, +3.49] | pierde (< -0.5)  21.6 % | peor -33.0
+  -- por fuente de patrones --
+    reales       n= 130 | +2.27 [+1.54, +3.06] | pierde (< -0.5)  19.2 % | peor -6.2
+    sinteticos   n=2270 | +3.07 [+2.77, +3.38] | pierde (< -0.5)  20.2 % | peor -52.9
+
+== V7 prudente menos MSAPSO completo (diferencia de energia, pp) ==
+  media +2.661 [+2.392, +2.942] | mediana +0.302 | percentiles 1/5/25/75/95/99: -11.36 / -4.04 / -0.08 / +4.93 / +15.10 / +25.28 | peor -52.83
+  escenarios: gana (> +0.5 pp) 48.8 % | empata (±0.5) 31.0 % | pierde (< -0.5) 20.3 % | pierde mucho (< -3) 7.8 % | (< -5) 3.5 %
+  exactitud final al terminar (ultimas 20 ventanas): media +3.85 pp | reinicios por escenario: MSAPSO 7.3, V7 12.2
+  -- por regimen --
+    alto         n= 470 | +6.12 [+5.43, +6.82] | pierde (< -0.5)  15.3 % | peor -27.7
+    estable      n= 113 | -0.72 [-2.08, +0.50] | pierde (< -0.5)  26.5 % | peor -52.8
+    flicker      n= 506 | +2.02 [+1.61, +2.43] | pierde (< -0.5)  25.9 % | peor -14.8
+    moderado     n= 362 | +3.55 [+2.67, +4.52] | pierde (< -0.5)  21.8 % | peor -23.8
+    muy alto     n= 252 | +5.13 [+4.36, +5.84] | pierde (< -0.5)  16.7 % | peor -17.4
+    unico        n= 697 | -0.02 [-0.35, +0.34] | pierde (< -0.5)  19.1 % | peor -35.1
+  -- por t_wait (s) --
+    0.0005       n= 481 | +3.18 [+2.52, +3.80] | pierde (< -0.5)  20.6 % | peor -31.0
+    0.001        n= 483 | +2.60 [+2.01, +3.15] | pierde (< -0.5)  20.3 % | peor -52.8
+    0.002        n= 495 | +2.86 [+2.30, +3.46] | pierde (< -0.5)  21.0 % | peor -14.8
+    0.005        n= 941 | +2.33 [+1.91, +2.76] | pierde (< -0.5)  19.8 % | peor -35.1
+  -- por ruido (W) --
+    0.0          n=1218 | +2.90 [+2.50, +3.33] | pierde (< -0.5)  13.7 % | peor -52.8
+    1.0          n= 602 | +2.54 [+1.99, +3.09] | pierde (< -0.5)  20.3 % | peor -35.1
+    2.0          n= 580 | +2.28 [+1.86, +2.71] | pierde (< -0.5)  34.1 % | peor -16.1
+  -- por panel --
+    36c-3s       n= 522 | +2.43 [+1.85, +3.05] | pierde (< -0.5)  21.6 % | peor -27.7
+    60c-11A      n= 450 | +2.29 [+1.65, +2.94] | pierde (< -0.5)  25.1 % | peor -31.0
+    72c-6s       n= 460 | +2.01 [+1.42, +2.56] | pierde (< -0.5)  24.1 % | peor -52.8
+    96c-6.5A     n= 509 | +3.93 [+3.32, +4.58] | pierde (< -0.5)  11.2 % | peor -30.5
+    base         n= 459 | +2.52 [+1.96, +3.09] | pierde (< -0.5)  20.3 % | peor -35.1
+  -- por fuente de patrones --
+    reales       n= 130 | +2.27 [+1.52, +3.03] | pierde (< -0.5)  18.5 % | peor -6.3
+    sinteticos   n=2270 | +2.68 [+2.40, +2.97] | pierde (< -0.5)  20.4 % | peor -52.8
+
+== Los 8 peores escenarios de la parada principal ==
+  idx  2331 | 72c-6s    | t_wait 1 ms | estable   | ruido 0 W | sinteticos | MSAPSO 98.8% -> V7 46.0% (-52.9 pp), reinicios 1 -> 4
+  idx  1242 | 72c-6s    | t_wait 5 ms | unico     | ruido 0 W | sinteticos | MSAPSO 106.3% -> V7 71.3% (-35.0 pp), reinicios 1 -> 3
+  idx  1724 | base      | t_wait 5 ms | estable   | ruido 1 W | sinteticos | MSAPSO 107.2% -> V7 74.2% (-33.0 pp), reinicios 2 -> 10
+  idx   768 | 60c-11A   | t_wait 0.5 ms | unico     | ruido 0 W | sinteticos | MSAPSO 87.6% -> V7 56.2% (-31.4 pp), reinicios 1 -> 3
+  idx   146 | base      | t_wait 5 ms | unico     | ruido 0 W | sinteticos | MSAPSO 100.7% -> V7 71.9% (-28.8 pp), reinicios 1 -> 0
+  idx  2277 | 60c-11A   | t_wait 1 ms | unico     | ruido 1 W | sinteticos | MSAPSO 80.3% -> V7 51.9% (-28.4 pp), reinicios 1 -> 3
+  idx  1174 | 72c-6s    | t_wait 1 ms | unico     | ruido 0 W | sinteticos | MSAPSO 99.7% -> V7 71.7% (-28.0 pp), reinicios 1 -> 2
+  idx  1641 | 96c-6.5A  | t_wait 0.5 ms | moderado  | ruido 1 W | sinteticos | MSAPSO 95.1% -> V7 70.2% (-24.8 pp), reinicios 7 -> 12

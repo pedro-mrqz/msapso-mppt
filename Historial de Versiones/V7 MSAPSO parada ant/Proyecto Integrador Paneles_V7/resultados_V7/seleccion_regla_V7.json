@@ -1,0 +1,26 @@
+{
+ "principal (<= 0.10 pp)": {
+  "nombre": "disp d=0.02",
+  "kind": "disp",
+  "k": 3,
+  "eps": 0.5,
+  "delta": 0.02,
+  "t_min": 3,
+  "mediciones": 70.0,
+  "final": 99.83694661882788,
+  "perdida": 0.056972658412703936,
+  "energia": 92.74807784337183
+ },
+ "prudente (<= 0.02 pp)": {
+  "nombre": "AND k=2 eps=0.1W d=0.01",
+  "kind": "and",
+  "k": 2,
+  "eps": 0.1,
+  "delta": 0.01,
+  "t_min": 3,
+  "mediciones": 79.73,
+  "final": 99.87516661693986,
+  "perdida": 0.01875266030071998,
+  "energia": 92.6825503171456
+ }
+}

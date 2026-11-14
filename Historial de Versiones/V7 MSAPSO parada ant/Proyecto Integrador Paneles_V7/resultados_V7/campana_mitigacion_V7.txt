@@ -1,0 +1,15 @@
+MITIGACIONES sobre los mismos 2400 escenarios de la campana. Diferencia de energia respecto al MSAPSO completo (pp).
+variante               | media [IC95 %] | mediana | p1 / p5 | peor | pierde (<-0.5) | pierde mucho (<-3) | (<-5) | unico: media | reinicios
+V7 principal (sin cambios) | +3.03 [+2.73, +3.33] | +0.52 | -11.1 / -4.5 | -52.9 | 20.1 % | 8.1 % | 4.3 % | -0.03 | 13.4
+ret3                       | +3.28 [+2.99, +3.58] | +1.02 | -9.0 / -4.5 | -30.7 | 34.3 % | 8.4 % | 4.0 % | +0.15 | 13.1
+ret3+hist                  | +3.80 [+3.52, +4.11] | +1.72 | -8.6 / -3.2 | -35.9 | 29.5 % | 5.4 % | 3.0 % | +0.67 | 11.4
+verif                      | +3.75 [+3.44, +4.07] | +1.05 | -9.6 / -4.2 | -28.8 | 19.2 % | 7.8 % | 3.7 % | +0.50 | 8.8
+verif+ret3                 | +3.69 [+3.35, +4.00] | +1.20 | -10.4 / -4.6 | -30.8 | 33.2 % | 8.6 % | 4.1 % | +0.19 | 8.7
+
+Por regimen (media de la diferencia vs MSAPSO completo, pp):
+  unico     n= 697 | V7 principal: -0.03 | ret3: +0.15 | ret3+hist: +0.67 | verif: +0.50 | verif+ret3: +0.19
+  moderado  n= 362 | V7 principal: +4.04 | ret3: +4.00 | ret3+hist: +4.82 | verif: +5.68 | verif+ret3: +5.62
+  alto      n= 470 | V7 principal: +6.90 | ret3: +7.08 | ret3+hist: +7.36 | verif: +7.57 | verif+ret3: +7.85
+  muy alto  n= 252 | V7 principal: +6.21 | ret3: +6.92 | ret3+hist: +6.99 | verif: +6.61 | verif+ret3: +6.88
+  flicker   n= 506 | V7 principal: +2.15 | ret3: +2.48 | ret3+hist: +3.07 | verif: +2.43 | verif+ret3: +2.32
+  estable   n= 113 | V7 principal: -0.55 | ret3: -0.05 | ret3+hist: +1.24 | verif: +1.27 | verif+ret3: +0.81

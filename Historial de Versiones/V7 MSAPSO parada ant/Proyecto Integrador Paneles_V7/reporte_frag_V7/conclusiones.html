@@ -1,0 +1,37 @@
+<h3>Qué se puede afirmar</h3>
+<ul>
+<li>El MSAPSO del paper (reproducido a partir de la Fig. 6) alcanza su exactitud final hacia la pasada 9–13 y las pasadas 13–25 no aportan nada; detenerlo cuando la dispersión del enjambre baja de 0.02 ahorra el 60 % de las mediciones (175 → 70) con una pérdida de exactitud de ≈ 0.05 pp.</li>
+<li>La regla no necesita entrenamiento, datos del panel ni sensores adicionales, y resultó estable ante ruido de 1 y 2 W (reglas sin re-ajustar).</li>
+<li>En operación dinámica con reinicio por 5 W la parada principal empata con el MSAPSO ante un cambio único con casos reales, pierde ≈ 0.6 pp con patrones sintéticos a 5 ms, no pierde nada en un periodo estable largo y gana +2.6 a +8.9 pp de energía con sombra que cambia seguido (a 5 ms y a 0.5 ms).</li>
+<li>Es una mejora al MSAPSO mismo, sin cambiar su lógica de búsqueda; resuelve parte de lo que no pudieron el híbrido y la alternancia (las pérdidas en estable y la dependencia del entrenamiento).</li>
+</ul>
+<h3>Qué no se puede afirmar</h3>
+<ul>
+<li>Que sea mejor con un cambio único de sombra con patrones sintéticos: ahí pierde ≈ 0.6 pp a 5 ms (IC que excluye cero).</li>
+<li>Que funcione en hardware: todo es simulación con una reproducción propia del MSAPSO, con 12 pares reales y 20 escenarios por régimen frecuente.</li>
+<li>Que la β comprimida sea una opción general: a 0.5 ms pierde con patrones sintéticos (−1.2 y −2.2 pp) y T = 10 genera reinicios falsos en estable largo.</li>
+</ul>
+<h3>Refuerzo (Paso 6)</h3>
+<ul>
+<li>La regla de dispersión resiste pruebas de estrés sin re-ajustarla: cola de pérdidas acotada (percentil 99 = 0.64 pp; máximo 0.97 pp en 1000 curvas), pérdida estática de 0.04–0.07 pp en cuatro paneles distintos y ventaja con flicker parcial (positiva en 11 de 12 celdas).</li>
+<li>Con ruido, la ventaja en sombra frecuente se mantiene (+8.3 y +4.2 pp), pero en cambio único hay pérdidas de 0.4 a 1.9 pp; ahí la parada prudente es más segura.</li>
+<li>Recomendación de uso: parada principal (δ = 0.02) por defecto; prudente si se prioriza el peor caso o hay ruido alto; la β comprimida solo con respaldo, por su cola de 16.7 pp.</li>
+</ul>
+<h3>Regla de reinicio (Paso 7)</h3>
+<ul>
+<li>No existe una regla de reinicio, entre las probadas, que mejore la del paper en todos los escenarios: cada ganancia con ruido alto se paga con respuesta más lenta o reinicios falsos en otros casos. Se mantiene el umbral de 5 W.</li>
+<li>Con ruido de medición alto (≈ 2 W o más) la confirmación de 2 ventanas gana +3.5 pp en cambio único y es casi inocua con ruido bajo; se recomienda solo como ajuste de instalación.</li>
+</ul>
+<h3>Sensibilidad y cómputo (Paso 8)</h3>
+<ul>
+<li>La configuración de la V7 es robusta: t_min no influye y δ entre 0.01 y 0.02 casi no cambia el resultado; no conviene reducir t_max (≤ 15 genera colas de 12–17 pp), usar δ ≥ 0.03 con cola larga, ni bajar a 5 partículas con ruido.</li>
+<li>En operación, un δ mayor mejora la energía con sombra frecuente; δ = 0.02 es un compromiso y δ = 0.01 la opción conservadora.</li>
+<li>La regla cuesta ≈ 30 operaciones por pasada y una constante de memoria: apta para un microcontrolador (no probado en hardware).</li>
+</ul>
+<h3>Campaña Monte Carlo (Paso 9)</h3>
+<ul>
+<li>Con 2400 escenarios aleatorios la V7 mejora al MSAPSO en promedio (+3.03 pp [+2.74, +3.32]) en todos los paneles, tiempos de espera y niveles de ruido, concentrada en sombra cambiante (+4 a +7 pp) y flicker parcial (+2 pp).</li>
+<li>Con cambio aislado o sombra estable empata en promedio, con una cola de pérdidas que debe declararse: ≈ 8 % de los escenarios pierde más de 3 pp (hasta −53 pp). La parada prudente no la elimina; las mitigaciones mínimas ayudan en parte (+0.25 a +0.8 pp de media) y no se adoptan.</li>
+<li>Uso recomendado: instalaciones con sombra que cambia a menudo; con sombra estable el MSAPSO puro evita la varianza sin perder ganancia.</li>
+</ul>
+<div class="callout"><strong>Para el profesor.</strong> La parada anticipada es un cambio mínimo al MSAPSO (una condición de salida) con beneficio medible en costo de búsqueda y en energía bajo sombra cambiante. Convendría confirmar con su implementación y con un convertidor real que la dispersión del enjambre sea observable de la misma forma, y decidir si el criterio de éxito acepta una pérdida de exactitud de ≈ 0.05 pp a cambio de 60 % menos mediciones.</div>

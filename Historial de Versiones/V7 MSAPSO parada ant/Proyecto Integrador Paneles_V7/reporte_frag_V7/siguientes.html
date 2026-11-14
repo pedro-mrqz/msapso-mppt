@@ -1,0 +1,13 @@
+<ol>
+<li><strong>Parada anticipada + V6.1:</strong> usarla como modo «estable» de la alternancia (en lugar del MSAPSO completo) y medir si el conjunto mejora en todos los regímenes.</li>
+<li><strong>Parada aprendida:</strong> un clasificador sencillo (por ejemplo un árbol) con la pasada, la dispersión y la mejora de Pbest, entrenado con potencias medidas, para recuperar el ≈ 0.6 pp perdido con sintéticos y evitar reinicios falsos.</li>
+<li><strong>Memoria de patrones con aprendizaje en campo:</strong> probar primero los picos ya conocidos y verificarlos, con el MSAPSO como respaldo; simularlo con sombras recurrentes de un obstáculo fijo y el movimiento del sol.</li>
+<li><strong>Régimen de 0.5 ms</strong> con un agente que elija el tiempo de espera, y umbral de reinicio aprendido.</li>
+<li><strong>Validación con la implementación del profesor y en hardware</strong> (o hardware-in-the-loop).</li>
+</ol>
+<h3>Preguntas para el profesor</h3>
+<ol>
+<li>¿Acepta una pérdida de exactitud de ≈ 0.05 pp a cambio de ≈ 60 % menos mediciones y mejor energía con sombra cambiante?</li>
+<li>¿La dispersión de las partículas (std de posiciones / Isc) es una cantidad observable en su implementación del MSAPSO?</li>
+<li>¿Quiere que se pruebe también el truncado con el t_max del paper ajustado, dado que la β comprimida a 10–12 pasadas resultó una alternativa competitiva?</li>
+</ol>

@@ -1,0 +1,49 @@
+ESTATICO: 100 curvas por panel (semilla 5151); final / energia / mediciones
+  72 celdas, 6 sub-strings, Isc 9.5 A        | MSAPSO completo       99.993/ 93.00/ 175 | parada principal      99.923/ 93.06/  70 | parada prudente       99.979/ 93.02/  81 | dispersion<0.01       99.974/ 93.03/  77 | perdida principal +0.070 pp
+  36 celdas, 3 sub-strings, Isc 5.5 A        | MSAPSO completo       99.797/ 92.82/ 175 | parada principal      99.754/ 92.88/  70 | parada prudente       99.785/ 92.82/  78 | dispersion<0.01       99.781/ 92.82/  77 | perdida principal +0.043 pp
+  60 celdas, 4 sub-strings, Isc 11 A, A=1.3  | MSAPSO completo      100.000/ 92.70/ 175 | parada principal      99.952/ 92.76/  70 | parada prudente       99.989/ 92.71/  80 | dispersion<0.01       99.986/ 92.71/  77 | perdida principal +0.048 pp
+  96 celdas, 4 sub-strings, Isc 6.5 A, A=1.7 | MSAPSO completo       99.998/ 92.78/ 175 | parada principal      99.955/ 92.87/  70 | parada prudente       99.987/ 92.80/  81 | dispersion<0.01       99.983/ 92.81/  77 | perdida principal +0.043 pp
+
+=== P) operacion, cambio unico, 72 celdas, 6 sub-strings, Isc 9.5 A | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  98.24 /  101.03 |   0.9 reinic.
+parada principal (disp<0.02)   |  96.90 /   99.59 |   1.2 reinic.
+parada prudente                |  96.46 /   97.61 |   1.4 reinic.
+dispersion<0.01 (extra)        |  96.46 /   97.60 |   1.4 reinic.
+comprimido T=12 (extra)        |  99.12 /  101.13 |   1.1 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): -1.34 [-3.72, +0.09]
+   parada prudente              - MSAPSO completo (energia): -1.78 [-4.10, -0.16]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): -1.78 [-4.16, -0.16]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +0.87 [+0.38, +1.44]
+
+=== P) operacion, cambio unico, 36 celdas, 3 sub-strings, Isc 5.5 A | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  95.98 /  115.01 |   0.8 reinic.
+parada principal (disp<0.02)   |  95.99 /  115.03 |   0.8 reinic.
+parada prudente                |  95.97 /  115.00 |   0.8 reinic.
+dispersion<0.01 (extra)        |  95.97 /  115.00 |   0.8 reinic.
+comprimido T=12 (extra)        |  96.70 /  115.00 |   0.8 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +0.01 [-0.04, +0.04]
+   parada prudente              - MSAPSO completo (energia): -0.01 [-0.03, +0.02]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): -0.01 [-0.03, +0.02]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +0.72 [+0.56, +0.86]
+
+=== P) operacion, cambio unico, 60 celdas, 4 sub-strings, Isc 11 A, A=1.3 | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  97.28 /  102.72 |   0.9 reinic.
+parada principal (disp<0.02)   |  97.24 /  101.48 |   1.1 reinic.
+parada prudente                |  96.92 /  100.18 |   1.2 reinic.
+dispersion<0.01 (extra)        |  96.92 /  100.18 |   1.2 reinic.
+comprimido T=12 (extra)        |  98.10 /  102.82 |   0.9 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): -0.04 [-0.26, +0.10]
+   parada prudente              - MSAPSO completo (energia): -0.36 [-0.98, +0.01]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): -0.36 [-1.00, +0.01]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +0.82 [+0.71, +0.93]
+
+=== P) operacion, cambio unico, 96 celdas, 4 sub-strings, Isc 6.5 A, A=1.7 | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                | 103.94 /  101.39 |   0.9 reinic.
+parada principal (disp<0.02)   | 103.99 /  101.39 |   1.1 reinic.
+parada prudente                | 104.60 /  102.90 |   1.1 reinic.
+dispersion<0.01 (extra)        | 104.60 /  102.90 |   1.1 reinic.
+comprimido T=12 (extra)        | 104.36 /  101.39 |   1.0 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +0.05 [+0.01, +0.14]
+   parada prudente              - MSAPSO completo (energia): +0.66 [-0.02, +2.01]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +0.66 [-0.02, +2.01]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +0.42 [+0.29, +0.58]

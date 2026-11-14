@@ -1,0 +1,44 @@
+MSAPSO completo (25 pasadas): 175 mediciones | final 99.894 % | energia 92.66 %
+
+regla                        |  med. |   final |  perdida vs completo | energia
+disp d=0.005                 |    84 |  99.885 |               +0.009 |   92.66
+disp d=0.01                  |    77 |  99.871 |               +0.023 |   92.69
+disp d=0.02                  |    70 |  99.837 |               +0.057 |   92.75
+disp d=0.03                  |    63 |  99.790 |               +0.104 |   92.87
+disp d=0.05                  |    56 |  99.609 |               +0.285 |   92.97
+noimp k=2 eps=0.05W          |    26 |  96.822 |               +3.072 |   92.93
+noimp k=2 eps=0.1W           |    26 |  96.822 |               +3.072 |   92.93
+noimp k=2 eps=0.25W          |    26 |  96.822 |               +3.072 |   92.93
+noimp k=2 eps=0.5W           |    25 |  96.684 |               +3.210 |   92.85
+noimp k=3 eps=0.05W          |    39 |  98.186 |               +1.708 |   93.03
+noimp k=3 eps=0.1W           |    39 |  98.186 |               +1.708 |   93.04
+noimp k=3 eps=0.25W          |    38 |  98.163 |               +1.731 |   93.04
+noimp k=3 eps=0.5W           |    37 |  98.058 |               +1.836 |   92.99
+noimp k=4 eps=0.05W          |    54 |  98.984 |               +0.910 |   92.97
+noimp k=4 eps=0.1W           |    53 |  98.970 |               +0.923 |   92.97
+noimp k=4 eps=0.25W          |    51 |  98.963 |               +0.931 |   92.98
+noimp k=4 eps=0.5W           |    49 |  98.942 |               +0.952 |   92.99
+OR  k=3 eps=0.1W d=0.02      |    38 |  98.184 |               +1.710 |   93.04
+AND k=3 eps=0.1W d=0.02      |    79 |  99.858 |               +0.036 |   92.71
+OR  k=3 eps=0.25W d=0.03     |    37 |  98.158 |               +1.736 |   93.06
+AND k=3 eps=0.25W d=0.03     |    72 |  99.824 |               +0.070 |   92.78
+OR  k=2 eps=0.1W d=0.01      |    26 |  96.822 |               +3.072 |   92.93
+AND k=2 eps=0.1W d=0.01      |    80 |  99.875 |               +0.019 |   92.68
+OR  k=4 eps=0.05W d=0.02     |    49 |  98.974 |               +0.920 |   92.99
+AND k=4 eps=0.05W d=0.02     |    89 |  99.873 |               +0.021 |   92.70
+
+Truncados fijos (referencias sin regla):
+truncado T=6 (beta del paper)          |    42 |  99.009 |  +0.885 |   93.27
+comprimido T=6 (beta a T pasadas)      |    42 |  99.415 |  +0.479 |   95.54
+truncado T=8 (beta del paper)          |    56 |  99.609 |  +0.285 |   92.97
+comprimido T=8 (beta a T pasadas)      |    56 |  99.775 |  +0.119 |   95.24
+truncado T=10 (beta del paper)         |    70 |  99.837 |  +0.057 |   92.75
+comprimido T=10 (beta a T pasadas)     |    70 |  99.797 |  +0.097 |   94.79
+truncado T=12 (beta del paper)         |    84 |  99.885 |  +0.009 |   92.66
+comprimido T=12 (beta a T pasadas)     |    84 |  99.935 |  -0.041 |   94.50
+truncado T=14 (beta del paper)         |    98 |  99.892 |  +0.002 |   92.66
+comprimido T=14 (beta a T pasadas)     |    98 |  99.915 |  -0.021 |   94.12
+
+ELEGIDA principal (<= 0.10 pp): disp d=0.02 -> 70 mediciones, final 99.837 % (perdida +0.057 pp), energia 92.75 %
+
+ELEGIDA prudente (<= 0.02 pp): AND k=2 eps=0.1W d=0.01 -> 80 mediciones, final 99.875 % (perdida +0.019 pp), energia 92.68 %

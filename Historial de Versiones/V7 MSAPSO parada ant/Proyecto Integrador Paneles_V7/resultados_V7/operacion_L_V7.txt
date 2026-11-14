@@ -1,0 +1,11 @@
+
+=== L) estable LARGO (100 s), sinteticos | t_wait = 5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  97.12 /   99.63 |   1.3 reinic. |   2.3 busq.
+parada principal     |  97.09 /   99.62 |   1.3 reinic. |   2.3 busq.
+parada prudente      |  96.89 /   97.95 |   6.7 reinic. |   7.7 busq.
+comprimido T=12      |  97.65 /  103.01 |   1.3 reinic. |   2.3 busq.
+comprimido T=10      |  97.02 /   98.27 |   5.3 reinic. |   6.3 busq.
+   parada principal     - MSAPSO completo (energia): -0.03 [-0.05, -0.00]
+   parada prudente      - MSAPSO completo (energia): -0.22 [-0.65, -0.00]
+   comprimido T=12      - MSAPSO completo (energia): +0.54 [+0.00, +1.56]
+   comprimido T=10      - MSAPSO completo (energia): -0.09 [-0.37, +0.08]

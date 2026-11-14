@@ -1,0 +1,7 @@
+CONTEO ANALITICO (7 particulas, por pasada):
+  MSAPSO completo, por pasada: 7 mediciones + comparaciones Pbest (7) + actualizacion Eq. 13 (7 x [resta, multiplicacion, suma] = 21 operaciones) + beta (1 multiplicacion y 1 suma).
+  Parada anticipada, extra por pasada: dispersion std(x)/Isc = media (7 sumas + 1 division) + desviaciones (7 restas, 7 multiplicaciones, 6 sumas) + raiz + division = ~30 operaciones + 1 comparacion con delta.
+  Memoria extra: 1 constante (delta). La dispersion se calcula con las posiciones que el algoritmo ya guarda (no hay historial ni tablas).
+  Efecto: ~30 operaciones adicionales por pasada frente a 7 mediciones de 5 ms (35 ms de sensado por pasada), y se ahorran ~105 mediciones (15 pasadas) por busqueda.
+
+MICROBENCHMARK (Python/numpy, referencia relativa): actualizacion Eq. 13 = 2.5 us por pasada; calculo de la dispersion = 5.4 us por pasada (+218 % sobre la actualizacion); ambos son despreciables frente a 7 x t_wait (35 ms a 5 ms).

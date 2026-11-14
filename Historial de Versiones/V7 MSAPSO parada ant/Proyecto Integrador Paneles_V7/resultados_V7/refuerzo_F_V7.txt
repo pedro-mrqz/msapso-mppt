@@ -1,0 +1,132 @@
+
+=== F) flicker parcial: amplitud 0.1, cambio cada ~100 ventanas | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  94.61 /   96.90 |   4.0 reinic.
+parada principal (disp<0.02)   |  96.02 /   94.18 |   4.3 reinic.
+parada prudente                |  96.00 /   97.70 |   4.1 reinic.
+dispersion<0.01 (extra)        |  95.96 /   97.63 |   4.1 reinic.
+comprimido T=12 (extra)        |  95.60 /   93.11 |   3.7 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +1.42 [+0.01, +2.99]
+   parada prudente              - MSAPSO completo (energia): +1.39 [+0.41, +2.46]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +1.36 [+0.36, +2.42]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +0.99 [-0.15, +2.19]
+
+=== F) flicker parcial: amplitud 0.3, cambio cada ~100 ventanas | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  86.58 /   88.87 |   6.9 reinic.
+parada principal (disp<0.02)   |  90.35 /   91.81 |  10.9 reinic.
+parada prudente                |  90.22 /   91.88 |  10.7 reinic.
+dispersion<0.01 (extra)        |  90.22 /   91.88 |  10.7 reinic.
+comprimido T=12 (extra)        |  89.57 /   92.68 |  10.1 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +3.77 [+1.79, +5.80]
+   parada prudente              - MSAPSO completo (energia): +3.64 [+1.84, +5.45]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +3.64 [+1.90, +5.49]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +2.99 [+1.15, +5.14]
+
+=== F) flicker parcial: amplitud 0.6, cambio cada ~100 ventanas | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  80.67 /   85.45 |   8.3 reinic.
+parada principal (disp<0.02)   |  83.14 /   85.39 |  12.1 reinic.
+parada prudente                |  82.69 /   87.33 |  12.0 reinic.
+dispersion<0.01 (extra)        |  82.74 /   87.35 |  12.1 reinic.
+comprimido T=12 (extra)        |  84.20 /   85.32 |  11.4 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +2.47 [-1.86, +8.66]
+   parada prudente              - MSAPSO completo (energia): +2.02 [-1.56, +6.37]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +2.07 [-1.45, +6.41]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +3.53 [-1.18, +9.98]
+
+=== F) flicker parcial: amplitud 0.1, cambio cada ~40 ventanas | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  92.40 /   96.35 |   7.5 reinic.
+parada principal (disp<0.02)   |  94.14 /   97.54 |   9.1 reinic.
+parada prudente                |  93.69 /   97.53 |   9.3 reinic.
+dispersion<0.01 (extra)        |  93.67 /   97.54 |  10.1 reinic.
+comprimido T=12 (extra)        |  94.49 /   97.20 |   9.0 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +1.74 [+0.61, +2.98]
+   parada prudente              - MSAPSO completo (energia): +1.30 [-0.10, +2.66]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +1.27 [-0.22, +2.78]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +2.09 [+0.34, +3.95]
+
+=== F) flicker parcial: amplitud 0.3, cambio cada ~40 ventanas | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  84.41 /   85.66 |  11.1 reinic.
+parada principal (disp<0.02)   |  85.19 /   86.50 |  19.3 reinic.
+parada prudente                |  85.02 /   84.70 |  18.1 reinic.
+dispersion<0.01 (extra)        |  84.96 /   83.31 |  18.2 reinic.
+comprimido T=12 (extra)        |  85.44 /   90.08 |  16.0 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +0.77 [-0.34, +2.03]
+   parada prudente              - MSAPSO completo (energia): +0.60 [-0.37, +1.63]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +0.54 [-0.38, +1.53]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +1.02 [-0.23, +2.37]
+
+=== F) flicker parcial: amplitud 0.6, cambio cada ~40 ventanas | t_wait = 5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  79.00 /   81.69 |  11.6 reinic.
+parada principal (disp<0.02)   |  81.00 /   86.26 |  21.5 reinic.
+parada prudente                |  81.44 /   83.98 |  20.0 reinic.
+dispersion<0.01 (extra)        |  82.05 /   85.70 |  20.5 reinic.
+comprimido T=12 (extra)        |  81.80 /   83.90 |  19.4 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +2.00 [-1.26, +4.95]
+   parada prudente              - MSAPSO completo (energia): +2.45 [-0.41, +5.46]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +3.05 [+0.41, +5.87]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +2.80 [-0.27, +5.81]
+
+=== F) flicker parcial: amplitud 0.1, cambio cada ~100 ventanas | t_wait = 0.5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  93.80 /   94.35 |   3.9 reinic.
+parada principal (disp<0.02)   |  94.00 /   95.51 |   3.7 reinic.
+parada prudente                |  93.93 /   95.37 |   3.5 reinic.
+dispersion<0.01 (extra)        |  93.87 /   95.31 |   3.3 reinic.
+comprimido T=12 (extra)        |  90.54 /   90.02 |   3.5 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +0.20 [-0.83, +1.42]
+   parada prudente              - MSAPSO completo (energia): +0.13 [-0.99, +1.44]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +0.07 [-0.97, +1.33]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): -3.25 [-9.20, +0.16]
+
+=== F) flicker parcial: amplitud 0.3, cambio cada ~100 ventanas | t_wait = 0.5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  81.22 /   87.79 |   6.9 reinic.
+parada principal (disp<0.02)   |  86.65 /   86.31 |  11.4 reinic.
+parada prudente                |  83.90 /   80.72 |  10.2 reinic.
+dispersion<0.01 (extra)        |  84.43 /   81.37 |  10.4 reinic.
+comprimido T=12 (extra)        |  85.02 /   85.18 |  10.5 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +5.42 [+1.85, +9.35]
+   parada prudente              - MSAPSO completo (energia): +2.67 [-1.16, +6.20]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +3.21 [-0.88, +7.24]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +3.79 [+0.95, +6.55]
+
+=== F) flicker parcial: amplitud 0.6, cambio cada ~100 ventanas | t_wait = 0.5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  78.28 /   81.68 |   8.5 reinic.
+parada principal (disp<0.02)   |  80.64 /   84.51 |  12.8 reinic.
+parada prudente                |  80.11 /   85.76 |  11.7 reinic.
+dispersion<0.01 (extra)        |  80.62 /   85.77 |  12.1 reinic.
+comprimido T=12 (extra)        |  79.35 /   82.35 |  11.8 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +2.36 [-0.95, +5.77]
+   parada prudente              - MSAPSO completo (energia): +1.84 [-1.28, +5.06]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +2.35 [-0.98, +5.82]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +1.08 [-0.58, +2.79]
+
+=== F) flicker parcial: amplitud 0.1, cambio cada ~40 ventanas | t_wait = 0.5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  88.03 /   87.65 |   4.8 reinic.
+parada principal (disp<0.02)   |  86.18 /   85.63 |   5.8 reinic.
+parada prudente                |  86.10 /   85.70 |   5.2 reinic.
+dispersion<0.01 (extra)        |  86.10 /   85.43 |   5.3 reinic.
+comprimido T=12 (extra)        |  86.21 /   85.95 |   4.9 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): -1.85 [-5.50, +0.62]
+   parada prudente              - MSAPSO completo (energia): -1.93 [-5.57, +0.55]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): -1.93 [-5.52, +0.49]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): -1.82 [-5.60, +0.71]
+
+=== F) flicker parcial: amplitud 0.3, cambio cada ~40 ventanas | t_wait = 0.5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  81.53 /   78.28 |  10.6 reinic.
+parada principal (disp<0.02)   |  86.09 /   85.55 |  18.6 reinic.
+parada prudente                |  85.46 /   82.17 |  17.1 reinic.
+dispersion<0.01 (extra)        |  85.24 /   83.62 |  17.1 reinic.
+comprimido T=12 (extra)        |  85.19 /   82.93 |  16.1 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +4.56 [+1.91, +7.46]
+   parada prudente              - MSAPSO completo (energia): +3.93 [+1.38, +6.65]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +3.71 [+1.16, +6.45]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +3.66 [+1.45, +6.05]
+
+=== F) flicker parcial: amplitud 0.6, cambio cada ~40 ventanas | t_wait = 0.5 ms | energia real / exactitud final (% P_ceiling), reinicios por escenario ===
+MSAPSO completo                |  68.39 /   75.14 |  10.6 reinic.
+parada principal (disp<0.02)   |  75.70 /   75.95 |  20.2 reinic.
+parada prudente                |  74.77 /   77.34 |  18.8 reinic.
+dispersion<0.01 (extra)        |  75.41 /   75.93 |  19.4 reinic.
+comprimido T=12 (extra)        |  72.72 /   73.35 |  17.9 reinic.
+   parada principal (disp<0.02) - MSAPSO completo (energia): +7.31 [+4.79, +9.86]
+   parada prudente              - MSAPSO completo (energia): +6.38 [+3.09, +9.51]
+   dispersion<0.01 (extra)      - MSAPSO completo (energia): +7.02 [+4.11, +9.88]
+   comprimido T=12 (extra)      - MSAPSO completo (energia): +4.33 [+1.01, +7.75]

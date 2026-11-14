@@ -1,0 +1,13 @@
+<ul>
+<li><strong>Solo simulación,</strong> con una reproducción propia del MSAPSO basada en la Fig. 6 del paper (versión borrador); no se probó con la implementación del autor ni en hardware.</li>
+<li><strong>Las reglas se eligieron en validación</strong> (200 curvas) con un criterio fijado de antemano, pero los umbrales dependen del simulador y de las curvas sintéticas; con ruido no se re-ajustaron.</li>
+<li><strong>La β comprimida no formaba parte de la familia definida de antemano:</strong> se descubrió al tabular las referencias en validación y se evaluó en la prueba como extra.</li>
+<li><strong>Escenarios de operación:</strong> 12 pares de casos reales, 60 pares sintéticos nuevos y 20 escenarios por régimen frecuente (12 con casos reales); los cambios de sombra reemplazan todo el patrón de golpe (más agresivos que un flicker real). El protocolo de asentamiento se heredó de la V6 (se ajustó tras ver reinicios falsos).</li>
+<li><strong>Eficiencia sobre 100 %:</strong> P_ceiling resulta conservador en algunos patrones sintéticos (101 % con el MSAPSO); afecta a todos los métodos por igual.</li>
+<li><strong>La métrica de energía del nivel estático</strong> (ventana de 200 mediciones) favorece búsquedas cortas; en operación se integra energía real.</li>
+<li><strong>Refuerzo (Paso 6):</strong> el flicker parcial se generó con un modelo sencillo; los parámetros de «otros paneles» son plausibles pero no medidos; se usaron 12–20 escenarios por celda y varios intervalos incluyen el cero; el ruido eleva los reinicios falsos de todos los métodos y no se re-ajustó el umbral de 5 W.</li>
+<li><strong>Regla de reinicio (Paso 7):</strong> solo simulación, 10–40 escenarios por grupo y varios intervalos que incluyen el cero; la ronda 2 (umbral adaptativo) se diseñó después de ver la validación; el ruido se modela gaussiano, aditivo e independiente entre ventanas.</li>
+<li><strong>Sensibilidad (Paso 8):</strong> un parámetro a la vez sobre 200 curvas, sin explorar interacciones más allá de δ × partículas; la huella de cómputo es analítica y un microbenchmark de Python, no una medición en microcontrolador.</li>
+<li><strong>Campaña Monte Carlo (Paso 9):</strong> más escenarios reducen la incertidumbre estadística pero no el sesgo del modelo (generador sintético, reproducción propia del MSAPSO); la mezcla de regímenes la fijamos nosotros y determina la media global; las mitigaciones se probaron después de ver la campaña; P_ceiling conservador (120 escenarios con el MSAPSO &gt; 100 %).</li>
+<li><strong>Supuestos propios por confirmar:</strong> tolerancias de 0.10 y 0.02 pp, t_min = 3 pasadas, δ = 0.02, definición de dispersión (std de posiciones / Isc).</li>
+</ul>

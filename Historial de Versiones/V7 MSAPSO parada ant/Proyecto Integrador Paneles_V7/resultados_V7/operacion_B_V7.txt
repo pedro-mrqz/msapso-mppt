@@ -1,0 +1,88 @@
+
+=== B) sombra frecuente (moderado), sinteticos | t_wait = 5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  86.25 /   85.02 |   5.5 reinic. |   6.5 busq.
+parada principal     |  92.11 /   98.54 |   7.9 reinic. |   8.9 busq.
+parada prudente      |  90.56 /   90.18 |   7.5 reinic. |   8.6 busq.
+comprimido T=12      |  90.71 /   89.38 |   7.3 reinic. |   8.3 busq.
+comprimido T=10      |  92.10 /   98.02 |   7.7 reinic. |   8.7 busq.
+   parada principal     - MSAPSO completo (energia): +5.86 [+3.37, +8.90]
+   parada prudente      - MSAPSO completo (energia): +4.31 [+1.27, +7.48]
+   comprimido T=12      - MSAPSO completo (energia): +4.46 [+1.36, +7.77]
+   comprimido T=10      - MSAPSO completo (energia): +5.85 [+3.24, +8.77]
+
+=== B) sombra frecuente (alto), sinteticos | t_wait = 5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  77.98 /   68.32 |   9.4 reinic. |  10.4 busq.
+parada principal     |  80.56 /   71.78 |  15.2 reinic. |  16.2 busq.
+parada prudente      |  79.02 /   72.31 |  14.1 reinic. |  15.1 busq.
+comprimido T=12      |  79.75 /   74.84 |  13.6 reinic. |  14.6 busq.
+comprimido T=10      |  81.15 /   76.66 |  14.9 reinic. |  15.9 busq.
+   parada principal     - MSAPSO completo (energia): +2.59 [-0.49, +5.57]
+   parada prudente      - MSAPSO completo (energia): +1.04 [-1.61, +3.62]
+   comprimido T=12      - MSAPSO completo (energia): +1.77 [-0.75, +4.13]
+   comprimido T=10      - MSAPSO completo (energia): +3.17 [+0.15, +5.96]
+
+=== B) sombra frecuente (muy alto), sinteticos | t_wait = 5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  68.00 /   68.76 |  12.6 reinic. |  13.6 busq.
+parada principal     |  72.13 /   75.33 |  25.1 reinic. |  26.1 busq.
+parada prudente      |  72.82 /   76.98 |  23.4 reinic. |  24.4 busq.
+comprimido T=12      |  72.36 /   73.75 |  22.4 reinic. |  23.4 busq.
+comprimido T=10      |  73.10 /   76.38 |  24.6 reinic. |  25.6 busq.
+   parada principal     - MSAPSO completo (energia): +4.13 [+1.17, +6.76]
+   parada prudente      - MSAPSO completo (energia): +4.82 [+2.92, +6.70]
+   comprimido T=12      - MSAPSO completo (energia): +4.35 [+1.44, +7.40]
+   comprimido T=10      - MSAPSO completo (energia): +5.09 [+2.14, +7.98]
+
+=== B) sombra frecuente (alto), 4 casos reales | t_wait = 5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  76.52 /   53.61 |   9.8 reinic. |  10.8 busq.
+parada principal     |  80.40 /   74.10 |  16.5 reinic. |  17.5 busq.
+parada prudente      |  79.54 /   76.60 |  15.5 reinic. |  16.5 busq.
+comprimido T=12      |  81.61 /   74.24 |  14.8 reinic. |  15.8 busq.
+comprimido T=10      |  81.09 /   76.31 |  16.3 reinic. |  17.3 busq.
+   parada principal     - MSAPSO completo (energia): +3.88 [+0.22, +7.12]
+   parada prudente      - MSAPSO completo (energia): +3.02 [-0.33, +5.87]
+   comprimido T=12      - MSAPSO completo (energia): +5.09 [+1.84, +7.64]
+   comprimido T=10      - MSAPSO completo (energia): +4.57 [+1.13, +7.84]
+
+=== B) sombra frecuente (moderado), sinteticos | t_wait = 0.5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  83.54 /   74.96 |   5.9 reinic. |   6.9 busq.
+parada principal     |  87.91 /   87.16 |   8.4 reinic. |   9.4 busq.
+parada prudente      |  87.57 /   88.43 |   7.8 reinic. |   8.8 busq.
+comprimido T=12      |  88.09 /   93.95 |   7.5 reinic. |   8.5 busq.
+comprimido T=10      |  87.51 /   92.84 |   8.4 reinic. |   9.4 busq.
+   parada principal     - MSAPSO completo (energia): +4.37 [+0.99, +8.20]
+   parada prudente      - MSAPSO completo (energia): +4.02 [+0.17, +8.22]
+   comprimido T=12      - MSAPSO completo (energia): +4.55 [+1.12, +8.26]
+   comprimido T=10      - MSAPSO completo (energia): +3.97 [+0.66, +7.76]
+
+=== B) sombra frecuente (alto), sinteticos | t_wait = 0.5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  74.10 /   65.15 |   9.7 reinic. |  10.7 busq.
+parada principal     |  78.84 /   77.93 |  16.6 reinic. |  17.6 busq.
+parada prudente      |  77.90 /   66.89 |  15.2 reinic. |  16.1 busq.
+comprimido T=12      |  76.64 /   69.84 |  14.9 reinic. |  15.9 busq.
+comprimido T=10      |  77.94 /   70.15 |  16.1 reinic. |  17.1 busq.
+   parada principal     - MSAPSO completo (energia): +4.75 [+0.81, +8.46]
+   parada prudente      - MSAPSO completo (energia): +3.80 [-0.22, +7.50]
+   comprimido T=12      - MSAPSO completo (energia): +2.54 [-1.20, +6.03]
+   comprimido T=10      - MSAPSO completo (energia): +3.85 [-0.04, +7.76]
+
+=== B) sombra frecuente (muy alto), sinteticos | t_wait = 0.5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  61.44 /   59.36 |  12.8 reinic. |  13.8 busq.
+parada principal     |  70.29 /   78.92 |  25.8 reinic. |  26.8 busq.
+parada prudente      |  68.82 /   68.79 |  23.1 reinic. |  24.1 busq.
+comprimido T=12      |  68.11 /   72.42 |  22.6 reinic. |  23.6 busq.
+comprimido T=10      |  68.88 /   75.39 |  24.9 reinic. |  25.9 busq.
+   parada principal     - MSAPSO completo (energia): +8.85 [+6.55, +11.26]
+   parada prudente      - MSAPSO completo (energia): +7.39 [+5.70, +8.84]
+   comprimido T=12      - MSAPSO completo (energia): +6.67 [+3.97, +9.42]
+   comprimido T=10      - MSAPSO completo (energia): +7.44 [+4.98, +9.52]
+
+=== B) sombra frecuente (alto), 4 casos reales | t_wait = 0.5 ms | energia real / exactitud final (% de P_ceiling), reinicios, busquedas por escenario ===
+MSAPSO completo      |  77.20 /   59.12 |  10.8 reinic. |  11.8 busq.
+parada principal     |  83.90 /   73.67 |  18.2 reinic. |  19.2 busq.
+parada prudente      |  81.75 /   70.19 |  16.6 reinic. |  17.6 busq.
+comprimido T=12      |  80.82 /   79.44 |  16.7 reinic. |  17.7 busq.
+comprimido T=10      |  81.77 /   67.92 |  17.7 reinic. |  18.7 busq.
+   parada principal     - MSAPSO completo (energia): +6.69 [+2.22, +11.10]
+   parada prudente      - MSAPSO completo (energia): +4.55 [+0.70, +8.46]
+   comprimido T=12      - MSAPSO completo (energia): +3.62 [-0.51, +7.32]
+   comprimido T=10      - MSAPSO completo (energia): +4.57 [+0.51, +8.10]
