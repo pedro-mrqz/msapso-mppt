@@ -1,0 +1,171 @@
+% Plantilla del artículo del Proyecto Integrador (Resumen ejecutivo)
+% Formato requerido: carta, una columna, 11 pt, márgenes de 2.5 cm, interlineado 1.15.
+% Extensión: 3 páginas sin contar anexos. Referencias: APA 7.
+% Compila con pdfLaTeX (opción predeterminada de Overleaf) + Biber.
+% Logos: logo.jpeg (Tec) y logo_empresa.png (empresa) en la misma carpeta.
+% Si un archivo no existe, se muestra un recuadro de marcador.
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{csquotes}
+\usepackage[hidelinks]{hyperref}
+
+% Estilo de referencias: APA 7
+\usepackage[style=apa,backend=biber]{biblatex}
+\addbibresource{referencias.bib}
+
+% --- Complementos del resumen ejecutivo ---
+\usepackage{xcolor}
+\setlength{\parindent}{1.5em}
+
+% --- Encabezado: logos solo en la primera página ---
+\usepackage{fancyhdr}
+\geometry{headheight=52pt,headsep=0.3cm}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\logo}[2]{%
+  \IfFileExists{#1}%
+    {\includegraphics[height=1.2cm]{#1}}%
+    {\fbox{\parbox[c][1.1cm][c]{3cm}{\centering\sffamily\small #2}}}}
+\fancypagestyle{primera}{%
+  \fancyhf{}%
+  \fancyhead[L]{\logo{logo.jpeg}{Logo Tec}}%
+  \fancyhead[R]{\logo{logo_empresa.png}{Logo empresa}}%
+  \fancyfoot[C]{\thepage}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+% --- Recuadros de cifras (texto grande) ---
+% \cifra{fondo}{color del texto}{valor}{etiqueta}{unidad}
+\newcommand{\cifra}[5]{%
+  \begingroup\setlength{\fboxsep}{5pt}%
+  \colorbox{#1}{\parbox[t]{\dimexpr\linewidth-2\fboxsep\relax}{%
+    \setstretch{1}\color{#2}{\Large\bfseries #3}\par
+    #4%
+    \ifx\relax#5\relax\else\par{\footnotesize #5}\fi}}%
+  \endgroup}
+\newcommand{\cifragris}[4]{\cifra{black!8}{black}{#1}{#2}{#3}}
+\newcommand{\cifraacento}[4]{\cifra{blue!10}{blue!55!black}{#1}{#2}{#3}}
+
+% --- Texto de relleno (lorem ipsum) Quitar al llenar el doc ---
+\newcommand{\lorem}{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
+
+\newcommand{\loremb}{Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.}
+
+\newcommand{\loremc}{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.}
+
+\begin{document}
+\thispagestyle{primera}
+
+% --- Título y datos ---
+\noindent{\LARGE\bfseries Título del proyecto\par}
+\smallskip
+\noindent{\large\textcolor{black!60}{Resumen ejecutivo}\par}
+\medskip
+
+\noindent\begingroup\setlength{\fboxsep}{7pt}%
+\colorbox{black!8}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\small\setstretch{1.1}%
+\textcolor{black!60}{Integrantes:} Integrante 1, Integrante 2, Integrante 3\\
+\textcolor{black!60}{Programa:} Proyecto Integrador · Maestría en Inteligencia Artificial Aplicada\\
+\textcolor{black!60}{Asesor:} Nombre del asesor \quad \textcolor{black!60}{Fecha:} Fecha de entrega}}%
+\endgroup\par\medskip
+
+% --- Problema y solución (con citas de ejemplo) ---
+\lorem{} Como muestran \textcite{breiman2001}, lorem ipsum dolor sit amet consectetur adipiscing elit (\cite{hastie2009}), y se implementó con herramientas estándar \parencite{pedregosa2011}.
+
+% --- Cifras de desempeño del modelo ---
+\medskip
+\noindent
+\begin{minipage}[t]{0.235\linewidth}\cifragris{0.71}{Métrica}{}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifragris{+12\,\%}{Mejora}{}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifragris{92\,\%}{Cobertura}{}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifragris{3\,s}{Latencia}{}{}\end{minipage}
+\medskip
+
+% --- Desempeño ---
+\lorem\par
+\loremb
+
+% --- Beneficios cuantificables (mensuales) ---
+\medskip
+\noindent
+\begin{minipage}[t]{0.485\linewidth}\cifragris{$-$40\,h}{Ahorro de tiempo}{horas/mes}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.485\linewidth}\cifragris{$-$\$X}{Costos operativos}{MXN/mes}{}\end{minipage}
+
+\vspace{5pt}
+\noindent
+\begin{minipage}[t]{0.485\linewidth}\cifragris{$-$25\,\%}{Reducción de errores}{\% de reducción/mes}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.485\linewidth}\cifragris{+30\,\%}{Capacidad de atención}{volumen/mes}{}\end{minipage}
+
+\smallskip
+\noindent{\footnotesize\textcolor{black!60}{Cálculo y supuestos en el Anexo~A.}}
+\medskip
+
+\lorem
+
+% --- Beneficios intangibles ---
+\medskip
+\noindent\textbf{Mejora en la toma de decisiones.} \loremc\par
+\smallskip
+\noindent\textbf{Mejora en la calidad.} \loremc\par
+\smallskip
+\noindent\textbf{Facilidad o simplificación del trabajo.} \loremc\par
+\smallskip
+\noindent\textbf{Innovación o diferenciación competitiva.} \loremc\par
+\medskip
+
+% --- Inversión y costos (TCO a 12 meses) ---
+\lorem
+
+\medskip
+\noindent
+\begin{minipage}[t]{0.235\linewidth}\cifragris{\$X}{Desarrollo}{}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifragris{\$X}{Implementación}{}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifragris{\$X}{Operación}{}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifraacento{\$X}{TCO 12 meses}{}{}\end{minipage}
+\medskip
+
+\loremb
+
+% --- Riesgos y mitigación ---
+\medskip
+\noindent
+\begin{tabular}{@{}p{0.46\linewidth}@{\hspace{0.06\linewidth}}p{0.46\linewidth}@{}}
+\toprule
+\textbf{Riesgo} & \textbf{Mitigación}\\
+\midrule
+\loremc & \loremc\\[4pt]
+\loremc & \loremc\\[4pt]
+\loremc & \loremc\\
+\bottomrule
+\end{tabular}
+\medskip
+
+% --- Transferencia y continuidad ---
+\section*{Transferencia y continuidad}
+\lorem\par
+\loremb
+
+\section*{Declaración de uso de inteligencia artificial}
+Se utilizó \textcite{anthropic2026claude} para \textcolor{red}{[indicar la finalidad]}.
+La responsabilidad final sobre el contenido entregado recae en los autores.
+
+% --- Referencias (biblatex + Biber, solo lo citado) ---
+\printbibliography[title={Referencias}]
+
+% --- Anexos ---
+\clearpage
+\section*{Anexo A. Título del anexo}
+\lorem
+
+\end{document}
