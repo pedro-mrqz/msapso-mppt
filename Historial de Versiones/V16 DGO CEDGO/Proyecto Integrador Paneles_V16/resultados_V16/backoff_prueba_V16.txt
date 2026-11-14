@@ -1,0 +1,27 @@
+PRUEBA (escenarios 0-599), b congelado por metodo: MSAPSO completo: 0.02, V7 (parada): 0.02, MLP + CEM: 0, corto + CEM (<=40): 0.02, corto + CEM (principal): 0.02
+
+metodo                     |     b | energia vs MSAPSO (b=0) [IC95 %] | pierde>3pp | p1 | peor | exactitud final | reinicios
+MSAPSO completo            |     0 |   +0.00 [+0.00, +0.00] |     0 % |   +0.0 |   +0.0 |  83.46 | 7.2
+MSAPSO completo            |  0.02 |   +0.14 [-0.12, +0.40] |     5 % |   -8.1 |  -28.3 |  83.56 | 7.2
+V7 (parada)                |     0 |   +2.98 [+2.47, +3.50] |     6 % |   -9.3 |  -28.8 |  88.26 | 13.2
+V7 (parada)                |  0.02 |   +3.06 [+2.55, +3.60] |     7 % |   -8.4 |  -19.5 |  88.53 | 13.1
+MLP + CEM                  |     0 |   +4.35 [+3.52, +5.13] |    16 % |  -27.1 |  -32.5 |  93.22 | 17.5
+corto + CEM (<=40)         |     0 |   +3.34 [+2.68, +4.02] |    12 % |  -20.8 |  -48.8 |  88.56 | 16.2
+corto + CEM (<=40)         |  0.02 |   +4.30 [+3.73, +4.90] |     8 % |  -10.5 |  -21.5 |  90.81 | 16.4
+corto + CEM (principal)    |     0 |   +3.30 [+2.71, +3.88] |     7 % |   -9.8 |  -79.3 |  87.85 | 14.3
+corto + CEM (principal)    |  0.02 |   +3.51 [+2.98, +4.04] |     7 % |   -7.2 |  -20.6 |  89.31 | 14.3
+
+Comparaciones clave (energia, pp, IC95 % pareado):
+  corto + CEM (<=40) (b=0) - MLP + CEM (b=0): -1.01 [-1.77, -0.27]
+  corto + CEM (<=40) (b=0.02) - MLP + CEM (b=0): -0.04 [-0.68, +0.60]
+  corto + CEM (principal) (b=0) - MLP + CEM (b=0): -1.05 [-1.74, -0.36]
+  corto + CEM (principal) (b=0.02) - MLP + CEM (b=0): -0.84 [-1.43, -0.25]
+  V7 (parada) (b=0) - MLP + CEM (b=0): -1.37 [-2.01, -0.74]
+  V7 (parada) (b=0.02) - MLP + CEM (b=0): -1.29 [-1.89, -0.66]
+  MSAPSO completo (b=0) - MLP + CEM (b=0): -4.35 [-5.13, -3.52]
+  MSAPSO completo (b=0.02) - MLP + CEM (b=0): -4.21 [-4.98, -3.43]
+  MLP + CEM con retroceso (b=0) - sin retroceso: +0.00 [+0.00, +0.00]
+  MSAPSO completo: efecto del retroceso b=0.02: +0.14 [-0.12, +0.40]
+  V7 (parada): efecto del retroceso b=0.02: +0.08 [-0.18, +0.35]
+  corto + CEM (<=40): efecto del retroceso b=0.02: +0.97 [+0.56, +1.40]
+  corto + CEM (principal): efecto del retroceso b=0.02: +0.21 [-0.14, +0.62]

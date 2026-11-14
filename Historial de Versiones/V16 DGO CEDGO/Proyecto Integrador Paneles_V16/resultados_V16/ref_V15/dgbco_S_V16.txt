@@ -1,0 +1,1 @@
+1000 curvas estaticas, DGBCO n4_T10_msapso_b0.02: perdida media +2.262 | p95 8.63 | p99 15.94 | max 25.09 | >3 pp: 24.0 %

@@ -1,0 +1,36 @@
+VALIDACION dinamica (600-1199): energia media (%) por configuracion
+config                     | energia | exactitud final | pasa filtro estatico
+dgo_n5_G8_random_b0        |  86.09 |  86.91 | NO
+dgo_n5_G8_random_b0.02     |  86.81 |  86.44 | NO
+dgo_n5_G8_strat_b0         |  85.46 |  84.91 | NO
+dgo_n5_G8_strat_b0.02      |  86.25 |  86.30 | NO
+dgo_n8_G5_random_b0        |  86.19 |  87.17 | NO
+dgo_n8_G5_random_b0.02     |  87.12 |  87.96 | NO
+dgo_n8_G5_strat_b0         |  85.51 |  84.84 | NO
+dgo_n8_G5_strat_b0.02      |  86.43 |  85.87 | NO
+dgo_n7_G10_random_b0       |  83.74 |  84.58 | NO
+dgo_n7_G10_random_b0.02    |  84.33 |  86.20 | NO
+dgo_n7_G10_strat_b0        |  83.16 |  83.67 | NO
+dgo_n7_G10_strat_b0.02     |  83.64 |  85.53 | NO
+dgo_n10_G7_random_b0       |  83.02 |  85.68 | NO
+dgo_n10_G7_random_b0.02    |  83.94 |  85.22 | NO
+dgo_n10_G7_strat_b0        |  82.75 |  82.26 | NO
+dgo_n10_G7_strat_b0.02     |  84.19 |  85.02 | NO
+cedgo_n5_G8_random_b0      |  86.50 |  87.01 | NO
+cedgo_n5_G8_random_b0.02   |  86.78 |  87.43 | NO
+cedgo_n5_G8_strat_b0       |  85.77 |  85.40 | NO
+cedgo_n5_G8_strat_b0.02    |  86.63 |  86.73 | NO
+cedgo_n8_G5_random_b0      |  86.53 |  85.89 | NO
+cedgo_n8_G5_random_b0.02   |  87.45 |  88.43 | NO
+cedgo_n8_G5_strat_b0       |  86.30 |  86.09 | NO
+cedgo_n8_G5_strat_b0.02    |  87.32 |  86.55 | NO
+cedgo_n7_G10_random_b0     |  84.45 |  84.21 | NO
+cedgo_n7_G10_random_b0.02  |  85.38 |  85.09 | NO
+cedgo_n7_G10_strat_b0      |  83.71 |  84.34 | NO
+cedgo_n7_G10_strat_b0.02   |  84.53 |  85.02 | NO
+cedgo_n10_G7_random_b0     |  84.76 |  84.49 | NO
+cedgo_n10_G7_random_b0.02  |  85.42 |  86.47 | NO
+cedgo_n10_G7_strat_b0      |  84.37 |  83.61 | NO
+cedgo_n10_G7_strat_b0.02   |  84.88 |  84.38 | NO
+
+Elegida: cedgo_n8_G5_random_b0.02  (NINGUNA pasa el filtro estatico: falla el criterio d; se reporta la de mayor energia)

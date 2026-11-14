@@ -1,0 +1,1 @@
+1000 curvas estaticas, DGO cedgo_n8_G5_random_b0.02: perdida media +3.363 | p95 15.18 | p99 28.86 | max 59.16 | >3 pp: 27.6 %

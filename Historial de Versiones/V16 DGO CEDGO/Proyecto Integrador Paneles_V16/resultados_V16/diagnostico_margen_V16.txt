@@ -1,0 +1,5 @@
+metodo                       | desplaz. medio | mediana | % a la izquierda del pico (< -0.01) | % a la derecha (> +0.01) | |desplaz.| medio
+MSAPSO completo              |        +0.0077 | -0.0000 |                               0.8 |                       1.9 | 0.0102
+V7                           |        +0.0077 | +0.0007 |                               0.8 |                       1.9 | 0.0126
+MLP + CEM                    |        +0.0243 | -0.0003 |                              11.2 |                      10.9 | 0.0352
+MSAPSO corto + CEM (<=40)    |        +0.0204 | -0.0002 |                               2.2 |                       5.5 | 0.0257

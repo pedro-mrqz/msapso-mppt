@@ -1,0 +1,33 @@
+PRUEBA 0-599 | DGBCO congelado: n4_T10_msapso_b0.02
+  DGBCO - MSAPSO completo: +3.81 [+3.14, +4.49]
+  DGBCO - V7:             +0.83 [+0.37, +1.27]
+  DGBCO - candidata V14:  -0.50 [-1.00, -0.01]
+  pierde>3pp vs MSAPSO: 14 % | peor: -21.1 | exactitud final media 91.95
+
+  por panel (DGBCO - V7):
+    36c-3s     n= 127 | +0.51 [-0.67, +1.67] ~
+    60c-11A    n= 115 | +0.56 [-0.48, +1.62] ~
+    72c-6s     n= 118 | +0.79 [+0.03, +1.60] V
+    96c-6.5A   n= 131 | +1.93 [+0.97, +2.92] V
+    base       n= 109 | +0.20 [-0.80, +1.26] ~
+
+  por wait (DGBCO - V7):
+    0.0005     n= 126 | -0.21 [-1.53, +1.20] ~
+    0.001      n= 108 | +0.79 [-0.02, +1.59] ~
+    0.002      n= 132 | +0.89 [-0.13, +1.89] ~
+    0.005      n= 234 | +1.37 [+0.78, +1.98] V
+
+  por regimen (DGBCO - V7):
+    alto       n= 118 | +2.46 [+1.45, +3.57] V
+    estable    n=  34 | -2.33 [-3.91, -1.04] D
+    flicker    n= 117 | +0.22 [-0.72, +1.19] ~
+    moderado   n=  86 | +1.64 [+0.48, +2.89] V
+    muy alto   n=  63 | +4.57 [+3.37, +5.77] V
+    unico      n= 182 | -0.93 [-1.64, -0.12] D
+
+  por ruido (DGBCO - V7):
+    0.0        n= 305 | +1.68 [+1.01, +2.36] V
+    1.0        n= 145 | +0.83 [-0.10, +1.78] ~
+    2.0        n= 150 | -0.91 [-1.57, -0.25] D
+
+  celdas n>=30: ventaja 7, debilidad 3, indeterminadas 8
