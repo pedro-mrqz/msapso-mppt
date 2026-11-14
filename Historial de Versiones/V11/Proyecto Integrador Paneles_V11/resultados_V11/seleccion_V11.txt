@@ -1,0 +1,20 @@
+MSAPSO completo: 175 med | final 99.894 || V7: 70 med | final 99.837
+MLP datos=8000 capas=(64, 64): 144 configuraciones evaluadas (5 s)
+MLP datos=8000 capas=(128, 128): 144 configuraciones evaluadas (6 s)
+MLP datos=30000 capas=(64, 64): 144 configuraciones evaluadas (10 s)
+MLP datos=30000 capas=(128, 128): 144 configuraciones evaluadas (15 s)
+solo MLP (8000, (64, 64)): 8 med | final 95.626 | <98 %: 51.5 %
+solo MLP (8000, (128, 128)): 8 med | final 95.715 | <98 %: 51.0 %
+solo MLP (30000, (64, 64)): 8 med | final 96.098 | <98 %: 47.5 %
+solo MLP (30000, (128, 128)): 8 med | final 96.002 | <98 %: 47.0 %
+
+mlp_cem: criterio «mayor exactitud con <=70 med.» -> [30000, [64, 64]] {'modo': 'mlp', 'n': 7, 'k': 2, 'alpha': 0.7, 'sigma0': 0.1, 'sigma_min': 0.002, 'delta': 0.005, 't_min': 2, 't_max': 12} | 36.6 med | final 99.330 | <98 %: 10.0 %
+
+sin_modelo: criterio «mayor exactitud con <=70 med.» -> - {'modo': 'sin_modelo', 'n': 7, 'k': 2, 'alpha': 0.7, 'sigma0': 0.15, 'sigma_min': 0.002, 'delta': 0.005, 't_min': 2, 't_max': 12} | 39.4 med | final 98.775 | <98 %: 13.0 %
+
+5 mejores MLP+CEM por exactitud (cualquier presupuesto):
+  [30000, [64, 64]] s0=0.1 n=7 k=2 a=0.7 d=0.005 | 36.6 med | 99.330 | <98 %: 10.0 %
+  [30000, [64, 64]] s0=0.1 n=7 k=2 a=0.7 d=0.01 | 31.3 med | 99.320 | <98 %: 10.0 %
+  [8000, [64, 64]] s0=0.15 n=7 k=2 a=0.7 d=0.005 | 41.0 med | 99.312 | <98 %: 9.5 %
+  [8000, [128, 128]] s0=0.15 n=7 k=1 a=0.7 d=0.005 | 28.0 med | 99.288 | <98 %: 8.5 %
+  [8000, [128, 128]] s0=0.15 n=7 k=1 a=0.7 d=0.01 | 28.0 med | 99.288 | <98 %: 8.5 %

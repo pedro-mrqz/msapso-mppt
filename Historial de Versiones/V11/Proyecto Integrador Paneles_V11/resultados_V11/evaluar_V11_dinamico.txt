@@ -1,0 +1,25 @@
+OPERACION DINAMICA: 600 escenarios (primeros de la campana V7). Diferencia de energia en pp (pareada).
+
+== MLP + CEM - MSAPSO completo == media +4.35 [+3.52, +5.14] | mediana +2.55 | p1/p5 -27.1/-8.8 | peor -32.5 | pierde(<-3) 16 %
+   unico      | 182 | -0.02 [-1.36, +1.36]
+   estable    |  34 | -1.92 [-4.65, +0.73]
+   moderado   |  86 | +5.61 [+3.34, +8.00]
+   alto       | 118 | +9.56 [+8.06, +11.13]
+   muy alto   |  63 | +9.66 [+7.58, +11.75]
+   flicker    | 117 | +3.92 [+2.07, +5.79]
+
+== MLP + CEM - V7 principal == media +1.37 [+0.74, +2.00] | mediana +0.73 | p1/p5 -24.2/-9.0 | peor -31.3 | pierde(<-3) 18 %
+
+== sin modelo (CEM desde el mejor punto) - MSAPSO completo == media -0.48 [-1.46, +0.48] | mediana +0.73 | p1/p5 -38.3/-19.7 | peor -84.9 | pierde(<-3) 30 %
+   unico      | 182 | -3.71 [-5.52, -2.01]
+   estable    |  34 | -4.61 [-11.30, +0.86]
+   moderado   |  86 | +0.96 [-1.32, +3.50]
+   alto       | 118 | +2.92 [+1.03, +4.84]
+   muy alto   |  63 | +3.65 [+1.72, +5.61]
+   flicker    | 117 | -0.98 [-3.28, +1.13]
+
+== sin modelo (CEM desde el mejor punto) - V7 principal == media -3.46 [-4.36, -2.59] | mediana -1.20 | p1/p5 -38.9/-22.4 | peor -84.9 | pierde(<-3) 41 %
+
+Aporte del MLP (MLP+CEM - sin modelo): +4.83 [+4.03, +5.71] pp
+Exactitud al final: MSAPSO 83.46 | V7 88.26 | MLP+CEM 93.22 | sin modelo 86.57
+Reinicios: MSAPSO 7.2 | V7 13.2 | MLP+CEM 17.5 | sin modelo 17.7
