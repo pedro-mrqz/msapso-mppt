@@ -1,0 +1,10 @@
+VALIDACION dinamica (600-1199): energia media (%) del pool (p99 <= 5, falla el criterio d; 6 configuraciones)
+config                                       | energia | exactitud final | p99 estatico
+fixed_N10_s0.03_tau0.15_n4_T4_b0             |  88.44 |  88.12 |  4.41
+fixed_N7_s0.05_tau0.15_n4_T4_b0              |  88.37 |  87.43 |  4.77
+fixed_N7_s0.05_tau0.25_n4_T4_b0              |  88.37 |  87.43 |  4.77
+fixed_N10_s0.05_tau0.25_n4_T4_b0             |  88.29 |  88.23 |  4.03
+fixed_N10_s0.05_tau0.15_n4_T4_b0             |  88.24 |  88.58 |  3.69
+fixed_N10_s0.03_tau0.25_n4_T4_b0             |  88.19 |  87.57 |  4.41
+
+Elegida: fixed_N10_s0.03_tau0.15_n4_T4_b0  (ninguna con p99 <= 3: falla el criterio d)

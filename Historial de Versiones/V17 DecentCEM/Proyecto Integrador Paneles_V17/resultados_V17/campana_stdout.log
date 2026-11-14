@@ -1,0 +1,79 @@
+VALIDACION dinamica (600-1199): energia media (%) del pool (p99 <= 5, falla el criterio d; 6 configuraciones)
+config                                       | energia | exactitud final | p99 estatico
+fixed_N10_s0.03_tau0.15_n4_T4_b0             |  88.44 |  88.12 |  4.41
+fixed_N7_s0.05_tau0.15_n4_T4_b0              |  88.37 |  87.43 |  4.77
+fixed_N7_s0.05_tau0.25_n4_T4_b0              |  88.37 |  87.43 |  4.77
+fixed_N10_s0.05_tau0.25_n4_T4_b0             |  88.29 |  88.23 |  4.03
+fixed_N10_s0.05_tau0.15_n4_T4_b0             |  88.24 |  88.58 |  3.69
+fixed_N10_s0.03_tau0.25_n4_T4_b0             |  88.19 |  87.57 |  4.41
+
+Elegida: fixed_N10_s0.03_tau0.15_n4_T4_b0  (ninguna con p99 <= 3: falla el criterio d)
+PRUEBA 0-599 | DecentCEM congelado: fixed_N10_s0.03_tau0.15_n4_T4_b0
+  V17 - MSAPSO completo:       +3.41 [+2.66, +4.15]
+  V17 - V7:                    +0.43 [-0.14, +0.99]
+  V17 - V7 + retroceso (plan B): +0.35 [-0.24, +0.90]
+  V17 - candidata V14:         -0.90 [-1.47, -0.34]
+  pierde>3pp vs MSAPSO: 14 % | peor: -43.4 | exactitud final media 90.08
+
+  por panel (V17 - V7):
+    36c-3s     n= 127 | +1.42 [+0.15, +2.68] V
+    60c-11A    n= 115 | -0.58 [-2.06, +0.73] ~
+    72c-6s     n= 118 | -0.28 [-1.59, +0.87] ~
+    96c-6.5A   n= 131 | +1.17 [+0.03, +2.26] V
+    base       n= 109 | +0.21 [-1.07, +1.45] ~
+
+  por wait (V17 - V7):
+    0.0005     n= 126 | -3.69 [-5.42, -2.09] D
+    0.001      n= 108 | -0.81 [-2.06, +0.53] ~
+    0.002      n= 132 | +1.24 [+0.35, +2.14] V
+    0.005      n= 234 | +2.76 [+2.17, +3.31] V
+
+  por regimen (V17 - V7):
+    alto       n= 118 | +2.14 [+1.04, +3.20] V
+    estable    n=  34 | -0.61 [-3.17, +2.29] ~
+    flicker    n= 117 | +0.24 [-1.00, +1.30] ~
+    moderado   n=  86 | +0.32 [-1.08, +1.74] ~
+    muy alto   n=  63 | +2.72 [+1.39, +4.05] V
+    unico      n= 182 | -1.11 [-2.22, -0.03] D
+
+  por ruido (V17 - V7):
+    0.0        n= 305 | +0.63 [-0.27, +1.49] ~
+    1.0        n= 145 | +0.74 [-0.24, +1.69] ~
+    2.0        n= 150 | -0.28 [-1.33, +0.66] ~
+
+  celdas n>=30: ventaja 6, debilidad 2, indeterminadas 10
+CONFIRMACION 1200-2399 | DecentCEM congelado: fixed_N10_s0.03_tau0.15_n4_T4_b0
+  V17 - MSAPSO completo:       +3.13 [+2.59, +3.65]
+  V17 - V7:                    +0.35 [-0.11, +0.79]
+  V17 - V7 + retroceso (plan B): -0.01 [-0.46, +0.43]
+  V17 - candidata V14:         -1.26 [-1.68, -0.82]
+  pierde>3pp vs MSAPSO: 17 % | peor: -59.9 | exactitud final media 89.11
+
+  por panel (V17 - V7):
+    36c-3s     n= 260 | +0.25 [-0.69, +1.17] ~
+    60c-11A    n= 233 | +0.71 [-0.38, +1.76] ~
+    72c-6s     n= 212 | +0.17 [-0.81, +1.21] ~
+    96c-6.5A   n= 251 | +1.09 [+0.21, +2.01] V
+    base       n= 244 | -0.50 [-1.64, +0.62] ~
+
+  por wait (V17 - V7):
+    0.0005     n= 240 | -5.17 [-6.56, -3.92] D
+    0.001      n= 250 | -0.25 [-1.19, +0.68] ~
+    0.002      n= 248 | +0.60 [-0.15, +1.37] ~
+    0.005      n= 462 | +3.40 [+2.86, +3.96] V
+
+  por regimen (V17 - V7):
+    alto       n= 236 | +1.13 [+0.25, +2.02] V
+    estable    n=  46 | +2.17 [-0.61, +5.53] ~
+    flicker    n= 273 | -0.74 [-1.89, +0.26] ~
+    moderado   n= 183 | -0.01 [-1.14, +1.17] ~
+    muy alto   n= 126 | +2.53 [+1.52, +3.51] V
+    unico      n= 336 | -0.19 [-1.03, +0.68] ~
+
+  por ruido (V17 - V7):
+    0.0        n= 611 | +0.25 [-0.44, +0.94] ~
+    1.0        n= 315 | +0.68 [-0.13, +1.52] ~
+    2.0        n= 274 | +0.17 [-0.71, +1.03] ~
+
+  celdas n>=30: ventaja 4, debilidad 1, indeterminadas 13
+1000 curvas estaticas, V17 fixed_N10_s0.03_tau0.15_n4_T4_b0: mediciones 40.2 | perdida media +0.245 | p95 1.65 | p99 5.34 | max 7.64 | >3 pp: 2.3 %
