@@ -109,10 +109,9 @@ Siguiendo a \textcite{korolov2022}, medimos el beneficio en el desempeño del co
 
 \medskip
 \noindent
-\begin{minipage}[t]{0.235\linewidth}\cifragris{+0.22\,kWh}{Productividad}{por kWp al mes, como máximo}{}\end{minipage}\hfill
-\begin{minipage}[t]{0.235\linewidth}\cifragris{$-$18.9\,min}{Ahorro de tiempo}{de búsqueda al mes}{}\end{minipage}\hfill
-\begin{minipage}[t]{0.235\linewidth}\cifragris{+150\,\%}{Capacidad}{226\,800 mediciones/mes}{}\end{minipage}\hfill
-\begin{minipage}[t]{0.235\linewidth}\cifragris{$-$56\,\%}{Menos errores}{8 vs.\ 18\,\% del MLP + CEM}{}\end{minipage}
+\begin{minipage}[t]{0.32\linewidth}\cifragris{+0.22\,kWh}{Productividad}{por kWp al mes, como máximo}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}\cifragris{$-$18.9\,min}{Ahorro de tiempo}{de búsqueda al mes}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}\cifragris{+150\,\%}{Capacidad}{226\,800 mediciones/mes}{}\end{minipage}
 
 \medskip
 
@@ -129,7 +128,7 @@ Llevar la V7 a un equipo real requiere desarrollo (validarla contra la implement
 \begin{minipage}[t]{0.235\linewidth}\cifraacento{\$246\,180}{TCO 12 meses}{MXN}{}\end{minipage}
 \medskip
 
-\textbf{Sugerimos al asesor y al Tecnológico de Monterrey considerar la inversión en dos etapas.} La Etapa~1 (validación, firmware y banco de pruebas; 168\,000\,MXN) podría iniciarse en el corto plazo. La Etapa~2 (piloto, operación y contingencia; 78\,180\,MXN) convendría liberarla una vez que el banco de pruebas confirme tres condiciones: una ganancia de al menos 2\pp\ de energía en sombra cambiante, una cola con p99 $\le 3$\pp, y una pérdida mayor de 3\pp\ en no más del 10\,\% de los escenarios. Una vez validada, cada controlador adicional cuesta casi nada, porque la mejora se distribuye como firmware.
+\textbf{Sugerimos al asesor y al Tecnológico de Monterrey considerar la inversión en dos fases.} La Fase~1 (validación, firmware y banco de pruebas; 168\,000\,MXN) podría iniciarse en el corto plazo. La Fase~2 (piloto, operación y contingencia; 78\,180\,MXN) convendría liberarla una vez que el banco de pruebas confirme tres condiciones: una ganancia de al menos 2\pp\ de energía en sombra cambiante, una cola con p99 $\le 3$\pp, y una pérdida mayor de 3\pp\ en no más del 10\,\% de los escenarios. Una vez validada, cada controlador adicional cuesta casi nada, porque la mejora se distribuye como firmware.
 
 % --- Riesgos y mitigación ---
 \begin{table}[h]
@@ -140,7 +139,7 @@ Llevar la V7 a un equipo real requiere desarrollo (validarla contra la implement
 \toprule
 \textbf{Riesgo} & \textbf{Mitigación}\\
 \midrule
-Resultados solo de simulación. & La Etapa~1 valida contra la implementación del autor.\\
+Resultados solo de simulación. & La Fase~1 valida contra la implementación del autor.\\
 Sin ganancia en sombra estable ($-1.2$\pp). & Desplegar donde la sombra cambia con frecuencia.\\
 En el 8\,\% de los escenarios pierde más de 3\pp. & Alertas sobre la cola; MSAPSO como respaldo.\\
 Con ruido alto (2\,W) la ventaja baja a +1.59\pp. & Especificar sensores y alertar si el ruido excede lo validado.\\
@@ -209,28 +208,28 @@ Supuestos: tarifa de 450 MXN por hora de ingeniería especializada; el laborator
 \centering\small\setstretch{1.05}
 \caption{Desglose del TCO por servicio (MXN).}
 \label{tab:tco}
-\begin{tabularx}{\linewidth}{@{}lYp{3.4cm}r@{}}
+\begin{tabularx}{\linewidth}{@{}lcYp{3.5cm}r@{}}
 \toprule
-Etapa & Servicio & Base & Costo\\
+Etapa & Fase & Servicio & Base & Costo\\
 \midrule
-Desarrollo & Validación con la implementación del autor y datos medidos & 60 h $\times$ 450 & 27\,000\\
- & Programación de la V7 en el firmware del controlador & 100 h $\times$ 450 & 45\,000\\
- & Pruebas unitarias y verificación de tiempos de ejecución & 40 h $\times$ 450 & 18\,000\\
+Desarrollo & 1 & Validación con la implementación del autor y datos medidos & 60 h $\times$ 450 & 27\,000\\
+ & 1 & Programación de la V7 en el firmware del controlador & 100 h $\times$ 450 & 45\,000\\
+ & 1 & Pruebas unitarias y verificación de tiempos de ejecución & 40 h $\times$ 450 & 18\,000\\
 \addlinespace
-Implementación & Prototipo: tarjeta de control, convertidor Boost y sensores & Compra única & 18\,000\\
- & Uso del emulador de arreglo FV (banco HIL) & 2 meses $\times$ 12\,000 & 24\,000\\
- & Ejecución de las pruebas HIL con los criterios de aceptación & 80 h $\times$ 450 & 36\,000\\
- & Instalación y puesta en marcha del piloto & 40 h $\times$ 450 + 6\,000 viáticos & 24\,000\\
+Implementación & 1 & Prototipo: tarjeta de control, convertidor Boost y sensores & Compra única & 18\,000\\
+ & 1 & Uso del emulador de arreglo FV (banco HIL) & 2 meses $\times$ 12\,000 & 24\,000\\
+ & 1 & Ejecución de las pruebas HIL con los criterios de aceptación & 80 h $\times$ 450 & 36\,000\\
+ & 2 & Instalación y puesta en marcha del piloto & 40 h $\times$ 450 + viáticos 6\,000 & 24\,000\\
 \addlinespace
-Operación & Telemetría y monitoreo en la nube (AWS IoT o Azure IoT Hub) & 6 meses $\times$ 500 & 3\,000\\
- & Almacenamiento de registros y tablero & 6 meses $\times$ 300 & 1\,800\\
- & Monitoreo, atención de alertas y mantenimiento & 6 meses $\times$ 10 h $\times$ 450 & 27\,000\\
+Operación & 2 & Telemetría y monitoreo en la nube (AWS IoT o Azure IoT Hub) & 6 meses $\times$ 500 & 3\,000\\
+ & 2 & Almacenamiento de registros y tablero & 6 meses $\times$ 300 & 1\,800\\
+ & 2 & Monitoreo, atención de alertas y mantenimiento & 6 meses $\times$ 10 h $\times$ 450 & 27\,000\\
 \addlinespace
-Contingencia & 10\,\% sobre el subtotal (223\,800) & & 22\,380\\
+Contingencia & 2 & 10\,\% sobre el subtotal (223\,800) & & 22\,380\\
 \midrule
-\multicolumn{3}{@{}l}{\textbf{TCO 12 meses}} & \textbf{246\,180}\\
-\multicolumn{3}{@{}l}{\quad Etapa 1: desarrollo, prototipo, banco HIL y pruebas} & 168\,000\\
-\multicolumn{3}{@{}l}{\quad Etapa 2: piloto, operación y contingencia} & 78\,180\\
+\multicolumn{4}{@{}l}{\textbf{TCO 12 meses}} & \textbf{246\,180}\\
+\multicolumn{4}{@{}l}{\quad Fase 1: desarrollo, prototipo, banco HIL y pruebas} & 168\,000\\
+\multicolumn{4}{@{}l}{\quad Fase 2: piloto, operación y contingencia} & 78\,180\\
 \bottomrule
 \end{tabularx}
 \end{table}
