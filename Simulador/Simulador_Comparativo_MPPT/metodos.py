@@ -26,6 +26,13 @@ def _mlp():
     if _MODEL is None: _MODEL = pickle.load(open(os.path.join(ROOT, "modelos", "mlp_elegido.pkl"), "rb"))
     return _MODEL
 
+_MODEL_P = None
+def _mlp_pares():
+    """MLP con pares (corriente, potencia): modelos/mlp_pares.pkl. Se crea con  python entrenar_mlp.py --pares"""
+    global _MODEL_P
+    if _MODEL_P is None: _MODEL_P = pickle.load(open(os.path.join(ROOT, "modelos", "mlp_pares.pkl"), "rb"))
+    return _MODEL_P
+
 METODOS = {
     "msapso":  ("MSAPSO del paper",           lambda: make_msapso_early(Rule("none")), 0.0),
     "v7":      ("V7 (parada anticipada)",     lambda: make_msapso_early(Rule("disp", delta=0.02, t_min=3)), 0.0),
@@ -36,5 +43,8 @@ METODOS = {
     "dgbco":   ("DGBCO (V15)",                lambda: make_dgbco(CfgB(n=4, T=10, init="msapso")), 0.02),
     "cedgo":   ("CEDGO (V16)",                lambda: make_dgo(CfgD(variant="cedgo", n=8, G=5, init="random")), 0.02),
     "decent":  ("DecentCEM (V17)",            lambda: make_decent(CfgC(kind="sweep", sigma_mode="fixed", N=10, sigma0=0.03, tau=0.15, n=4, T=4)), 0.0),
+    # --- revision del profesor (nov. 2026): variantes NUEVAS; los originales de arriba no cambian ---
+    "mlp_pares":  ("MLP + CEM con pares (I, P)",  lambda: make_mlp_cem(_mlp_pares(), CfgL(modo="pares", n=7, k=2, alpha=0.7, sigma0=0.1, sigma_min=0.002, delta=0.005, t_min=2, t_max=12)), 0.0),
+    "decent_alc": ("DecentCEM · barrido en zona alcanzable (oráculo)", lambda: make_decent(CfgC(kind="sweep", sigma_mode="fixed", N=10, sigma0=0.03, tau=0.15, n=4, T=4, borde=True)), 0.0),
     # "mi_metodo": ("Mi método",               lambda: make_mi_metodo(), 0.0),              # <- ejemplo de entrada nueva
 }

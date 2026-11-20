@@ -14,7 +14,7 @@ import numpy as np
 from dataclasses import dataclass
 from pvsim.msapso import Swarm
 from pvsim.array_model import SyntheticPVCurve, random_shading_mix
-from pvsim.static_plant import StaticPlant
+from pvsim.static_plant import StaticPlant, set_tag
 from pvsim.medicion import ISC_NOM, metrics_from_plant, P_NOM
 from baselines import scenarios, paper_beta
 
@@ -44,7 +44,8 @@ def make_msapso_early(rule: Rule, isc="real", compress_T=None):
     def f(plant, curve, rng):
         sw = Swarm(first_pass="ascending"); sw.restart(curve.Isc if isc == "real" else ISC_NOM, first=True)
         tmax = compress_T or T_MAX; hist = []
-        for _ in range(tmax):
+        for p in range(tmax):
+            set_tag(plant, p)                                  # pasada p (0 = posiciones iniciales)
             sw.sweep(plant, 1.0)
             hist.append(sw.Pbest); disp = sw.dispersion()
             sw.update(paper_beta(sw.t, t_max=tmax))

@@ -15,6 +15,13 @@ cada medicion (cuantas se gastaron = la metrica principal).
 """
 import numpy as np
 
+# Etiqueta de poblacion por medicion: (poblacion, grupo, rol). Solo se usa para DIBUJAR en el visor; no cambia ningun calculo ni el orden de los numeros aleatorios.
+#   poblacion: 0 = muestreo inicial, 1, 2, ... = pasada / iteracion / generacion siguiente      grupo: worker (DecentCEM) o grupo (CEDGO); 255 = no aplica
+#   rol: 0 = normal, 1 = cabeza de grupo (CEDGO), 2 = reemplazo por tiempo de vida (CEDGO)
+NO_TAG = (255, 255, 0)
+def set_tag(planta, pob, grupo=255, rol=0):
+    planta.tag = (int(pob), int(grupo), int(rol))
+
 
 class StaticPlant:
     def __init__(self, curve, noise_w=0.0, rng=None):
@@ -57,7 +64,9 @@ class DynamicPlantLogged:
         self.noise_w = float(noise_w)
         self.rng = rng if rng is not None else np.random.default_rng(0)
         self.schedule = dict(schedule or {})
+        self.tag = NO_TAG                                   # etiqueta de poblacion (la fija el metodo antes de medir; solo para el visor)
         self.log_I, self.log_Ptrue, self.log_Pmeas, self.log_E, self.log_Ipv = [], [], [], [], []
+        self.log_tag = []
 
     @property
     def Ipv(self):
@@ -74,6 +83,7 @@ class DynamicPlantLogged:
         P, E = self.plant.run(self.wait, float(I_ref))
         Pm = P + (self.rng.normal(0.0, self.noise_w) if self.noise_w > 0 else 0.0)
         self.log_I.append(float(I_ref)); self.log_Ptrue.append(float(P)); self.log_Pmeas.append(float(Pm)); self.log_E.append(float(E)); self.log_Ipv.append(float(self.plant.Ipv))
+        self.log_tag.append(self.tag)
         return Pm, E
 
     def reset_log(self):

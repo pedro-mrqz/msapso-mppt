@@ -3,11 +3,11 @@
 Proyecto Integrador · Maestría en Inteligencia Artificial Aplicada · Tecnológico de Monterrey
 Pregunta del proyecto: ¿se puede mejorar el **MSAPSO** del paper (7 partículas, 175 mediciones por búsqueda) en energía entregada, sin empeorar su exactitud ni su cola de riesgo?
 
-Este repositorio contiene el **simulador interactivo** con el que se comparan 9 métodos (MSAPSO, V7, V7 + retroceso, CEM puro, MLP + CEM, candidata V14, DGBCO, CEDGO y DecentCEM) y todo lo necesario para **añadir tus propios métodos, escenarios y cambios al visor**.
+Este repositorio contiene el **simulador interactivo** con el que se comparan 11 métodos (MSAPSO, V7, V7 + retroceso, CEM puro, MLP + CEM, candidata V14, DGBCO, CEDGO, DecentCEM y, desde la revisión del profesor, MLP + CEM con pares y DecentCEM en zona alcanzable) y todo lo necesario para **añadir tus propios métodos, escenarios y cambios al visor**.
 
 ## 1. Solo quiero jugar con él (sin instalar nada)
 
-Abre **`simulador.html`** con doble clic (Chrome, Edge, Safari 16.4+ o Firefox 113+). Es un solo archivo de ~10 MB, funciona sin internet.
+Abre **`simulador.html`** con doble clic (Chrome, Edge, Safari 16.4+ o Firefox 113+). Es un solo archivo de ~16 MB, funciona sin internet.
 Elige dos métodos (uno a cada lado), un escenario, el tiempo de espera y el ruido, y pulsa **Iniciar**. El botón **ⓘ** explica cada método; la pestaña **Resultados** trae las cifras de las campañas.
 
 > Lo que ves son **corridas reales** del simulador dinámico (convertidor Boost + control Super-Twisting), grabadas con el mismo código que está en este repositorio. El navegador solo las reproduce.
@@ -44,6 +44,9 @@ Probado con Python 3.14; debería funcionar con 3.10 o superior. Si `pickle` no 
 2. Prueba una V7 con otro umbral de parada o con retroceso de 4 %.
 3. Combina la V7 con la verificación de cola que propone el artículo (un barrido de verificación cuando el enjambre no converge).
 4. Añade un escenario donde un método se luzca y otro falle, y comparte el índice.
+
+## Revisión del profesor (nov. 2026)
+Poblaciones por color, corriente pedida frente a medida, zona V/I > 12 Ω, selector de tramo y dos variantes nuevas (`mlp_pares`, `decent_alc`). Resultados, hallazgos sobre la evaluación (cola estática sin el límite de la carga, `P_ceiling` subestimado, reproducibilidad entre plataformas) y cómo reproducirlo: [docs/revision_profesor.md](docs/revision_profesor.md). Cola estática con el borde de 12 Ω: `python cola_con_borde.py`.
 
 ## 3. Mapa del repositorio
 
