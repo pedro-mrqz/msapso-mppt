@@ -9,13 +9,14 @@ USO:
                                             agrega el escenario 1234 (cualquier indice 0-2399) al catalogo y lo graba con todos los metodos
 Cada escenario se graba con tiempo de espera {5, 2, 1, 0.5} ms x ruido {0, 1, 2} W. Mismo escenario y misma semilla para todos los metodos.
 El catalogo vive en catalogo.json (id, nombre, texto); editalo para renombrar o quitar escenarios y vuelve a correr grabar.py.
-Escenarios especiales: id "trans" = transiciones de sombra (caso real 1 -> sintetico 2 -> sintetico 5 -> caso real 3 -> sintetico 10 -> caso real 4).
+Escenarios especiales: ids "caso1" ... "caso4" = cada caso del manuscrito con sombra fija (600 ventanas); id "trans" = transiciones de sombra (caso real 1 -> sintetico 2 -> sintetico 5 -> caso real 3 -> sintetico 10 -> caso real 4).
 """
 import os, sys, json, zlib, base64, argparse
 ROOT = os.path.dirname(os.path.abspath(__file__)); os.chdir(ROOT); sys.path.insert(0, ROOT)
 from multiprocessing import Pool
 import numpy as np
 from entorno import make_scenario, DynamicPlantLogged
+from pvsim.static_plant import NO_TAG
 from algoritmos.msapso_early import SyntheticPVCurve, random_shading_mix
 from baselines import scenarios
 from metodos import METODOS
@@ -28,7 +29,7 @@ def run_trace(search_fn, curves, bounds, wait, total, seed, noise_w, backoff):
     sched = {b: c for b, c in zip(bounds, curves) if b > 0}
     pl = DynamicPlantLogged(curves[0], wait, noise_w=noise_w, rng=np.random.default_rng(seed), schedule=sched); rng = np.random.default_rng(seed + 1); phase = []
     while len(pl.log_E) < total:
-        n0 = len(pl.log_E); search_fn(pl, pl.curve, rng); n1 = len(pl.log_E); phase += [0] * (n1 - n0)
+        n0 = len(pl.log_E); pl.tag = NO_TAG; search_fn(pl, pl.curve, rng); pl.tag = NO_TAG; n1 = len(pl.log_E); phase += [0] * (n1 - n0)
         j = n0 + int(np.argmax(pl.log_Pmeas[n0:n1])); I_sel = pl.log_Ipv[j] * (1.0 - backoff)
         Pb, _ = pl.run(wait, I_sel); phase.append(1)
         for _ in range(SETTLE_MAX):
@@ -39,11 +40,15 @@ def run_trace(search_fn, curves, bounds, wait, total, seed, noise_w, backoff):
             if abs(Pb - Pm) >= THRESH: phase[-1] = 2; break
     E = np.array(pl.log_E[:total]); ref = 0.0; edges = list(bounds) + [total]
     for c, a, b in zip(curves, edges[:-1], edges[1:]): ref += c.P_ceiling * wait * (b - a)
-    return 100 * E.sum() / ref, dict(Ipv=np.array(pl.log_Ipv[:total]), P=np.array(pl.log_Ptrue[:total]), E=E, ph=np.array(phase[:total], dtype=np.uint8))
+    tg = np.array(pl.log_tag[:total], dtype=np.uint8).reshape(-1, 3)
+    return 100 * E.sum() / ref, dict(Ipv=np.array(pl.log_Ipv[:total]), P=np.array(pl.log_Ptrue[:total]), E=E, ph=np.array(phase[:total], dtype=np.uint8),
+                                     Iref=np.array(pl.log_I[:total]), pob=tg[:, 0].copy(), grp=tg[:, 1].copy(), rol=tg[:, 2].copy())
 
 def enc(tr, wait):
     b = np.concatenate([np.clip(np.round(tr["Ipv"] * 4000), 0, 65535).astype("<u2").view(np.uint8), np.clip(np.round(tr["P"] * 50), 0, 65535).astype("<u2").view(np.uint8),
-                        np.clip(np.round(tr["E"] / wait * 100), 0, 65535).astype("<u2").view(np.uint8), tr["ph"]])
+                        np.clip(np.round(tr["E"] / wait * 100), 0, 65535).astype("<u2").view(np.uint8), tr["ph"],
+                        # bloques añadidos en la revision del profesor: corriente PEDIDA (A·4000) y etiqueta de poblacion (poblacion, grupo/worker, rol)
+                        np.clip(np.round(tr["Iref"] * 4000), 0, 65535).astype("<u2").view(np.uint8), tr["pob"], tr["grp"], tr["rol"]])
     return base64.b64encode(zlib.compress(b.tobytes(), 9)).decode()
 
 def pack_curve(c, n=240):
@@ -56,13 +61,18 @@ def transiciones():
     curves = [c for _, c in seq]; bounds = [i * 300 for i in range(6)]
     return dict(idx=-1, wait=5e-3, ruido=0.0, regimen="transiciones"), curves, bounds, 1800
 
+def caso_real(k, total=600):
+    """Caso k (1-4) del manuscrito base con sombra FIJA: una sola curva durante todo el escenario (ids "caso1" ... "caso4")."""
+    real, _ = scenarios(); return dict(idx=-1, wait=5e-3, ruido=0.0, regimen=f"caso{k}"), [real[k - 1]], [0], total
+
 def get(sid):
     if sid == "trans": return transiciones()
+    if str(sid).startswith("caso"): return caso_real(int(str(sid)[4:]))
     return make_scenario(int(sid))
 
 def job(a):
     sid, wait, noise, m = a; meta, curves, bounds, total = get(sid); nm, mk, b = METODOS[m]
-    e, tr = run_trace(mk(), curves, bounds, wait, total, 777777 if sid == "trans" else int(sid), noise, b); return (str(sid), wait, noise, m), (e, enc(tr, wait))
+    e, tr = run_trace(mk(), curves, bounds, wait, total, int(sid) if str(sid).isdigit() else 777777, noise, b); return (str(sid), wait, noise, m), (e, enc(tr, wait))
 
 def escenario_json(sid, name, text):
     meta, curves, bounds, total = get(sid); uniq = []; seq = []

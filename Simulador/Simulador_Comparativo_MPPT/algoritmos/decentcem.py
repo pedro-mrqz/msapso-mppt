@@ -10,6 +10,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from dataclasses import dataclass
+from pvsim.static_plant import set_tag
 
 
 @dataclass(frozen=True)
@@ -27,6 +28,7 @@ class Cfg:
     k_sweep: int = 3
     w_max: int = 3
     M: int = 3
+    borde: bool = False        # True = barrido parejo de N puntos entre el BORDE alcanzable (V/I = 12 ohm) y 0.95 Isc (revision del profesor; ver borde_alcanzable)
 
 
 def _measure(planta, curva, xs, t):
@@ -44,17 +46,28 @@ def _update(mu, sig, xs, P, cfg, adapt):
     return mu, sig
 
 
+def borde_alcanzable(curva, R=12.0, x_min=0.10):
+    """ORACULO (revision del profesor, nov. 2026): fraccion de Isc donde la curva cruza V/I = R, es decir, la menor corriente en la que el Boost
+    con carga R puede operar en regimen permanente. Usa la curva verdadera, que un controlador real NO conoce: sirve como COTA SUPERIOR de lo que
+    se ganaria repartiendo el barrido solo en la zona alcanzable. Un sondeo medido (pedir I = 0 y leer Ipv) se probo y no es confiable con
+    t_wait <= 2 ms: el convertidor no llega al borde en una ventana."""
+    I = np.linspace(1e-3, curva.Isc, 4000); P = np.interp(I, curva.I, curva.P, right=0.0); ok = P <= R * I * I
+    xb = float(I[int(np.argmax(ok))] / curva.Isc) if ok.any() else x_min
+    return max(xb, x_min)
+
+
 def make_decent(cfg: Cfg):
     def buscar(planta, curva, rng):
         if cfg.kind == "paper":
             mus = np.array([0.2, 0.5, 0.8]); sg = np.full(cfg.M, cfg.sigma0)
             for t in range(cfg.T):
                 for w in range(cfg.M):
+                    set_tag(planta, t, w)
                     xs = np.clip(mus[w] + sg[w] * rng.normal(size=cfg.n), 0.0, 1.0)
                     P = _measure(planta, curva, xs, t + w)
                     mus[w], sg[w] = _update(mus[w], sg[w], xs, P, cfg, True)
             return
-        x0 = np.linspace(0.10, 0.95, cfg.N); P0 = np.empty(cfg.N)
+        x0 = np.linspace(borde_alcanzable(curva) if cfg.borde else 0.10, 0.95, cfg.N); P0 = np.empty(cfg.N); set_tag(planta, 0)
         for j in range(cfg.N): P0[j] = planta.run(1.0, x0[j] * curva.Isc)[0]
         workers = []
         for j in np.argsort(P0)[::-1][:cfg.k_sweep]:
@@ -63,6 +76,7 @@ def make_decent(cfg: Cfg):
         for t in range(cfg.T):
             for w in range(len(mus)):
                 xs = np.clip(mus[w] + sg[w] * rng.normal(size=cfg.n), 0.0, 1.0)
+                set_tag(planta, t + 1, w)                          # worker w, iteracion t + 1
                 P = _measure(planta, curva, xs, t + w)
                 mus[w], sg[w] = _update(mus[w], sg[w], xs, P, cfg, cfg.sigma_mode == "floor")
     return buscar

@@ -17,6 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from math import gamma, sin, pi
 from dataclasses import dataclass
+from pvsim.static_plant import set_tag
 
 
 @dataclass(frozen=True)
@@ -43,13 +44,20 @@ def make_dgo(cfg: Cfg):
     def buscar(planta, curva, rng):
         n, G = cfg.n, cfg.G
         x = rng.uniform(0, 1, n) if cfg.init == "random" else np.linspace(0.95, 0.10, n)
+        tags = {}
         def medir(xs, t):
             order = np.argsort(xs)
             if t % 2 == 1: order = order[::-1]
             P = np.empty(len(xs))
-            for j in order: P[j] = planta.run(1.0, xs[j] * curva.Isc)[0]
+            for j in order:
+                if t in tags: set_tag(planta, t, *tags[t][j])
+                P[j] = planta.run(1.0, xs[j] * curva.Isc)[0]
             return P
-        P = medir(x, 0); grp = rng.permutation(n) % cfg.groups; age = np.zeros(n, int)
+        P = medir(x, 0)                                            # la generacion 0 se etiqueta despues: el grupo se sortea tras medirla (sin alterar el azar)
+        grp = rng.permutation(n) % cfg.groups; age = np.zeros(n, int)
+        if hasattr(planta, "log_tag"):
+            k0 = len(planta.log_tag) - n; order0 = np.argsort(x)
+            for pos, j in enumerate(order0): planta.log_tag[k0 + pos] = (0, int(grp[j]), 0)
         j = int(np.argmax(P)); b, Pb = x[j], P[j]
         mu = {g: None for g in range(cfg.groups)}; sd = {g: cfg.s0 for g in range(cfg.groups)}
         for t in range(1, G):
@@ -58,6 +66,7 @@ def make_dgo(cfg: Cfg):
                 idx = np.where(grp == g)[0]
                 if len(idx): heads[g] = idx[int(np.argmax(P[idx]))]
             hl = list(heads.values()); xn = x.copy()
+            tags[t] = [(int(grp[i]), 1 if i in hl else 0) for i in range(n)]
             for i in range(n):
                 g = grp[i]
                 if i == heads.get(g):                                  # cabeza: vuelo de Levy (Eq. 6-7)
@@ -84,7 +93,7 @@ def make_dgo(cfg: Cfg):
                 for i in range(n):
                     if age[i] >= cfg.ttl and i not in hl and hl:
                         pick = [x[hl[int(rng.integers(len(hl)))]] for _ in range(3)]; x[i] = float(np.clip(np.mean(pick) + 0.05 * rng.normal(), 0, 1)); P[i] = -np.inf; age[i] = 0
-                        P[i] = planta.run(1.0, x[i] * curva.Isc)[0]
+                        set_tag(planta, t, grp[i], 2); P[i] = planta.run(1.0, x[i] * curva.Isc)[0]
             j = int(np.argmax(P))
             if P[j] > Pb: b, Pb = x[j], P[j]
             hs = {g: P[np.where(grp == g)[0]].max() for g in range(cfg.groups) if (grp == g).any()}

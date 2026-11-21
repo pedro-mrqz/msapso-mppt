@@ -13,6 +13,7 @@ from sklearn.neural_network import MLPRegressor
 from algoritmos.msapso_early import SyntheticPVCurve, random_shading_mix
 from pvsim.medicion import P_NOM
 from pvsim.msapso import INIT_FRACS
+from pvsim.static_plant import set_tag
 
 FR = np.array(sorted(INIT_FRACS))
 
@@ -20,6 +21,30 @@ FR = np.array(sorted(INIT_FRACS))
 def features(Ps):
     Ps = np.asarray(Ps, float); m = max(Ps.max(), 1e-6)
     return np.concatenate([Ps / m, [m / P_NOM]])
+
+
+def features_pares(Ps, xs):
+    """Revision del profesor: la red recibe los PARES (corriente medida / Isc, potencia normalizada) del barrido, no solo las potencias."""
+    Ps = np.asarray(Ps, float); m = max(Ps.max(), 1e-6)
+    return np.concatenate([Ps / m, np.asarray(xs, float), [m / P_NOM]])
+
+
+def make_dataset_pares(n, seed, R=12.0):
+    """Datos para el MLP con pares. Curvas estaticas (misma receta que make_dataset), pero cada corriente pedida por debajo del borde alcanzable
+    (V/I = R) se MIDE en el borde, como ocurre con el Boost y carga fija: asi la corriente medida si aporta informacion. Etiqueta igual que la V11: I_gmpp / Isc."""
+    from algoritmos.decentcem import borde_alcanzable
+    r = np.random.default_rng(seed); X, y = [], []
+    for _ in range(n):
+        irr = random_shading_mix(r)
+        if r.random() < 0.5: irr = irr * r.uniform(0.25, 1.0)
+        c = SyntheticPVCurve(irr); xb = borde_alcanzable(c, R, x_min=0.0); xs = np.maximum(FR, xb)
+        Ps = np.interp(xs * c.Isc, c.I, c.P, right=0.0); X.append(features_pares(Ps, xs)); y.append(c.I_gmpp / c.Isc)
+    return np.array(X), np.array(y)
+
+
+def train_mlp_pares(n=30000, seed=1111, hidden=(64, 64)):
+    X, y = make_dataset_pares(n, seed)
+    return MLPRegressor(hidden_layer_sizes=hidden, max_iter=600, early_stopping=True, random_state=0).fit(X, y)
 
 
 def make_dataset(n, seed, noise_w=0.0):
@@ -39,7 +64,7 @@ def train_mlp(n=8000, seed=1111, hidden=(64, 64), noise_w=0.0):
 
 @dataclass(frozen=True)
 class Cfg:
-    modo: str = "mlp"        # mlp | sin_modelo | solo_mlp
+    modo: str = "mlp"        # mlp | sin_modelo | solo_mlp | pares (la red recibe corriente MEDIDA y potencia de cada punto del barrido)
     n: int = 5
     k: int = 2
     alpha: float = 1.0
@@ -52,8 +77,13 @@ class Cfg:
 
 def make_mlp_cem(model, cfg: Cfg):
     def buscar(planta, curva, rng):
-        Ps = np.array([planta.run(1.0, f * curva.Isc)[0] for f in FR])          # barrido de 7 mediciones (ascendente)
+        set_tag(planta, 0)
+        Ps, xs = [], []
+        for f in FR:                                                              # barrido de 7 mediciones (ascendente)
+            Ps.append(planta.run(1.0, f * curva.Isc)[0]); xs.append(min(planta.Ipv / curva.Isc, 1.0))   # corriente MEDIDA (observable)
+        Ps = np.array(Ps)
         if cfg.modo == "sin_modelo": mu = FR[int(np.argmax(Ps))]
+        elif cfg.modo == "pares": mu = float(np.clip(model.predict(features_pares(Ps, xs)[None])[0], 0.0, 1.0))
         else: mu = float(np.clip(model.predict(features(Ps)[None])[0], 0.0, 1.0))
         if cfg.modo == "solo_mlp":
             planta.run(1.0, mu * curva.Isc); return
@@ -61,7 +91,7 @@ def make_mlp_cem(model, cfg: Cfg):
         for t in range(1, cfg.t_max + 1):
             x = np.clip(mu + sig * rng.normal(size=cfg.n), 0.0, 1.0); order = np.argsort(x)
             if t % 2 == 0: order = order[::-1]
-            P = np.empty(cfg.n)
+            P = np.empty(cfg.n); set_tag(planta, t)                # iteracion CEM t
             for j in order: P[j] = planta.run(1.0, x[j] * curva.Isc)[0]
             el = x[np.argsort(P)[::-1][:cfg.k]]
             mu = (1 - cfg.alpha) * mu + cfg.alpha * el.mean(); sig = max((1 - cfg.alpha) * sig + cfg.alpha * el.std(), cfg.sigma_min)

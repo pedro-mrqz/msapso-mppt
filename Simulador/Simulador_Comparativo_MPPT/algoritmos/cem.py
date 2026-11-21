@@ -6,6 +6,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from dataclasses import dataclass
+from pvsim.static_plant import set_tag
 
 
 @dataclass(frozen=True)
@@ -29,7 +30,7 @@ def make_cem(cfg: CEMCfg):
             order = np.argsort(x)
             if t % 2 == 0:
                 order = order[::-1]                      # barrido alternante, como el MSAPSO
-            P = np.empty(cfg.n)
+            P = np.empty(cfg.n); set_tag(planta, t - 1)           # iteracion t (0 = poblacion inicial)
             for j in order:
                 P[j] = planta.run(1.0, x[j] * curva.Isc)[0]
             el = x[np.argsort(P)[::-1][:cfg.k]]

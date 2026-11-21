@@ -1,0 +1,22 @@
+[
+ {
+  "id": "caso1",
+  "name": "Caso 1 · irradiancia uniforme",
+  "text": "Todo el arreglo recibe la misma irradiancia: la curva tiene un solo máximo (201 W)."
+ },
+ {
+  "id": "caso2",
+  "name": "Caso 2 · sombra parcial",
+  "text": "Parte del arreglo recibe menos luz: la curva tiene varios máximos locales y solo uno es el global (176 W)."
+ },
+ {
+  "id": "caso3",
+  "name": "Caso 3 · sombra parcial, pico inalcanzable",
+  "text": "Sombra parcial con varios máximos. El máximo teórico (47 W) cae en la zona que el convertidor no alcanza con 12 Ω; el máximo alcanzable es 41 W."
+ },
+ {
+  "id": "caso4",
+  "name": "Caso 4 · sombra parcial fuerte",
+  "text": "Sombra parcial más severa, con varios máximos locales; el máximo global es 75 W."
+ }
+]
