@@ -116,7 +116,7 @@ Siguiendo a \textcite{korolov2022}, medimos el beneficio en el desempeño del co
 
 \medskip
 \noindent
-\begin{minipage}[t]{0.235\linewidth}\cifragris{+0.22\,kWh}{Productividad}{por kWp al mes, como máximo}{}\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}\cifragris{0.22--0.70}{kWh/kWp al mes}{según la frecuencia de cambios de sombra}{}\end{minipage}\hfill
 \begin{minipage}[t]{0.235\linewidth}\cifragris{$-$18.9\,min}{Ahorro de tiempo}{de búsqueda al mes}{}\end{minipage}\hfill
 \begin{minipage}[t]{0.235\linewidth}\cifragris{+150\,\%}{Capacidad}{226\,800 mediciones/mes}{}\end{minipage}\hfill
 \begin{minipage}[t]{0.235\linewidth}\cifragris{$-$56\,\%}{Menos errores}{8 vs.\ 18\,\% del MLP + CEM}{}\end{minipage}
@@ -178,7 +178,7 @@ Todos los beneficios se expresan por mes y por controlador (la productividad, po
 \toprule
 Supuesto & Valor & Fuente o justificación\\
 \midrule
-Ganancia de energía de la V7 en la confirmación & 2.78\pp & Resultados del proyecto, 1\,200 escenarios (IC 95\,\%: 2.39--3.18); corresponde a sombra que cambia mucho más de una vez por minuto, por lo que solo se usa en la sensibilidad\\
+Ganancia de energía de la V7 en la confirmación & 2.78\pp & Resultados del proyecto, 1\,200 escenarios (IC 95\,\%: 2.39--3.18); corresponde a sombra que cambia como en los escenarios (del orden de 100 búsquedas por minuto); se usa para el extremo superior del rango\\
 Producción anual específica & 1\,500 kWh/kWp & Supuesto ilustrativo del proyecto\\
 Fracción del tiempo de operación en sombra cambiante & 20\,\% & Supuesto ilustrativo del proyecto; debe medirse en el sitio\\
 Horas de sol al mes & 180 h & 6 h al día $\times$ 30 días; supuesto del equipo\\
@@ -199,7 +199,7 @@ Condiciones de sombra con pérdida mayor de 3\pp\ frente al MSAPSO (V7 / MLP + C
 Indicador & Base de cálculo & Valor mensual\\
 \midrule
 Búsquedas al mes (base) & $180\ \text{h} \times 0.20 \times 60 = 2\,160$ búsquedas & 2\,160 por controlador\\
-Incremento en productividad & Con una búsqueda por minuto, la V7 ahorra $(175-70) \times 5\ \text{ms} = 0.525$ s por minuto, el 0.875\,\% del tiempo en sombra cambiante. Aun si el panel no entregara energía al buscar, la ganancia no supera 0.875\pp: $125 \times 0.20 \times 0.00875 = 0.219$, con $1\,500/12 = 125$ kWh/kWp al mes & Hasta +0.22 kWh/kWp (cota superior)\\
+Incremento en productividad & Con una búsqueda por minuto, la V7 ahorra $(175-70) \times 5\ \text{ms} = 0.525$ s por minuto, el 0.875\,\% del tiempo en sombra cambiante. Aun si el panel no entregara energía al buscar, la ganancia no supera 0.875\pp: $125 \times 0.20 \times 0.00875 = 0.219$, con $1\,500/12 = 125$ kWh/kWp al mes & Hasta +0.22 kWh/kWp con 1 búsqueda por minuto; $\approx$ 0.70 con la frecuencia de los escenarios\\
 Ahorro de tiempo & MSAPSO: $2\,160 \times 175 \times 5\ \text{ms} = 31.5$ min; V7: $2\,160 \times 70 \times 5\ \text{ms} = 12.6$ min & $-$18.9 min por controlador ($-$60\,\%)\\
 Capacidad de procesamiento & $175/70 = 2.5$ búsquedas en el tiempo de una; $2\,160 \times (175-70) = 226\,800$ mediciones liberadas & +150\,\%; 226\,800 mediciones\\
 Reducción de errores & Fracción de condiciones de sombra con pérdida mayor de 3\pp: $(18-8)/18 = 0.56$; se mantiene cada mes mientras se repitan esas condiciones & $-$56\,\% frente al MLP + CEM\\
@@ -207,7 +207,7 @@ Reducción de errores & Fracción de condiciones de sombra con pérdida mayor de
 \end{tabularx}
 \end{table}
 
-\noindent\textbf{Sensibilidad.} Los indicadores de tiempo y capacidad son proporcionales al número de búsquedas: con una búsqueda cada dos minutos, el ahorro de tiempo baja a 9.5 min al mes; con dos por minuto, sube a 37.8 min. Las proporciones ($-$60\,\%, +150\,\% y $-$56\,\%) no dependen de ese supuesto. La cota de productividad también es proporcional: 0.11 kWh/kWp al mes con una búsqueda cada dos minutos y 0.44 con dos por minuto; la ganancia real será menor, porque el panel sí entrega energía mientras busca. Solo si la sombra cambiara con la frecuencia de los escenarios evaluados se alcanzarían los 2.78\pp\ de la confirmación, unos 0.70 kWh/kWp al mes (0.60 con el extremo inferior del intervalo, 2.39\pp). Frente al MSAPSO, la V7 no reduce errores: su pérdida media de exactitud es de 0.05\pp, y en el 8\,\% de las condiciones pierde más de 3\pp. El ahorro de tiempo se refiere al tiempo que el controlador pasa buscando, no a horas-persona.
+\noindent\textbf{Sensibilidad.} Los indicadores de tiempo y capacidad son proporcionales al número de búsquedas: con una búsqueda cada dos minutos, el ahorro de tiempo baja a 9.5 min al mes; con dos por minuto, sube a 37.8 min. Las proporciones ($-$60\,\%, +150\,\% y $-$56\,\%) no dependen de ese supuesto. La cota de productividad también es proporcional: 0.11 kWh/kWp al mes con una búsqueda cada dos minutos y 0.44 con dos por minuto; la ganancia real será menor, porque el panel sí entrega energía mientras busca. El extremo superior del rango corresponde a una sombra que cambia con la frecuencia de los escenarios evaluados (del orden de 100 búsquedas por minuto): ahí se alcanzan los 2.78\pp\ de la confirmación, unos 0.70 kWh/kWp al mes u 8 kWh/kWp al año, la cifra ilustrativa del artículo (0.60 al mes con el extremo inferior del intervalo, 2.39\pp). El beneficio real queda entre ambos extremos y se determinará en el piloto midiendo la frecuencia de cambios de sombra (reinicios por hora). Frente al MSAPSO, la V7 no reduce errores: su pérdida media de exactitud es de 0.05\pp, y en el 8\,\% de las condiciones pierde más de 3\pp. El ahorro de tiempo se refiere al tiempo que el controlador pasa buscando, no a horas-persona.
 
 \section*{Anexo B. Costo total de propiedad (TCO) a 12 meses}
 Supuestos: tarifa de 450 MXN por hora de ingeniería especializada; el laboratorio institucional proporciona el emulador de arreglo fotovoltaico a cambio de una cuota de uso; el piloto opera con hasta 10 equipos durante los meses 7 a 12. Las cifras son estimaciones del equipo y deben cotizarse antes de aprobar el gasto.
